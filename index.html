@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>︵‿୨♡୧‿︵</title>
   <style>
-    /* 引入圓潤可愛中文字體 (Zen Maru Gothic) 與塗鴉手寫感英文字體 (Shantell Sans) */
-    @import url('https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght@0,500;0,700;1,600&family=Zen+Maru+Gothic:wght@400;500;700&display=swap');
+    /* 引入圓潤可愛中文字體 (Zen Maru Gothic) 與 Gamja Flower 英文字體 */
+    @import url('https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Zen+Maru+Gothic:wght@400;500;700&display=swap');
 
     * {
       box-sizing: border-box;
@@ -19,7 +19,7 @@
         radial-gradient(#FCE1E4 1.8px, transparent 1.8px), 
         radial-gradient(#FCE1E4 1.8px, #FFFDF9 1.8px);
       background-size: 24px 24px;
-      background-position: 0 0, 12px 12px; /* 錯開波點位置 */
+      background-position: 0 0, 12px 12px;
       color: #5C4A4A;
       font-family: 'Zen Maru Gothic', sans-serif;
       margin: 0;
@@ -29,6 +29,11 @@
       align-items: center;      /* 水平居中 */
       justify-content: center; /* 畫面垂直居中 */
       min-height: 100vh;
+    }
+
+    /* 全域英文專用類別/預設字體設定 */
+    .en-font {
+      font-family: 'Gamja Flower', cursive !important;
     }
 
     /* 主容器 */
@@ -75,21 +80,31 @@
       background: #FFFFFF;
       border: 2px solid #FCE1E4;
       border-radius: 16px;
-      padding: 10px 24px;
+      padding: 10px 20px;
       box-shadow: 0px 4px 12px rgba(226, 149, 152, 0.12);
       width: fit-content;
-      min-width: 140px;
+      min-width: 150px;
       text-align: center;
     }
 
     .menu-header {
-      font-family: 'Shantell Sans', cursive;
-      font-size: 1.3rem;
+      font-family: 'Gamja Flower', cursive; /* 套用 Gamja Flower */
+      font-size: 1.5rem;
       color: #E29598;
       font-weight: 700;
       cursor: pointer;
       user-select: none;
-      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px; /* GIF 與文字的間距 */
+    }
+
+    /* 目錄前面的小 GIF */
+    .menu-icon {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
     }
 
     /* 選單展開按鈕區 */
@@ -109,8 +124,8 @@
     .menu-btn {
       text-decoration: none;
       color: #5C4A4A;
-      font-family: 'Shantell Sans', cursive;
-      font-size: 1.05rem;
+      font-family: 'Gamja Flower', cursive; /* 套用 Gamja Flower */
+      font-size: 1.25rem;
       font-weight: 600;
       background: #FFFDF9;
       border: 1px solid #FCE1E4;
@@ -224,10 +239,11 @@
       </div>
     </div>
 
-    <!-- 第二層：精緻短版 Contents 選單條 -->
+    <!-- 第二層：精緻短版 Contents 選單條（帶有 GIF 與 Gamja Flower 字體） -->
     <div class="menu-card">
       <div class="menu-header" onclick="toggleMenu()">
-        Contents
+        <img src="IMG_3836.GIF" alt="icon" class="menu-icon">
+        <span>Contents</span>
       </div>
       <div class="menu-links" id="menuLinks">
         <a href="about.html" class="menu-btn">About</a>
@@ -252,7 +268,7 @@
 
         <p style="margin: 6px 0;">若無法承接中國乙遊/凌肖夢向皆可直接退設。</p>
         <p style="margin: 6px 0;">不會催稿，但如果有延期需求希望主動告知。</p>
-        <p style="margin: 6px 0;">趕時間的話建議可以看 <span style="font-family: 'Shantell Sans', cursive; font-weight: 700; color: #D87074;">About</span>。</p>
+        <p style="margin: 6px 0;">趕時間的話建議可以看 <span class="en-font" style="font-weight: 700; color: #D87074; font-size: 1.1rem;">About</span>。</p>
         <p style="margin: 6px 0; font-size: 0.88rem; color: #A08888;">
           建議使用電腦版網頁或平板開啟。
         </p>

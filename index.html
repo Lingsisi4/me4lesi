@@ -13,43 +13,34 @@
       color: #5C4A4A; /* 溫柔深棕色文字 */
       font-family: 'Zen Maru Gothic', sans-serif;
       margin: 0;
-      padding: 40px 20px;
+      padding: 20px;
       display: flex;
-      flex-direction: column;
-      align-items: center;
+      justify-content: center; /* 水平居中 */
+      align-items: center; /* 垂直居中 */
+      min-height: 100vh; /* 使內容在螢幕垂直居中 */
     }
 
-    /* 手寫風大標題 */
-    h1 {
-      font-family: 'Caveat', cursive;
-      font-size: 3.2rem;
-      color: #E29598; /* 奶油莫蘭迪粉 */
-      margin-bottom: 30px;
-      text-shadow: 2px 2px 0px #FCE1E4;
-      text-align: center;
+    /* 左右排列的容器 */
+    .split-layout-container {
+      display: flex;
+      flex-direction: row; /* 水平排列 */
+      align-items: center; /* 垂直居中 */
+      position: relative; /* 用於橢圓的相對定位 */
     }
 
-    /* 復古手繪風格：橢圓大頭照 + 緞帶蝴蝶結裝飾框 */
-    .ribbon-avatar-container {
+    /* 復古手繪風格：橢圓大頭照裝飾框 */
+    .oval-avatar-container {
       position: relative;
       width: 210px;
       height: 260px;
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-bottom: 35px;
+      z-index: 2; /* 確保橢圓在上方 */
+      margin-right: -40px; /* **橢圓和方框的重疊距離** (負值) */
     }
 
-    /* 頂部手繪感雙層蝴蝶結裝飾 */
-    .ribbon-bow {
-      position: absolute;
-      top: -18px;
-      z-index: 10;
-      font-size: 2.2rem;
-      filter: drop-shadow(0px 2px 3px rgba(226, 149, 152, 0.3));
-    }
-
-    /* 橢圓照片內框 */
+    /* 橢圓照片內框 (刪除 ribbon-bow 裝飾) */
     .oval-frame {
       width: 190px;
       height: 240px;
@@ -77,24 +68,33 @@
       background: #FFFFFF;
       border: 2px solid #FCE1E4;
       border-radius: 20px;
-      padding: 30px 25px 25px 25px;
-      max-width: 460px;
+      padding: 35px 25px 25px 55px; /* **增加左側 padding (55px) 預留給重疊處** */
+      max-width: 420px; /* 稍微縮小方框寬度以適應左右排列 */
       width: 100%;
       box-shadow: 0px 6px 18px rgba(226, 149, 152, 0.12);
-      margin-bottom: 25px;
       box-sizing: border-box;
       text-align: center;
+      z-index: 1; /* 確保方框在下方 */
     }
 
-    /* 卡片頂部的小蝴蝶結 */
-    .card-bow {
+    /* 卡片頂部的圖片 (替換 emoji) */
+    .card-icon {
       position: absolute;
-      top: -16px;
+      top: -20px; /* **調整圖片位置使其在方框邊緣** */
       left: 50%;
       transform: translateX(-50%);
-      background-color: #FFFDF9;
-      padding: 0 10px;
-      font-size: 1.5rem;
+      background-color: #FFFDF9; /* **與背景色相同，使圖片像貼在方框上** */
+      padding: 0 10px; /* 預留一些空間 */
+      max-width: 60px; /* **設定圖片最大寬度，避免過大** */
+      max-height: 40px; /* **設定圖片最大高度** */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card-icon img {
+      width: 100%;
+      height: auto;
     }
 
     .notice-text {
@@ -112,31 +112,38 @@
 </head>
 <body>
 
-  <h1>Welcome to Our Cozy Home ✨</h1>
+  <!-- 左右排列容器 -->
+  <div class="split-layout-container">
 
-  <!-- 復古手繪風橢圓大頭照（已帶入你的圖片檔名） -->
-  <div class="ribbon-avatar-container">
-    <div class="ribbon-bow">🎀</div>
-    <div class="oval-frame">
-      <img class="oval-img" src="IMG_3979.PNG" alt="大頭照">
+    <!-- 復古手繪風橢圓大頭照 (已刪除蝴蝶結 emoji) -->
+    <div class="oval-avatar-container">
+      <div class="oval-frame">
+        <img class="oval-img" src="IMG_3979.PNG" alt="大頭照">
+      </div>
     </div>
-  </div>
 
-  <!-- 緞帶蝴蝶結歡迎語與須知卡片 -->
-  <div class="ribbon-card">
-    <div class="card-bow">🎀</div>
-    <div class="notice-text">
-      <p class="notice-highlight" style="font-size: 1.1rem; margin-top: 5px; margin-bottom: 12px;">
-        戀與製作人 ｜ 凌肖夢向
-      </p>
-      <p style="margin: 8px 0;">若無法承接中國乙遊/凌肖夢向皆可直接退幣/退設。</p>
-      <p style="margin: 8px 0;">不會催稿，但如果老師有延期需求希望主動告知。</p>
-      <p style="margin: 8px 0;">趕時間的話建議直接看 About。</p>
-      <p style="margin: 12px 0 0 0; font-size: 0.88rem; color: #A08888;">
-        💡 建議使用電腦版網頁或平板開啟。
-      </p>
+    <!-- 緞帶蝴蝶結歡迎語與須知卡片 -->
+    <div class="ribbon-card">
+      <!-- 替換 emoji 為你的 GIF 圖片 -->
+      <div class="card-icon">
+        <!-- **將此處的 `your-icon.gif` 替換為你的 GIF 圖片檔名** -->
+        <img src="your-icon.gif" alt="icon">
+      </div>
+      
+      <div class="notice-text">
+        <p class="notice-highlight" style="font-size: 1.1rem; margin-top: 5px; margin-bottom: 12px;">
+          戀與製作人 ｜ 凌肖夢向
+        </p>
+        <p style="margin: 8px 0;">若無法承接中國乙遊/凌肖夢向皆可直接退幣/退設。</p>
+        <p style="margin: 8px 0;">不會催稿，但如果老師有延期需求希望主動告知。</p>
+        <p style="margin: 8px 0;">趕時間的話建議直接看 About。</p>
+        <p style="margin: 12px 0 0 0; font-size: 0.88rem; color: #A08888;">
+          💡 建議使用電腦版網頁或平板開啟。
+        </p>
+      </div>
     </div>
-  </div>
+
+  </div> <!-- 結束左右排列容器 -->
 
 </body>
 </html>

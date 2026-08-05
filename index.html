@@ -3,102 +3,162 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ling Xiao & Me 🌸</title>
+  <title>︵‿୨♡୧‿︵</title>
   <style>
     /* 引入圓潤手寫感中文字體與英文手寫體 */
     @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       background-color: #FFFDF9; /* 溫暖奶油白底色 */
       color: #5C4A4A; /* 溫柔深棕色文字 */
       font-family: 'Zen Maru Gothic', sans-serif;
       margin: 0;
-      padding: 20px;
+      padding: 30px 15px;
       display: flex;
-      justify-content: center; /* 水平居中 */
-      align-items: center; /* 垂直居中 */
-      min-height: 100vh; /* 使內容在螢幕垂直居中 */
-    }
-
-    /* 左右排列的容器 */
-    .split-layout-container {
-      display: flex;
-      flex-direction: row; /* 水平排列 */
-      align-items: center; /* 垂直居中 */
-      position: relative; /* 用於橢圓的相對定位 */
-    }
-
-    /* 復古手繪風格：橢圓大頭照裝飾框 */
-    .oval-avatar-container {
-      position: relative;
-      width: 210px;
-      height: 260px;
-      display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      z-index: 2; /* 確保橢圓在上方 */
-      margin-right: -40px; /* **橢圓和方框的重疊距離** (負值) */
+      min-height: 100vh;
     }
 
-    /* 橢圓照片內框 (刪除 ribbon-bow 裝飾) */
-    .oval-frame {
-      width: 190px;
-      height: 240px;
-      border-radius: 50% / 50%;
-      border: 6px solid #FCE1E4;
+    /* ===== 頂部區域：圓形大頭貼 + Contents 選單 ===== */
+    .top-section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin-bottom: 25px;
+      width: 100%;
+      max-width: 380px;
+    }
+
+    /* 圓形小大頭貼 */
+    .circle-avatar-container {
+      position: relative;
+      width: 90px;
+      height: 90px;
+      z-index: 2; /* 確保頭像在選單上方 */
+      margin-right: -25px; /* 與選單輕微重疊 */
+      flex-shrink: 0;
+    }
+
+    .circle-frame {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 4px solid #FCE1E4;
       outline: 2px dashed #E29598;
-      outline-offset: 4px;
+      outline-offset: 3px;
       background-color: #FFFFFF;
       overflow: hidden;
-      box-shadow: 0px 8px 20px rgba(92, 74, 74, 0.08);
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      box-shadow: 0px 4px 12px rgba(92, 74, 74, 0.08);
     }
 
-    .oval-img {
+    .circle-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
 
-    /* 緞帶蝴蝶結風格卡片 */
+    /* Contents 選單方框 */
+    .menu-card {
+      position: relative;
+      background: #FFFFFF;
+      border: 2px solid #FCE1E4;
+      border-radius: 16px;
+      padding: 10px 15px 10px 35px; /* 左側預留給大頭貼重疊 */
+      box-shadow: 0px 4px 12px rgba(226, 149, 152, 0.12);
+      z-index: 1;
+      width: 100%;
+    }
+
+    .menu-header {
+      font-family: 'Caveat', cursive;
+      font-size: 1.5rem;
+      color: #E29598;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+
+    .menu-header::after {
+      content: "🌸";
+      font-size: 0.9rem;
+    }
+
+    /* 選單展開按鈕區（預設隱藏） */
+    .menu-links {
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed #FCE1E4;
+    }
+
+    .menu-links.show {
+      display: flex;
+    }
+
+    .menu-btn {
+      text-decoration: none;
+      color: #5C4A4A;
+      font-family: 'Caveat', cursive;
+      font-size: 1.3rem;
+      background: #FFFDF9;
+      border: 1px solid #FCE1E4;
+      padding: 6px 12px;
+      border-radius: 8px;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .menu-btn:hover {
+      background: #FCE1E4;
+      color: #D87074;
+    }
+
+    /* ===== 中間區域：歡迎語卡片 ===== */
     .ribbon-card {
       position: relative;
       background: #FFFFFF;
       border: 2px solid #FCE1E4;
       border-radius: 20px;
-      padding: 35px 25px 25px 55px; /* **增加左側 padding (55px) 預留給重疊處** */
-      max-width: 420px; /* 稍微縮小方框寬度以適應左右排列 */
+      padding: 30px 20px 25px 20px;
+      max-width: 380px;
       width: 100%;
       box-shadow: 0px 6px 18px rgba(226, 149, 152, 0.12);
       box-sizing: border-box;
       text-align: center;
-      z-index: 1; /* 確保方框在下方 */
     }
 
-    /* 卡片頂部的圖片 (替換 emoji) */
+    /* GIF 圖標 */
     .card-icon {
       position: absolute;
-      top: -20px; /* **調整圖片位置使其在方框邊緣** */
+      top: -20px;
       left: 50%;
       transform: translateX(-50%);
-      background-color: #FFFDF9; /* **與背景色相同，使圖片像貼在方框上** */
-      padding: 0 10px; /* 預留一些空間 */
-      max-width: 60px; /* **設定圖片最大寬度，避免過大** */
-      max-height: 40px; /* **設定圖片最大高度** */
+      background-color: #FFFDF9;
+      padding: 0 10px;
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
     .card-icon img {
-      width: 100%;
+      max-width: 60px;
+      max-height: 40px;
       height: auto;
     }
 
     .notice-text {
-      font-size: 0.98rem;
+      font-size: 0.95rem;
       line-height: 1.8;
       color: #5C4A4A;
       font-weight: 500;
@@ -108,42 +168,112 @@
       color: #D87074;
       font-weight: 700;
     }
+
+    /* ===== 左下角音樂播放按鈕 ===== */
+    .music-btn {
+      position: absolute;
+      bottom: -15px;
+      left: 15px;
+      width: 38px;
+      height: 38px;
+      background-color: #FFFFFF;
+      border: 2px solid #FCE1E4;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0px 3px 8px rgba(226, 149, 152, 0.2);
+      font-size: 1rem;
+      transition: transform 0.2s, background-color 0.2s;
+      user-select: none;
+    }
+
+    .music-btn:hover {
+      transform: scale(1.1);
+      background-color: #FFFDF9;
+    }
+
+    .music-btn.playing {
+      animation: spin 3s linear infinite;
+      border-color: #E29598;
+    }
+
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
   </style>
 </head>
 <body>
 
-  <!-- 左右排列容器 -->
-  <div class="split-layout-container">
-
-    <!-- 復古手繪風橢圓大頭照 (已刪除蝴蝶結 emoji) -->
-    <div class="oval-avatar-container">
-      <div class="oval-frame">
-        <img class="oval-img" src="IMG_3979.PNG" alt="大頭照">
+  <!-- 頂部區：圓形大頭貼 + Contents選單 (左右重疊) -->
+  <div class="top-section">
+    <div class="circle-avatar-container">
+      <div class="circle-frame">
+        <img class="circle-img" src="IMG_3979.PNG" alt="大頭照">
       </div>
     </div>
 
-    <!-- 緞帶蝴蝶結歡迎語與須知卡片 -->
-    <div class="ribbon-card">
-      <!-- 替換 emoji 為你的 GIF 圖片 -->
-      <div class="card-icon">
-        <!-- **將此處的 `your-icon.gif` 替換為你的 GIF 圖片檔名** -->
-        <img src="your-icon.gif" alt="icon">
+    <div class="menu-card">
+      <div class="menu-header" onclick="toggleMenu()">
+        Contents
       </div>
+      <div class="menu-links" id="menuLinks">
+        <a href="#about" class="menu-btn">About</a>
+        <a href="#dream" class="menu-btn">Dream</a>
+        <a href="#memo" class="menu-btn">Memo</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 中間區：歡迎語卡片 -->
+  <div class="ribbon-card">
+    <!-- 頂部 GIF 圖片 -->
+    <div class="card-icon">
+      <img src="IMG_4880.GIF" alt="GIF Icon">
+    </div>
+    
+    <div class="notice-text">
+      <p class="notice-highlight" style="font-size: 1.1rem; margin-top: 5px; margin-bottom: 12px;">
+        戀與製作人 ｜ 凌肖夢向
+      </p>
+      <p style="margin: 8px 0;">若無法承接中國乙遊/凌肖夢向皆可直接退設。</p>
+      <p style="margin: 8px 0;">不會催稿，但如果老師有延期需求希望主動告知。</p>
+      <p style="margin: 8px 0;">趕時間的話建議直接看 About。</p>
+      <p style="margin: 12px 0 0 0; font-size: 0.85rem; color: #A08888;">
+        建議使用電腦版網頁或平板開啟。
+      </p>
+    </div>
+
+    <!-- 左下角音樂播放按鈕（預設載入 bgm.mp3） -->
+    <div class="music-btn" id="musicBtn" onclick="toggleMusic()" title="播放音樂">🎵</div>
+    <audio id="bgm" src="bgm.mp3" loop></audio>
+  </div>
+
+  <script>
+    // 控制目錄展開與收合
+    function toggleMenu() {
+      const menuLinks = document.getElementById('menuLinks');
+      menuLinks.classList.toggle('show');
+    }
+
+    // 控制背景音樂播放與暫停
+    function toggleMusic() {
+      const audio = document.getElementById('bgm');
+      const btn = document.getElementById('musicBtn');
       
-      <div class="notice-text">
-        <p class="notice-highlight" style="font-size: 1.1rem; margin-top: 5px; margin-bottom: 12px;">
-          戀與製作人 ｜ 凌肖夢向
-        </p>
-        <p style="margin: 8px 0;">若無法承接中國乙遊/凌肖夢向皆可直接退幣/退設。</p>
-        <p style="margin: 8px 0;">不會催稿，但如果老師有延期需求希望主動告知。</p>
-        <p style="margin: 8px 0;">趕時間的話建議直接看 About。</p>
-        <p style="margin: 12px 0 0 0; font-size: 0.88rem; color: #A08888;">
-          💡 建議使用電腦版網頁或平板開啟。
-        </p>
-      </div>
-    </div>
-
-  </div> <!-- 結束左右排列容器 -->
+      if (audio.paused) {
+        audio.play().then(() => {
+          btn.classList.add('playing');
+        }).catch(err => {
+          alert('請先上傳背景音樂檔（bgm.mp3）或確認網址正確喔！');
+        });
+      } else {
+        audio.pause();
+        btn.classList.remove('playing');
+      }
+    }
+  </script>
 
 </body>
 </html>

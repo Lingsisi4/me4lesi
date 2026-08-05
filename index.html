@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    /* Google Fonts for handwritten feel */
+    @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Zen+Maru+Gothic:wght@400;700&display=swap');
+
+    body {
+      background-color: #FFFDF9; /* Warm Cream */
+      color: #5C4A4A; /* Soft Brown Text */
+      font-family: 'Zen Maru Gothic', sans-serif;
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      font-family: 'Caveat', cursive;
+      font-size: 3rem;
+      color: #E29598; /* Muted Soft Pink */
+      margin-bottom: 20px;
+    }
+
+    /* Scrapbook Card with Washi Tape Effect */
+    .scrapbook-card {
+      position: relative;
+      background: #FFFFFF;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 3px 5px 15px rgba(0,0,0,0.05);
+      width: 300px;
+      text-align: center;
+      transform: rotate(-2deg); /* Slightly tilted */
+      transition: transform 0.3s ease;
+    }
+
+    .scrapbook-card:hover {
+      transform: rotate(0deg) scale(1.02);
+    }
+
+    /* Pink Washi Tape Accent */
+    .scrapbook-card::before {
+      content: "";
+      position: absolute;
+      top: -12px;
+      left: 35%;
+      width: 90px;
+      height: 24px;
+      background-color: rgba(252, 225, 228, 0.85); /* Semi-transparent cream-pink */
+      transform: rotate(3deg);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>My Cozy Journal</h1>
+
+  <div class="scrapbook-card">
+    <p>Welcome to my handwritten page!</p>
+  </div>
+
+</body>
+</html>
+

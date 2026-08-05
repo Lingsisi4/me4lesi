@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>︵‿୨♡୧‿︵</title>
-
-    <!-- 網址列與分頁小圖示 (Favicon) -->
-  <link rel="shortcut icon" href="1785955907050.jpg" type="image/x-icon">
-  <link rel="apple-touch-icon" href="1785955907050.jpg">
   
+  <!-- 網址列與分頁小圖示 (Favicon) -->
+  <link rel="shortcut icon" href="1785953107867-removebg-preview.png" type="image/png">
+  <link rel="apple-touch-icon" href="1785953107867-removebg-preview.png">
+
   <style>
     /* 引入可愛中文字體 (Zen Maru Gothic) 與日系古典英文字體 (Cormorant Garamond) */
     @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=Zen+Maru+Gothic:wght@400;500;700&display=swap');
@@ -79,7 +79,6 @@
       letter-spacing: 2px;
     }
 
-    /* 點點冒出動畫 */
     .dot1, .dot2, .dot3 {
       opacity: 0;
       animation: dotFade 1.5s infinite;
@@ -249,6 +248,7 @@
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.35rem;
       font-weight: 700;
+      cursor: pointer;
       transition: color 0.2s;
     }
 
@@ -276,6 +276,7 @@
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.05rem;
       font-weight: 500;
+      cursor: pointer;
       transition: color 0.2s;
     }
 
@@ -305,8 +306,8 @@
       transform: scale(1.1);
     }
 
-    /* ===== 歡迎語卡片 ===== */
-    .ribbon-card {
+    /* ===== 內容卡片共用樣式 (首頁、About、Dream) ===== */
+    .page-card {
       position: relative;
       background: #FFFFFF;
       border: 2px solid #FCE1E4;
@@ -316,6 +317,11 @@
       box-shadow: 0px 6px 18px rgba(226, 149, 152, 0.12);
       box-sizing: border-box;
       text-align: center;
+      display: none; /* 預設全部隱藏，透過 JS 控制顯示目前頁面 */
+    }
+
+    .page-card.active {
+      display: block; /* 顯示目前啟用的頁面 */
     }
 
     .card-icon {
@@ -511,7 +517,7 @@
         border-top: 1px dashed #FCE1E4;
       }
 
-      .ribbon-card {
+      .page-card {
         flex: 1;
       }
     }
@@ -549,27 +555,34 @@
         <!-- 平板/電腦版目錄 -->
         <div class="menu-links" id="desktopMenuLinks" style="display: none;">
           <div class="menu-item-group">
-            <a href="about.html" class="menu-main-title">
+            <a onclick="switchPage('home')" class="menu-main-title">
+              <img src="IMG_4904.GIF" alt="icon" class="title-gif">
+              <span>Home</span>
+            </a>
+          </div>
+
+          <div class="menu-item-group">
+            <a onclick="switchPage('about')" class="menu-main-title">
               <img src="IMG_4904.GIF" alt="icon" class="title-gif">
               <span>About</span>
             </a>
             <div class="menu-sub-links">
-              <a href="about.html#character" class="menu-sub-btn">Character</a>
-              <a href="about.html#propic" class="menu-sub-btn">Pro pic</a>
-              <a href="about.html#height" class="menu-sub-btn">Height</a>
+              <a onclick="switchPage('about-character')" class="menu-sub-btn">Character</a>
+              <a onclick="switchPage('about-propic')" class="menu-sub-btn">Pro pic</a>
+              <a onclick="switchPage('about-height')" class="menu-sub-btn">Height</a>
             </div>
           </div>
 
           <div class="menu-item-group">
-            <a href="dream.html" class="menu-main-title">
+            <a onclick="switchPage('dream')" class="menu-main-title">
               <img src="IMG_4905.GIF" alt="icon" class="title-gif">
               <span>Dream</span>
             </a>
             <div class="menu-sub-links">
-              <a href="dream.html#painting" class="menu-sub-btn">Painting</a>
-              <a href="dream.html#article" class="menu-sub-btn">Article</a>
-              <a href="dream.html#song" class="menu-sub-btn">Song</a>
-              <a href="dream.html#memo" class="menu-sub-btn">Memo</a>
+              <a onclick="switchPage('dream-painting')" class="menu-sub-btn">Painting</a>
+              <a onclick="switchPage('dream-article')" class="menu-sub-btn">Article</a>
+              <a onclick="switchPage('dream-song')" class="menu-sub-btn">Song</a>
+              <a onclick="switchPage('dream-memo')" class="menu-sub-btn">Memo</a>
             </div>
           </div>
         </div>
@@ -586,8 +599,10 @@
       </div>
     </div>
 
-    <!-- 右欄區塊：歡迎語 + 紀念日 + 感謝 -->
-    <div class="ribbon-card">
+    <!-- 右欄內容區塊：總共有多個頁面卡片，透過 JS 切換顯示 -->
+
+    <!-- 1. 首頁 (Home) 卡片 -->
+    <div class="page-card active" id="page-home">
       <div class="card-icon">
         <img src="IMG_4880.GIF" alt="GIF Icon">
       </div>
@@ -608,7 +623,6 @@
           建議使用電腦版網頁或平板觀看。
         </p>
 
-        <!-- 第一條分隔線 -->
         <hr class="pink-divider">
 
         <!-- 紀念日區塊 -->
@@ -632,7 +646,6 @@
           </div>
         </div>
 
-        <!-- 第二條分隔線 -->
         <hr class="pink-divider">
 
         <!-- 感謝區塊 -->
@@ -642,13 +655,49 @@
         </div>
 
       </div>
-
-      <!-- 右側框線上音樂播放按鈕 -->
-      <div class="music-btn" id="musicBtn" onclick="toggleMusic()" title="播放音樂">
-        <img src="1785943711222-removebg-preview.png" alt="Music Icon">
-      </div>
-      <audio id="bgm" src="bgm.mp3" loop></audio>
     </div>
+
+    <!-- 2. About 頁面卡片 -->
+    <div class="page-card" id="page-about">
+      <div class="card-icon">
+        <img src="IMG_4880.GIF" alt="GIF Icon">
+      </div>
+      <div class="notice-text">
+        <p class="notice-highlight" style="font-size: 1.2rem; margin-top: 5px; margin-bottom: 12px;">
+          About Me / Character
+        </p>
+        <p style="margin: 10px 0;" id="about-character">【Character 內容區塊】<br>這裡之後可以放你的角色設定介紹～</p>
+        <hr class="pink-divider">
+        <p style="margin: 10px 0;" id="about-propic">【Pro pic 內容區塊】<br>這裡可以放設定圖或大頭貼相關資訊～</p>
+        <hr class="pink-divider">
+        <p style="margin: 10px 0;" id="about-height">【Height 內容區塊】<br>這裡可以放身高差或設定高度～</p>
+      </div>
+    </div>
+
+    <!-- 3. Dream 頁面卡片 -->
+    <div class="page-card" id="page-dream">
+      <div class="card-icon">
+        <img src="IMG_4880.GIF" alt="GIF Icon">
+      </div>
+      <div class="notice-text">
+        <p class="notice-highlight" style="font-size: 1.2rem; margin-top: 5px; margin-bottom: 12px;">
+          Dream World
+        </p>
+        <p style="margin: 10px 0;" id="dream-painting">【Painting 區塊】<br>夢向繪圖作品存放處。</p>
+        <hr class="pink-divider">
+        <p style="margin: 10px 0;" id="dream-article">【Article 區塊】<br>夢向短文或小說存放處。</p>
+        <hr class="pink-divider">
+        <p style="margin: 10px 0;" id="dream-song">【Song 區塊】<br>印象曲或音樂清單。</p>
+        <hr class="pink-divider">
+        <p style="margin: 10px 0;" id="dream-memo">【Memo 區塊】<br>碎碎念與雜記。</p>
+      </div>
+    </div>
+
+    <!-- 音樂播放按鈕 (固定在右側卡片外框線上) -->
+    <div class="music-btn" id="musicBtn" onclick="toggleMusic()" title="播放音樂">
+      <img src="1785943711222-removebg-preview.png" alt="Music Icon">
+    </div>
+    <audio id="bgm" src="bgm.mp3" loop></audio>
 
   </div>
 
@@ -658,27 +707,34 @@
     <div class="popup-close-btn" onclick="closeMenu()">✕</div>
     <div class="menu-links">
       <div class="menu-item-group">
-        <a href="about.html" class="menu-main-title">
+        <a onclick="switchPage('home'); closeMenu();" class="menu-main-title">
+          <img src="IMG_4904.GIF" alt="icon" class="title-gif">
+          <span>Home</span>
+        </a>
+      </div>
+
+      <div class="menu-item-group">
+        <a onclick="switchPage('about'); closeMenu();" class="menu-main-title">
           <img src="IMG_4904.GIF" alt="icon" class="title-gif">
           <span>About</span>
         </a>
         <div class="menu-sub-links">
-          <a href="about.html#character" class="menu-sub-btn">Character</a>
-          <a href="about.html#propic" class="menu-sub-btn">Pro pic</a>
-          <a href="about.html#height" class="menu-sub-btn">Height</a>
+          <a onclick="switchPage('about-character'); closeMenu();" class="menu-sub-btn">Character</a>
+          <a onclick="switchPage('about-propic'); closeMenu();" class="menu-sub-btn">Pro pic</a>
+          <a onclick="switchPage('about-height'); closeMenu();" class="menu-sub-btn">Height</a>
         </div>
       </div>
 
       <div class="menu-item-group">
-        <a href="dream.html" class="menu-main-title">
+        <a onclick="switchPage('dream'); closeMenu();" class="menu-main-title">
           <img src="IMG_4905.GIF" alt="icon" class="title-gif">
           <span>Dream</span>
         </a>
         <div class="menu-sub-links">
-          <a href="dream.html#painting" class="menu-sub-btn">Painting</a>
-          <a href="dream.html#article" class="menu-sub-btn">Article</a>
-          <a href="dream.html#song" class="menu-sub-btn">Song</a>
-          <a href="dream.html#memo" class="menu-sub-btn">Memo</a>
+          <a onclick="switchPage('dream-painting'); closeMenu();" class="menu-sub-btn">Painting</a>
+          <a onclick="switchPage('dream-article'); closeMenu();" class="menu-sub-btn">Article</a>
+          <a onclick="switchPage('dream-song'); closeMenu();" class="menu-sub-btn">Song</a>
+          <a onclick="switchPage('dream-memo'); closeMenu();" class="menu-sub-btn">Memo</a>
         </div>
       </div>
     </div>
@@ -707,6 +763,41 @@
       document.getElementById('menuPopup').classList.remove('active');
     }
 
+    // 核心單頁切換邏輯 (切換畫面且音樂絕不中斷)
+    function switchPage(target) {
+      // 隱藏所有頁面卡片
+      document.getElementById('page-home').classList.remove('active');
+      document.getElementById('page-about').classList.remove('active');
+      document.getElementById('page-dream').classList.remove('active');
+
+      // 判斷要顯示哪一個主要頁面
+      if (target === 'home') {
+        document.getElementById('page-home').classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (target.startsWith('about')) {
+        document.getElementById('page-about').classList.add('active');
+        // 如果有指定錨點（如 Character / Pro pic），平滑捲動到該位置
+        setTimeout(() => {
+          const el = document.getElementById(target);
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        }, 50);
+      } else if (target.startsWith('dream')) {
+        document.getElementById('page-dream').classList.add('active');
+        setTimeout(() => {
+          const el = document.getElementById(target);
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        }, 50);
+      }
+    }
+
     // 控制背景音樂播放/暫停
     function toggleMusic() {
       const audio = document.getElementById('bgm');
@@ -716,7 +807,7 @@
         audio.play().then(() => {
           btn.classList.add('playing');
         }).catch(err => {
-          alert('請先上傳背景音樂檔（bgm.mp3）或確認網址正確喔！');
+          alert('請先確認 bgm.mp3 檔案名稱正確並上傳至倉庫喔！');
         });
       } else {
         audio.pause();

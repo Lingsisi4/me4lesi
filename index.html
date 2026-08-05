@@ -199,7 +199,6 @@
       transition: all 0.3s ease;
     }
 
-    /* 當手機版展開時啟用 */
     .menu-overlay.active {
       display: block;
       opacity: 1;
@@ -413,7 +412,7 @@
     /* ===== 極簡低調 Thanks 區塊 ===== */
     .thanks-section {
       padding-top: 2px;
-      font-family: "新細明體", PMingLiU, " Times New Roman", sans-serif;
+      font-family: "新細明體", PMingLiU, "Times New Roman", sans-serif;
       font-size: 0.7rem;
       letter-spacing: 0.5px;
     }
@@ -421,12 +420,12 @@
     .thanks-title {
       font-size: 0.72rem;
       font-weight: normal;
-      color: #F3C5C8; /* 極淺柔粉色，接近背景點點色系 */
+      color: #F3C5C8;
       margin-bottom: 2px;
     }
 
     .thanks-names {
-      color: #D3C3C4; /* 極淺褐色，看得到但不搶眼 */
+      color: #D3C3C4;
       font-weight: normal;
     }
 
@@ -496,12 +495,10 @@
         justify-content: center;
       }
 
-      /* 隱藏手機版專屬彈窗與遮罩 */
       .menu-overlay, .menu-popup-card {
         display: none !important;
       }
 
-      /* 平板/電腦版：將目錄呈現於左側卡片內 */
       .menu-card .menu-links {
         display: flex !important;
         margin-top: 12px;
@@ -532,7 +529,7 @@
       <div class="avatar-section">
         <div class="circle-avatar-container">
           <div class="circle-frame">
-            <img class="circle-img" src="IMG_3979.PNG" alt="大頭照">
+            <img class="circle-img" src="1785955907050.jpg" alt="大頭照">
           </div>
         </div>
       </div>
@@ -544,7 +541,7 @@
           <span>Contents</span>
         </div>
         
-        <!-- 平板/電腦版直接嵌入顯示的目錄列表 -->
+        <!-- 平板/電腦版目錄 -->
         <div class="menu-links" id="desktopMenuLinks" style="display: none;">
           <div class="menu-item-group">
             <a href="about.html" class="menu-main-title">
@@ -598,7 +595,9 @@
           存放有關夢的一切。
         </p>
 
-        <p style="margin: 6px 0;">若無法承接中國乙遊/凌肖夢向皆可直接退設。</p>
+        <p style="margin: 6px 0;">展示夢言夢語的地方，<br>同時作為委託資料使用。</p>
+        
+        <p style="margin: 14px 0 6px 0;">若無法承接中國乙遊/凌肖夢向可直接退設。</p>
         <p style="margin: 6px 0;">不會催稿，但如果有延期需求希望主動告知。</p>
         <p style="margin: 6px 0; font-size: 0.88rem; color: #A08888;">
           建議使用電腦版網頁或平板觀看。
@@ -631,7 +630,7 @@
         <!-- 第二條分隔線 -->
         <hr class="pink-divider">
 
-        <!-- 感謝區塊（極簡低調） -->
+        <!-- 感謝區塊 -->
         <div class="thanks-section">
           <div class="thanks-title">Thanks</div>
           <div class="thanks-names">ㄅㄅ、噗轉、嘎、NN</div>
@@ -648,7 +647,7 @@
 
   </div>
 
-  <!-- 手機版專屬獨立彈出卡片與遮罩 -->
+  <!-- 手機版彈出卡片 -->
   <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
   <div class="menu-popup-card" id="menuPopup">
     <div class="popup-close-btn" onclick="closeMenu()">✕</div>
@@ -692,7 +691,6 @@
 
     // 控制手機版彈窗目錄
     function toggleMenu() {
-      // 僅在手機版寬度觸發彈窗
       if (window.innerWidth < 680) {
         document.getElementById('menuOverlay').classList.add('active');
         document.getElementById('menuPopup').classList.add('active');

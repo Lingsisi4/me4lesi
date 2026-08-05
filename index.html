@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>︵‿୨♡୧‿︵</title>
   <style>
-    /* 引入可愛中文字體 (Zen Maru Gothic)、 Gamja Flower 與日系襯線字體 (Cormorant Garamond) */
-    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Gamja+Flower&family=Zen+Maru+Gothic:wght@400;500;700&display=swap');
+    /* 引入可愛中文字體 (Zen Maru Gothic) 與日系古典英文字體 (Cormorant Garamond) */
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=Zen+Maru+Gothic:wght@400;500;700&display=swap');
 
     * {
       box-sizing: border-box;
@@ -30,9 +30,65 @@
     }
 
     .en-font {
-      font-family: 'Gamja Flower', cursive !important;
+      font-family: 'Cormorant Garamond', serif !important;
     }
 
+    /* ===== Fullscreen Loading Screen ===== */
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: #FFFDF9;
+      background-image: 
+        radial-gradient(#FCE1E4 1.8px, transparent 1.8px), 
+        radial-gradient(#FCE1E4 1.8px, #FFFDF9 1.8px);
+      background-size: 24px 24px;
+      background-position: 0 0, 12px 12px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+
+    .loading-img {
+      width: 80px;
+      height: auto;
+      animation: float 2.5s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .loading-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #D87074;
+      letter-spacing: 2px;
+    }
+
+    /* 點點冒出動畫 */
+    .dot1, .dot2, .dot3 {
+      opacity: 0;
+      animation: dotFade 1.5s infinite;
+    }
+
+    .dot2 { animation-delay: 0.3s; }
+    .dot3 { animation-delay: 0.6s; }
+
+    @keyframes dotFade {
+      0%, 100% { opacity: 0; }
+      50% { opacity: 1; }
+    }
+
+    /* ===== 主容器 ===== */
     .main-container {
       width: 100%;
       max-width: 380px;
@@ -85,16 +141,16 @@
       background: #FFFFFF;
       border: 2px solid #FCE1E4;
       border-radius: 16px;
-      padding: 10px 20px;
+      padding: 12px 20px;
       box-shadow: 0px 4px 12px rgba(226, 149, 152, 0.12);
       width: fit-content;
-      min-width: 150px;
-      text-align: center;
+      min-width: 170px;
+      text-align: left;
     }
 
     .menu-header {
-      font-family: 'Gamja Flower', cursive;
-      font-size: 1.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
       color: #E29598;
       font-weight: 700;
       cursor: pointer;
@@ -111,12 +167,13 @@
       object-fit: contain;
     }
 
+    /* 選單列表（預設手機隱藏） */
     .menu-links {
       display: none;
       flex-direction: column;
-      gap: 8px;
-      margin-top: 10px;
-      padding-top: 10px;
+      gap: 12px;
+      margin-top: 12px;
+      padding-top: 12px;
       border-top: 1px dashed #FCE1E4;
     }
 
@@ -124,31 +181,63 @@
       display: flex;
     }
 
-    .menu-btn {
-      text-decoration: none;
-      color: #5C4A4A;
-      font-family: 'Gamja Flower', cursive;
-      font-size: 1.25rem;
-      font-weight: 600;
-      background: #FFFDF9;
-      border: 1px solid #FCE1E4;
-      padding: 6px 12px;
-      border-radius: 10px;
-      text-align: center;
-      transition: all 0.2s;
+    /* 主要項目 (About / Dream) */
+    .menu-item-group {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
     }
 
-    .menu-btn:hover {
-      background: #FCE1E4;
+    .menu-main-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: #5C4A4A;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      transition: color 0.2s;
+    }
+
+    .menu-main-title:hover {
       color: #D87074;
     }
 
-    /* ===== 社群按鈕（增加中間間距） ===== */
+    .title-gif {
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+    }
+
+    /* 子選項群組 (縮排至第一個字母後方) */
+    .menu-sub-links {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding-left: 24px; /* 子選項向右微縮排 */
+      margin-top: 4px;
+    }
+
+    .menu-sub-btn {
+      text-decoration: none;
+      color: #8C7576;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .menu-sub-btn:hover {
+      color: #D87074;
+    }
+
+    /* ===== 社群按鈕 ===== */
     .social-links {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 24px; /* 間距加大，不再太擠 */
+      gap: 24px;
       margin-top: 4px;
     }
 
@@ -216,11 +305,10 @@
       width: 100%;
     }
 
-    /* ===== 柔和無邊界漸層紀念日區塊 ===== */
+    /* ===== 紀念日區塊 ===== */
     .anniversary-card {
       position: relative;
-      padding: 20px 10px 10px 10px;
-      /* 完美無邊界漸層：由中心的柔粉漸變融合至純白色 */
+      padding: 15px 10px 5px 10px;
       background: radial-gradient(ellipse at center, rgba(252, 225, 228, 0.6) 0%, rgba(255, 255, 255, 0) 70%);
       display: flex;
       flex-direction: column;
@@ -228,10 +316,10 @@
       gap: 6px;
     }
 
-    /* 第一行：Subplot + 深粉色星星 */
     .anniversary-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.25rem;
+      font-size: 1.35rem;
+      font-weight: 700;
       color: #A38789;
       letter-spacing: 2px;
       display: flex;
@@ -240,48 +328,66 @@
     }
 
     .star-icon {
-      color: #D87074; /* 深粉色閃光 */
+      color: #D87074;
       font-size: 0.8rem;
     }
 
-    /* 第二行：since 2019. 04. 27 */
     .since-text {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.25rem;
+      font-size: 1.3rem;
+      font-weight: 600;
       color: #8C7576;
       letter-spacing: 1px;
     }
 
-    /* 第三行：天數（刪除 D+，只保留數字與 days） */
     .days-text {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 2.2rem;
+      font-size: 2.3rem;
       color: #704E50;
-      font-weight: 600;
-      margin: 4px 0 6px 0;
+      font-weight: 700;
+      margin: 2px 0 4px 0;
       letter-spacing: 1px;
     }
 
     .days-text span.unit {
       font-size: 1.15rem;
       color: #9C8384;
-      font-weight: 400;
+      font-weight: 500;
       margin-left: 6px;
     }
 
-    /* 第四行：今日日期（無膠囊，保持古典 serif 字體設計） */
     .today-date-text {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.15rem;
+      font-size: 1.2rem;
+      font-weight: 600;
       color: #A38789;
       letter-spacing: 1px;
     }
 
-    /* 音樂按鈕 */
+    /* ===== 感謝區塊 (Thanks) ===== */
+    .thanks-section {
+      padding-top: 4px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+    }
+
+    .thanks-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #D87074;
+      margin-bottom: 2px;
+    }
+
+    .thanks-names {
+      font-size: 0.88rem;
+      color: #8C7576;
+      font-weight: 500;
+    }
+
+    /* ===== 音樂播放按鈕（移至卡片右側框線上，對齊指定文字高度） ===== */
     .music-btn {
       position: absolute;
-      bottom: -15px;
-      left: 15px;
+      right: -21px; /* 剛好跨放在右邊框線上 */
+      top: 142px;    /* 高度對齊「不會催稿...」該行內文附近 */
       width: 42px;
       height: 42px;
       background-color: #FFFFFF;
@@ -296,6 +402,7 @@
       padding: 4px;
       transition: transform 0.2s, background-color 0.2s;
       user-select: none;
+      z-index: 10;
     }
 
     .music-btn img {
@@ -318,7 +425,7 @@
       100% { transform: rotate(360deg); }
     }
 
-    /* 響應式設定 */
+    /* ===== 平板與電腦版響應式設計 ===== */
     @media (min-width: 680px) {
       .main-container {
         max-width: 720px;
@@ -336,6 +443,11 @@
         width: 100%;
       }
 
+      /* 平板/電腦版：目錄選單強制直接展開 */
+      .menu-links {
+        display: flex !important;
+      }
+
       .ribbon-card {
         flex: 1;
       }
@@ -343,6 +455,14 @@
   </style>
 </head>
 <body>
+
+  <!-- Loading 載入畫面 -->
+  <div id="loading-screen">
+    <img src="1785953107867-removebg-preview.png" alt="Loading Icon" class="loading-img">
+    <div class="loading-text">
+      Loading<span class="dot1">.</span><span class="dot2">.</span><span class="dot3">.</span>
+    </div>
+  </div>
 
   <div class="main-container">
 
@@ -356,18 +476,44 @@
         </div>
       </div>
 
+      <!-- Contents 目錄 -->
       <div class="menu-card">
         <div class="menu-header" onclick="toggleMenu()">
           <img src="IMG_3836.GIF" alt="icon" class="menu-icon">
           <span>Contents</span>
         </div>
+        
         <div class="menu-links" id="menuLinks">
-          <a href="about.html" class="menu-btn">About</a>
-          <a href="dream.html" class="menu-btn">Dream</a>
-          <a href="memo.html" class="menu-btn">Memo</a>
+          <!-- About 主項目 + 子選項 -->
+          <div class="menu-item-group">
+            <a href="about.html" class="menu-main-title">
+              <img src="IMG_4904.GIF" alt="icon" class="title-gif">
+              <span>About</span>
+            </a>
+            <div class="menu-sub-links">
+              <a href="about.html#character" class="menu-sub-btn">Character</a>
+              <a href="about.html#propic" class="menu-sub-btn">Pro pic</a>
+              <a href="about.html#height" class="menu-sub-btn">Height</a>
+            </div>
+          </div>
+
+          <!-- Dream 主項目 + 子選項 -->
+          <div class="menu-item-group">
+            <a href="dream.html" class="menu-main-title">
+              <img src="IMG_4905.GIF" alt="icon" class="title-gif">
+              <span>Dream</span>
+            </a>
+            <div class="menu-sub-links">
+              <a href="dream.html#painting" class="menu-sub-btn">Painting</a>
+              <a href="dream.html#article" class="menu-sub-btn">Article</a>
+              <a href="dream.html#song" class="menu-sub-btn">Song</a>
+              <a href="dream.html#memo" class="menu-sub-btn">Memo</a>
+            </div>
+          </div>
         </div>
       </div>
 
+      <!-- 社群連結按鈕 -->
       <div class="social-links">
         <a href="https://www.facebook.com/share/1DKCVjFYUC/?mibextid=wwXIfr" target="_blank" title="Facebook">
           <img src="1785949250711.jpg" alt="FB" class="social-icon">
@@ -378,7 +524,7 @@
       </div>
     </div>
 
-    <!-- 右欄區塊：歡迎語 + 柔和紀念日 -->
+    <!-- 右欄區塊：歡迎語 + 紀念日 + 感謝 -->
     <div class="ribbon-card">
       <div class="card-icon">
         <img src="IMG_4880.GIF" alt="GIF Icon">
@@ -394,11 +540,12 @@
 
         <p style="margin: 6px 0;">若無法承接中國乙遊/凌肖夢向皆可直接退設。</p>
         <p style="margin: 6px 0;">不會催稿，但如果有延期需求希望主動告知。</p>
-        <p style="margin: 6px 0;">趕時間的話建議可以看 <span class="en-font" style="font-weight: 700; color: #D87074; font-size: 1.1rem;">About</span>。</p>
+        <p style="margin: 6px 0;">趕時間的話建議可以看 <span class="en-font" style="font-weight: 700; color: #D87074; font-size: 1.15rem;">About</span>。</p>
         <p style="margin: 6px 0; font-size: 0.88rem; color: #A08888;">
           建議使用電腦版網頁或平板開啟。
         </p>
 
+        <!-- 第一條分隔線 -->
         <hr class="pink-divider">
 
         <!-- 紀念日區塊 -->
@@ -417,15 +564,23 @@
             <span id="daysCountNum">----</span><span class="unit">days</span>
           </div>
 
-          <!-- 今日日期 -->
           <div class="today-date-text" id="todayDate">
             ----. --. --
           </div>
         </div>
 
+        <!-- 第二條分隔線 -->
+        <hr class="pink-divider">
+
+        <!-- 感謝區塊 -->
+        <div class="thanks-section">
+          <div class="thanks-title">Thanks</div>
+          <div class="thanks-names">ㄅㄅ、噗轉、嘎、NN</div>
+        </div>
+
       </div>
 
-      <!-- 音樂播放按鈕 -->
+      <!-- 右側框線上音樂播放按鈕 -->
       <div class="music-btn" id="musicBtn" onclick="toggleMusic()" title="播放音樂">
         <img src="1785943711222-removebg-preview.png" alt="Music Icon">
       </div>
@@ -435,11 +590,22 @@
   </div>
 
   <script>
+    // 網頁完全載入後隱藏 Loading 畫面
+    window.addEventListener('load', function() {
+      const loader = document.getElementById('loading-screen');
+      setTimeout(() => {
+        loader.style.opacity = '0';
+        loader.style.visibility = 'hidden';
+      }, 500); // 稍微停頓半秒確保流暢
+    });
+
+    // 控制手機版目錄展開/收合
     function toggleMenu() {
       const menuLinks = document.getElementById('menuLinks');
       menuLinks.classList.toggle('show');
     }
 
+    // 控制背景音樂播放/暫停
     function toggleMusic() {
       const audio = document.getElementById('bgm');
       const btn = document.getElementById('musicBtn');
@@ -461,14 +627,11 @@
       const startDate = new Date('2019-04-27T00:00:00');
       const today = new Date();
 
-      // 計算天數差（不含起始日當天，符合手機紀念日 App 天數）
       const diffTime = Math.abs(today - startDate);
       const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
       
-      // 數字加上千分位逗號（例如：2,658）
       document.getElementById('daysCountNum').innerText = diffDays.toLocaleString();
 
-      // 格式化今日日期 (YYYY. MM. DD)
       const year = today.getFullYear();
       const month = String(today.getMonth() + 1).padStart(2, '0');
       const date = String(today.getDate()).padStart(2, '0');

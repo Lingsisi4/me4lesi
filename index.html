@@ -141,11 +141,11 @@
       background: #FFFFFF;
       border: 2px solid #FCE1E4;
       border-radius: 16px;
-      padding: 12px 20px;
+      padding: 10px 20px;
       box-shadow: 0px 4px 12px rgba(226, 149, 152, 0.12);
       width: fit-content;
-      min-width: 170px;
-      text-align: left;
+      min-width: 160px;
+      text-align: center;
     }
 
     .menu-header {
@@ -167,21 +167,69 @@
       object-fit: contain;
     }
 
-    /* 選單列表（預設手機隱藏） */
-    .menu-links {
+    /* ===== 手機版彈出式遮罩與獨立卡片 ===== */
+    .menu-overlay {
       display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(92, 74, 74, 0.15);
+      backdrop-filter: blur(2px);
+      z-index: 998;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .menu-popup-card {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      background: #FFFFFF;
+      border: 2px solid #FCE1E4;
+      border-radius: 20px;
+      padding: 25px 25px 20px 25px;
+      box-shadow: 0px 10px 25px rgba(226, 149, 152, 0.25);
+      width: 260px;
+      z-index: 999;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    /* 當手機版展開時啟用 */
+    .menu-overlay.active {
+      display: block;
+      opacity: 1;
+    }
+
+    .menu-popup-card.active {
+      display: block;
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .popup-close-btn {
+      position: absolute;
+      top: 10px;
+      right: 14px;
+      font-size: 1.1rem;
+      color: #D87074;
+      cursor: pointer;
+      user-select: none;
+      font-weight: bold;
+    }
+
+    /* 目錄內容列表 */
+    .menu-links {
+      display: flex;
       flex-direction: column;
       gap: 12px;
-      margin-top: 12px;
-      padding-top: 12px;
-      border-top: 1px dashed #FCE1E4;
+      text-align: left;
     }
 
-    .menu-links.show {
-      display: flex;
-    }
-
-    /* 主要項目 (About / Dream) */
     .menu-item-group {
       display: flex;
       flex-direction: column;
@@ -210,12 +258,11 @@
       object-fit: contain;
     }
 
-    /* 子選項群組 (縮排至第一個字母後方) */
     .menu-sub-links {
       display: flex;
       flex-direction: column;
       gap: 4px;
-      padding-left: 24px; /* 子選項向右微縮排 */
+      padding-left: 24px;
       margin-top: 4px;
     }
 
@@ -297,7 +344,6 @@
       font-weight: 700;
     }
 
-    /* 淺粉色分隔線 */
     .pink-divider {
       border: none;
       border-top: 1px dashed #FCE1E4;
@@ -364,30 +410,31 @@
       letter-spacing: 1px;
     }
 
-    /* ===== 感謝區塊 (Thanks) ===== */
+    /* ===== 極簡低調 Thanks 區塊 ===== */
     .thanks-section {
-      padding-top: 4px;
-      font-family: 'Zen Maru Gothic', sans-serif;
+      padding-top: 2px;
+      font-family: "新細明體", PMingLiU, " Times New Roman", sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.5px;
     }
 
     .thanks-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: #D87074;
+      font-size: 0.72rem;
+      font-weight: normal;
+      color: #F3C5C8; /* 極淺柔粉色，接近背景點點色系 */
       margin-bottom: 2px;
     }
 
     .thanks-names {
-      font-size: 0.88rem;
-      color: #8C7576;
-      font-weight: 500;
+      color: #D3C3C4; /* 極淺褐色，看得到但不搶眼 */
+      font-weight: normal;
     }
 
-    /* ===== 音樂播放按鈕（移至卡片右側框線上，對齊指定文字高度） ===== */
+    /* ===== 音樂播放按鈕 ===== */
     .music-btn {
       position: absolute;
-      right: -21px; /* 剛好跨放在右邊框線上 */
-      top: 142px;    /* 高度對齊「不會催稿...」該行內文附近 */
+      right: -21px;
+      top: 130px;
       width: 42px;
       height: 42px;
       background-color: #FFFFFF;
@@ -441,11 +488,25 @@
 
       .menu-card {
         width: 100%;
+        text-align: left;
+        padding: 12px 20px;
       }
 
-      /* 平板/電腦版：目錄選單強制直接展開 */
-      .menu-links {
+      .menu-header {
+        justify-content: center;
+      }
+
+      /* 隱藏手機版專屬彈窗與遮罩 */
+      .menu-overlay, .menu-popup-card {
+        display: none !important;
+      }
+
+      /* 平板/電腦版：將目錄呈現於左側卡片內 */
+      .menu-card .menu-links {
         display: flex !important;
+        margin-top: 12px;
+        padding-top: 12px;
+        border-top: 1px dashed #FCE1E4;
       }
 
       .ribbon-card {
@@ -476,15 +537,15 @@
         </div>
       </div>
 
-      <!-- Contents 目錄 -->
+      <!-- Contents 目錄按鈕 -->
       <div class="menu-card">
         <div class="menu-header" onclick="toggleMenu()">
           <img src="IMG_3836.GIF" alt="icon" class="menu-icon">
           <span>Contents</span>
         </div>
         
-        <div class="menu-links" id="menuLinks">
-          <!-- About 主項目 + 子選項 -->
+        <!-- 平板/電腦版直接嵌入顯示的目錄列表 -->
+        <div class="menu-links" id="desktopMenuLinks" style="display: none;">
           <div class="menu-item-group">
             <a href="about.html" class="menu-main-title">
               <img src="IMG_4904.GIF" alt="icon" class="title-gif">
@@ -497,7 +558,6 @@
             </div>
           </div>
 
-          <!-- Dream 主項目 + 子選項 -->
           <div class="menu-item-group">
             <a href="dream.html" class="menu-main-title">
               <img src="IMG_4905.GIF" alt="icon" class="title-gif">
@@ -540,9 +600,8 @@
 
         <p style="margin: 6px 0;">若無法承接中國乙遊/凌肖夢向皆可直接退設。</p>
         <p style="margin: 6px 0;">不會催稿，但如果有延期需求希望主動告知。</p>
-        <p style="margin: 6px 0;">趕時間的話建議可以看 <span class="en-font" style="font-weight: 700; color: #D87074; font-size: 1.15rem;">About</span>。</p>
         <p style="margin: 6px 0; font-size: 0.88rem; color: #A08888;">
-          建議使用電腦版網頁或平板開啟。
+          建議使用電腦版網頁或平板觀看。
         </p>
 
         <!-- 第一條分隔線 -->
@@ -572,7 +631,7 @@
         <!-- 第二條分隔線 -->
         <hr class="pink-divider">
 
-        <!-- 感謝區塊 -->
+        <!-- 感謝區塊（極簡低調） -->
         <div class="thanks-section">
           <div class="thanks-title">Thanks</div>
           <div class="thanks-names">ㄅㄅ、噗轉、嘎、NN</div>
@@ -589,6 +648,38 @@
 
   </div>
 
+  <!-- 手機版專屬獨立彈出卡片與遮罩 -->
+  <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
+  <div class="menu-popup-card" id="menuPopup">
+    <div class="popup-close-btn" onclick="closeMenu()">✕</div>
+    <div class="menu-links">
+      <div class="menu-item-group">
+        <a href="about.html" class="menu-main-title">
+          <img src="IMG_4904.GIF" alt="icon" class="title-gif">
+          <span>About</span>
+        </a>
+        <div class="menu-sub-links">
+          <a href="about.html#character" class="menu-sub-btn">Character</a>
+          <a href="about.html#propic" class="menu-sub-btn">Pro pic</a>
+          <a href="about.html#height" class="menu-sub-btn">Height</a>
+        </div>
+      </div>
+
+      <div class="menu-item-group">
+        <a href="dream.html" class="menu-main-title">
+          <img src="IMG_4905.GIF" alt="icon" class="title-gif">
+          <span>Dream</span>
+        </a>
+        <div class="menu-sub-links">
+          <a href="dream.html#painting" class="menu-sub-btn">Painting</a>
+          <a href="dream.html#article" class="menu-sub-btn">Article</a>
+          <a href="dream.html#song" class="menu-sub-btn">Song</a>
+          <a href="dream.html#memo" class="menu-sub-btn">Memo</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     // 網頁完全載入後隱藏 Loading 畫面
     window.addEventListener('load', function() {
@@ -596,13 +687,21 @@
       setTimeout(() => {
         loader.style.opacity = '0';
         loader.style.visibility = 'hidden';
-      }, 500); // 稍微停頓半秒確保流暢
+      }, 500);
     });
 
-    // 控制手機版目錄展開/收合
+    // 控制手機版彈窗目錄
     function toggleMenu() {
-      const menuLinks = document.getElementById('menuLinks');
-      menuLinks.classList.toggle('show');
+      // 僅在手機版寬度觸發彈窗
+      if (window.innerWidth < 680) {
+        document.getElementById('menuOverlay').classList.add('active');
+        document.getElementById('menuPopup').classList.add('active');
+      }
+    }
+
+    function closeMenu() {
+      document.getElementById('menuOverlay').classList.remove('active');
+      document.getElementById('menuPopup').classList.remove('active');
     }
 
     // 控制背景音樂播放/暫停

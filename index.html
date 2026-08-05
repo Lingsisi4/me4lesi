@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>︵‿୨♡୧‿︵</title>
   <style>
-    /* 引入可愛中文字體 (Zen Maru Gothic)、 Gamja Flower 與日系襯線字體 (Cormorant Garamond / Montserrat) */
-    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Gamja+Flower&family=Montserrat:wght@400;500;600&family=Zen+Maru+Gothic:wght@400;500;700&display=swap');
+    /* 引入可愛中文字體 (Zen Maru Gothic)、 Gamja Flower 與日系襯線字體 (Cormorant Garamond) */
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Gamja+Flower&family=Zen+Maru+Gothic:wght@400;500;700&display=swap');
 
     * {
       box-sizing: border-box;
@@ -143,12 +143,13 @@
       color: #D87074;
     }
 
-    /* ===== 社群按鈕 ===== */
+    /* ===== 社群按鈕（增加中間間距） ===== */
     .social-links {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 12px;
+      gap: 24px; /* 間距加大，不再太擠 */
+      margin-top: 4px;
     }
 
     .social-icon {
@@ -215,20 +216,19 @@
       width: 100%;
     }
 
-    /* ===== 夢幻粉色暈染紀念日區塊 ===== */
+    /* ===== 柔和無邊界漸層紀念日區塊 ===== */
     .anniversary-card {
       position: relative;
-      padding: 20px 10px 15px 10px;
-      border-radius: 16px;
-      /* 關鍵：粉紅柔和暈染漸層背景 */
-      background: radial-gradient(circle, rgba(253, 226, 228, 0.55) 0%, rgba(255, 253, 249, 0) 75%);
+      padding: 20px 10px 10px 10px;
+      /* 完美無邊界漸層：由中心的柔粉漸變融合至純白色 */
+      background: radial-gradient(ellipse at center, rgba(252, 225, 228, 0.6) 0%, rgba(255, 255, 255, 0) 70%);
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
 
-    /* 第一行：Subplot + 星星星星 */
+    /* 第一行：Subplot + 深粉色星星 */
     .anniversary-title {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.25rem;
@@ -240,11 +240,11 @@
     }
 
     .star-icon {
-      color: #E2B078; /* 溫柔淡金色星星 */
+      color: #D87074; /* 深粉色閃光 */
       font-size: 0.8rem;
     }
 
-    /* 第二行：since 2019. 04. 27 ~ */
+    /* 第二行：since 2019. 04. 27 */
     .since-text {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.25rem;
@@ -252,52 +252,29 @@
       letter-spacing: 1px;
     }
 
-    /* 第三行：D+ 1,357 days */
+    /* 第三行：天數（刪除 D+，只保留數字與 days） */
     .days-text {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 2.1rem;
+      font-size: 2.2rem;
       color: #704E50;
       font-weight: 600;
-      margin: 4px 0 8px 0;
+      margin: 4px 0 6px 0;
       letter-spacing: 1px;
     }
 
-    .days-text span.prefix {
-      color: #B56B70; /* D+ 特殊字色 */
-      font-weight: 400;
-      font-size: 1.8rem;
-      margin-right: 4px;
-    }
-
     .days-text span.unit {
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       color: #9C8384;
       font-weight: 400;
-      margin-left: 4px;
+      margin-left: 6px;
     }
 
-    /* 第四行：膠囊狀日期顯示框 */
-    .date-pill {
-      background: #FFF8EB; /* 奶油粉黃底色 */
-      border: 1.5px solid #FADEC9;
-      border-radius: 20px;
-      padding: 5px 16px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.82rem;
-      color: #8C7368;
-      letter-spacing: 0.5px;
-      box-shadow: 0px 2px 6px rgba(226, 149, 152, 0.08);
-    }
-
-    .pill-dot {
-      width: 7px;
-      height: 7px;
-      background-color: #C85A60; /* 粉紅小圓點 */
-      border-radius: 50%;
-      display: inline-block;
+    /* 第四行：今日日期（無膠囊，保持古典 serif 字體設計） */
+    .today-date-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      color: #A38789;
+      letter-spacing: 1px;
     }
 
     /* 音樂按鈕 */
@@ -401,7 +378,7 @@
       </div>
     </div>
 
-    <!-- 右欄區塊：歡迎語 + 暈染紀念日 -->
+    <!-- 右欄區塊：歡迎語 + 柔和紀念日 -->
     <div class="ribbon-card">
       <div class="card-icon">
         <img src="IMG_4880.GIF" alt="GIF Icon">
@@ -424,7 +401,7 @@
 
         <hr class="pink-divider">
 
-        <!-- 新版：暈染日系手帳紀念日區塊 -->
+        <!-- 紀念日區塊 -->
         <div class="anniversary-card">
           <div class="anniversary-title">
             <span class="star-icon">✦</span>
@@ -433,17 +410,16 @@
           </div>
 
           <div class="since-text">
-            since 2019. 04. 27 ~
+            since 2019. 04. 27
           </div>
 
           <div class="days-text">
-            <span class="prefix">D+</span><span id="daysCountNum">----</span><span class="unit">days</span>
+            <span id="daysCountNum">----</span><span class="unit">days</span>
           </div>
 
-          <!-- 膠囊狀態欄（時間自動動態走動） -->
-          <div class="date-pill">
-            <span class="pill-dot"></span>
-            <span id="liveClock">----.--.-- --- --:--:--</span>
+          <!-- 今日日期 -->
+          <div class="today-date-text" id="todayDate">
+            ----. --. --
           </div>
         </div>
 
@@ -480,36 +456,27 @@
       }
     }
 
-    // 計算天數與即時時鐘
+    // 計算天數與今日日期
     function updateAnniversary() {
       const startDate = new Date('2019-04-27T00:00:00');
-      const now = new Date();
+      const today = new Date();
 
-      // 計算天數差
-      const diffTime = Math.abs(now - startDate);
-      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;
+      // 計算天數差（不含起始日當天，符合手機紀念日 App 天數）
+      const diffTime = Math.abs(today - startDate);
+      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
       
-      // 數字加千分位逗號（例如 2,658）
+      // 數字加上千分位逗號（例如：2,658）
       document.getElementById('daysCountNum').innerText = diffDays.toLocaleString();
 
-      // 格式化動態膠囊時間 (YYYY.MM.DD WED HH:MM:SS)
-      const year = now.getFullYear();
-      const month = String(now.getMonth() + 1).padStart(2, '0');
-      const date = String(now.getDate()).padStart(2, '0');
-      
-      const weekDays = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
-      const week = weekDays[now.getDay()];
+      // 格式化今日日期 (YYYY. MM. DD)
+      const year = today.getFullYear();
+      const month = String(today.getMonth() + 1).padStart(2, '0');
+      const date = String(today.getDate()).padStart(2, '0');
 
-      const hours = String(now.getHours()).padStart(2, '0');
-      const minutes = String(now.getMinutes()).padStart(2, '0');
-      const seconds = String(now.getSeconds()).padStart(2, '0');
-
-      document.getElementById('liveClock').innerText = `${year}.${month}.${date} ${week} ${hours}:${minutes}:${seconds}`;
+      document.getElementById('todayDate').innerText = `${year}. ${month}. ${date}`;
     }
 
-    // 初始化與每秒更新時間
     updateAnniversary();
-    setInterval(updateAnniversary, 1000);
   </script>
 
 </body>

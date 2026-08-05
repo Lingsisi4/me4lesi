@@ -58,7 +58,7 @@
       align-items: center;
       gap: 15px;
       transition: opacity 0.4s ease, visibility 0.4s ease;
-      pointer-events: none;
+      cursor: pointer;
     }
 
     /* 當 JS 觸發 active 時顯示 */
@@ -66,6 +66,12 @@
       opacity: 1 !important;
       visibility: visible !important;
       pointer-events: auto;
+    }
+
+    #loading-screen:not(.show) {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
     }
 
     .loading-img {
@@ -314,7 +320,6 @@
       transform: scale(1.1);
     }
 
-    /* 獨立 Home 圖示（略大於目錄內的小圖示） */
     .home-icon-btn {
       width: 35px;
       height: 35px;
@@ -546,8 +551,8 @@
 </head>
 <body>
 
-  <!-- Fullscreen Loading Screen -->
-  <div id="loading-screen" class="show">
+  <!-- Fullscreen Loading Screen (點擊可強制關閉) -->
+  <div id="loading-screen" class="show" onclick="hideLoader()">
     <img src="1785953107867-removebg-preview.png" alt="Loading Icon" class="loading-img">
     <div class="loading-text">
       Loading<span class="dot1">.</span><span class="dot2">.</span><span class="dot3">.</span>
@@ -573,7 +578,7 @@
           <span>Contents</span>
         </div>
         
-        <!-- 平板/電腦版目錄 (已移除 Home) -->
+        <!-- 平板/電腦版目錄 -->
         <div class="menu-links" id="desktopMenuLinks" style="display: none;">
           <div class="menu-item-group">
             <a onclick="switchPage('about')" class="menu-main-title">
@@ -610,7 +615,6 @@
         <a href="https://www.plurk.com/u/sisi_0311" target="_blank" title="Plurk">
           <img src="1785949250411.jpg" alt="Plurk" class="social-icon">
         </a>
-        <!-- 新增的 Home 獨立圖片 -->
         <img src="1785958414265-removebg-preview.png" alt="Home" class="home-icon-btn" onclick="switchPage('home')" title="返回首頁">
       </div>
     </div>
@@ -711,13 +715,13 @@
 
   </div>
 
-  <!-- 音樂播放按鈕 (獨立於容器外，固定在螢幕右下角) -->
+  <!-- 音樂播放按鈕 (右下角固定) -->
   <div class="music-btn" id="musicBtn" onclick="toggleMusic()" title="播放音樂">
     <img src="1785943711222-removebg-preview.png" alt="Music Icon">
   </div>
   <audio id="bgm" src="bgm.mp3" loop></audio>
 
-  <!-- 手機版彈出卡片 (已移除 Home) -->
+  <!-- 手機版彈出卡片 -->
   <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
   <div class="menu-popup-card" id="menuPopup">
     <div class="popup-close-btn" onclick="closeMenu()">✕</div>
@@ -752,11 +756,17 @@
   <script>
     const loader = document.getElementById('loading-screen');
 
-    // 第一次進入網站時隱藏 Initial Loading
-    window.addEventListener('load', function() {
-      setTimeout(() => {
+    function hideLoader() {
+      if (loader) {
         loader.classList.remove('show');
-      }, 800);
+      }
+    }
+
+    // 進入網站時，最多等待 1.5 秒自動關閉 Loading，防止卡死
+    setTimeout(hideLoader, 1500);
+
+    window.addEventListener('load', function() {
+      setTimeout(hideLoader, 500);
     });
 
     // 控制手機版彈窗目錄
@@ -772,12 +782,10 @@
       document.getElementById('menuPopup').classList.remove('active');
     }
 
-    // 帶有「假 Loading」特效的頁面切換機制
+    // 帶有 Loading 特效的頁面切換機制
     function switchPage(target) {
-      // 1. 先跳出 Loading 動態
       loader.classList.add('show');
 
-      // 2. 停留 1.5 秒在背景換頁
       setTimeout(() => {
         // 隱藏所有頁卡
         document.getElementById('page-home').classList.remove('active');
@@ -806,12 +814,9 @@
           }
         }
 
-        // 3. 換完頁面後關閉 Loading
-        setTimeout(() => {
-          loader.classList.remove('show');
-        }, 300);
+        setTimeout(hideLoader, 300);
 
-      }, 1500); 
+      }, 800); 
     }
 
     // 控制背景音樂播放/暫停

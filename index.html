@@ -37,7 +37,7 @@
     /* ===== 主容器：預設手機版（直向單欄） ===== */
     .main-container {
       width: 100%;
-      max-width: 380px; /* 手機版最大寬度 */
+      max-width: 380px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -50,7 +50,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 20px;
+      gap: 15px;
       width: 100%;
     }
 
@@ -146,6 +146,27 @@
       color: #D87074;
     }
 
+    /* ===== 社群聯絡按鈕（目錄條下方，圓角圖示） ===== */
+    .social-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .social-icon {
+      width: 30px;  /* 大頭貼的三分之一大小 */
+      height: 30px;
+      border-radius: 8px; /* 圓潤角角 */
+      object-fit: cover;
+      box-shadow: 0px 2px 6px rgba(226, 149, 152, 0.15);
+      transition: transform 0.2s;
+    }
+
+    .social-icon:hover {
+      transform: scale(1.1);
+    }
+
     /* ===== 第三層：歡迎語卡片 ===== */
     .ribbon-card {
       position: relative;
@@ -189,6 +210,41 @@
       font-weight: 700;
     }
 
+    /* 淺粉色分隔線 */
+    .pink-divider {
+      border: none;
+      border-top: 1px dashed #FCE1E4;
+      margin: 16px 0 14px 0;
+      width: 100%;
+    }
+
+    /* 紀念日區域 */
+    .anniversary-section {
+      font-size: 0.9rem;
+      color: #A08888;
+      line-height: 1.6;
+    }
+
+    .since-date {
+      font-family: 'Gamja Flower', cursive;
+      font-size: 1.15rem;
+      color: #E29598;
+      font-weight: 700;
+    }
+
+    .days-count {
+      color: #D87074;
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin: 2px 0;
+    }
+
+    .today-date {
+      font-size: 0.85rem;
+      color: #B59B9B;
+    }
+
+    /* 音樂按鈕 */
     .music-btn {
       position: absolute;
       bottom: -15px;
@@ -229,26 +285,26 @@
       100% { transform: rotate(360deg); }
     }
 
-    /* ===== 關鍵：平板與電腦版（螢幕寬度超過 680px 時自動變左右兩欄） ===== */
+    /* ===== 平板/電腦版響應式設定 ===== */
     @media (min-width: 680px) {
       .main-container {
-        max-width: 720px;       /* 放大容器總寬度 */
-        flex-direction: row;    /* 改為左右橫向排列 */
-        align-items: flex-start;/* 頂部對齊 */
-        gap: 30px;              /* 左右兩欄間距 */
+        max-width: 720px;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 30px;
       }
 
       .left-column {
-        width: 220px;          /* 左欄（大頭貼+目錄）固定寬度 */
+        width: 220px;
         flex-shrink: 0;
       }
 
       .menu-card {
-        width: 100%;           /* 目錄條在左欄中滿寬 */
+        width: 100%;
       }
 
       .ribbon-card {
-        flex: 1;               /* 右欄（歡迎語卡片）自動佔滿剩餘空間 */
+        flex: 1;
       }
     }
   </style>
@@ -257,7 +313,7 @@
 
   <div class="main-container">
 
-    <!-- 左欄區塊（手機時在上方，平板/電腦時在左邊） -->
+    <!-- 左欄區塊（大頭貼 + 目錄 + 社群連結） -->
     <div class="left-column">
       <!-- 第一層：大頭貼 -->
       <div class="avatar-section">
@@ -280,9 +336,19 @@
           <a href="memo.html" class="menu-btn">Memo</a>
         </div>
       </div>
+
+      <!-- 目錄條下方：社群圖片連結（圓角點擊跳轉） -->
+      <div class="social-links">
+        <a href="https://www.facebook.com/share/1DKCVjFYUC/?mibextid=wwXIfr" target="_blank" title="Facebook">
+          <img src="1785949250711.jpg" alt="FB" class="social-icon">
+        </a>
+        <a href="https://www.plurk.com/u/sisi_0311" target="_blank" title="Plurk">
+          <img src="1785949250411.jpg" alt="Plurk" class="social-icon">
+        </a>
+      </div>
     </div>
 
-    <!-- 右欄區塊：歡迎語卡片（手機時在下方，平板/電腦時在右邊） -->
+    <!-- 右欄區塊：歡迎語卡片 -->
     <div class="ribbon-card">
       <div class="card-icon">
         <img src="IMG_4880.GIF" alt="GIF Icon">
@@ -302,6 +368,16 @@
         <p style="margin: 6px 0; font-size: 0.88rem; color: #A08888;">
           建議使用電腦版網頁或平板開啟。
         </p>
+
+        <!-- 淺粉色分隔線 -->
+        <hr class="pink-divider">
+
+        <!-- 紀念日與今日日期 -->
+        <div class="anniversary-section">
+          <div class="since-date">Since 2019.04.27</div>
+          <div class="days-count" id="daysCount">第 ---- 天</div>
+          <div class="today-date" id="todayDate">----.--.--</div>
+        </div>
       </div>
 
       <!-- 左下角音樂播放按鈕 -->
@@ -314,11 +390,13 @@
   </div> <!-- 結束 main-container -->
 
   <script>
+    // 控制目錄展開與收合
     function toggleMenu() {
       const menuLinks = document.getElementById('menuLinks');
       menuLinks.classList.toggle('show');
     }
 
+    // 控制背景音樂播放與暫停
     function toggleMusic() {
       const audio = document.getElementById('bgm');
       const btn = document.getElementById('musicBtn');
@@ -334,6 +412,28 @@
         btn.classList.remove('playing');
       }
     }
+
+    // 自動計算在一起天數與今日日期
+    function calculateDays() {
+      const startDate = new Date('2019-04-27T00:00:00');
+      const today = new Date();
+
+      // 計算天數差
+      const diffTime = Math.abs(today - startDate);
+      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1; // 包含起始當天
+
+      // 顯示在一起天數
+      document.getElementById('daysCount').innerText = `第 ${diffDays} 天`;
+
+      // 格式化今日日期 (YYYY.MM.DD)
+      const year = today.getFullYear();
+      const month = String(today.getMonth() + 1).padStart(2, '0');
+      const date = String(today.getDate()).padStart(2, '0');
+      document.getElementById('todayDate').innerText = `${year}.${month}.${date}`;
+    }
+
+    // 網頁載入時執行天數計算
+    calculateDays();
   </script>
 
 </body>

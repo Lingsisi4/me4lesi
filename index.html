@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ling Xiao & Me 🌸</title>
+  <title>︵‿୨♡୧‿︵</title>
   <style>
     /* 引入圓潤可愛中文字體 (Zen Maru Gothic) 與塗鴉手寫感英文字體 (Shantell Sans) */
     @import url('https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght@0,500;0,700;1,600&family=Zen+Maru+Gothic:wght@400;500;700&display=swap');
@@ -13,10 +13,13 @@
     }
 
     body {
-      /* 溫暖奶油白底色 + 柔和粉紅可愛波點背景 */
+      /* 奶油白底色 + 錯開排列（Staggered）的可愛粉紅波點 */
       background-color: #FFFDF9;
-      background-image: radial-gradient(#FCE1E4 1.5px, transparent 1.5px);
-      background-size: 20px 20px; /* 波點間距 */
+      background-image: 
+        radial-gradient(#FCE1E4 1.8px, transparent 1.8px), 
+        radial-gradient(#FCE1E4 1.8px, #FFFDF9 1.8px);
+      background-size: 24px 24px;
+      background-position: 0 0, 12px 12px; /* 錯開波點位置 */
       color: #5C4A4A;
       font-family: 'Zen Maru Gothic', sans-serif;
       margin: 0;
@@ -74,8 +77,8 @@
       border-radius: 16px;
       padding: 10px 24px;
       box-shadow: 0px 4px 12px rgba(226, 149, 152, 0.12);
-      width: fit-content; /* **縮短至剛好符合文字寬度** */
-      min-width: 140px;   /* 設定最小寬度保持比例好看 */
+      width: fit-content;
+      min-width: 140px;
       text-align: center;
     }
 
@@ -135,13 +138,13 @@
       text-align: center;
     }
 
-    /* GIF 圖標（已修復透明背景問題） */
+    /* GIF 圖標 */
     .card-icon {
       position: absolute;
       top: -22px;
       left: 50%;
       transform: translateX(-50%);
-      background-color: transparent; /* **改為透明背景** */
+      background-color: transparent;
       padding: 0;
       display: flex;
       justify-content: center;
@@ -240,14 +243,18 @@
       </div>
       
       <div class="notice-text">
-        <p class="notice-highlight" style="font-size: 1.1rem; margin-top: 5px; margin-bottom: 12px;">
+        <p class="notice-highlight" style="font-size: 1.1rem; margin-top: 5px; margin-bottom: 4px;">
           戀與製作人 ｜ 凌肖夢向
         </p>
-        <p style="margin: 8px 0;">若無法承接中國乙遊/凌肖夢向皆可直接退幣/退設。</p>
-        <p style="margin: 8px 0;">不會催稿，但如果老師有延期需求希望主動告知。</p>
-        <p style="margin: 8px 0;">趕時間的話建議直接看 <span style="font-family: 'Shantell Sans', cursive; font-weight: 700; color: #D87074;">About</span>。</p>
-        <p style="margin: 12px 0 0 0; font-size: 0.85rem; color: #A08888;">
-          💡 建議使用電腦版網頁或平板開啟。
+        <p style="margin: 0 0 16px 0; color: #A08888; font-size: 0.9rem;">
+          存放有關夢的一切。
+        </p>
+
+        <p style="margin: 6px 0;">若無法承接中國乙遊/凌肖夢向皆可直接退設。</p>
+        <p style="margin: 6px 0;">不會催稿，但如果有延期需求希望主動告知。</p>
+        <p style="margin: 6px 0;">趕時間的話建議可以看 <span style="font-family: 'Shantell Sans', cursive; font-weight: 700; color: #D87074;">About</span>。</p>
+        <p style="margin: 6px 0; font-size: 0.88rem; color: #A08888;">
+          建議使用電腦版網頁或平板開啟。
         </p>
       </div>
 

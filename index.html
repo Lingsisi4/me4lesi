@@ -23,27 +23,35 @@
       color: #5C4A4A;
       font-family: 'Zen Maru Gothic', sans-serif;
       margin: 0;
-      padding: 30px 15px;
+      padding: 40px 20px;
       display: flex;
-      flex-direction: column;
-      align-items: center;      /* 水平居中 */
-      justify-content: center; /* 畫面垂直居中 */
+      justify-content: center;
+      align-items: center;
       min-height: 100vh;
     }
 
-    /* 全域英文專用類別/預設字體設定 */
     .en-font {
       font-family: 'Gamja Flower', cursive !important;
     }
 
-    /* 主容器 */
+    /* ===== 主容器：預設手機版（直向單欄） ===== */
     .main-container {
       width: 100%;
-      max-width: 380px;
+      max-width: 380px; /* 手機版最大寬度 */
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 20px;
+      transition: all 0.3s ease;
+    }
+
+    /* 左側/上方欄位組合包 */
+    .left-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      width: 100%;
     }
 
     /* ===== 第一層：獨立圓形大頭貼 ===== */
@@ -75,7 +83,7 @@
       object-fit: cover;
     }
 
-    /* ===== 第二層：精緻短版 Contents 目錄條 ===== */
+    /* ===== 第二層：Contents 目錄條 ===== */
     .menu-card {
       background: #FFFFFF;
       border: 2px solid #FCE1E4;
@@ -88,7 +96,7 @@
     }
 
     .menu-header {
-      font-family: 'Gamja Flower', cursive; /* 套用 Gamja Flower */
+      font-family: 'Gamja Flower', cursive;
       font-size: 1.5rem;
       color: #E29598;
       font-weight: 700;
@@ -97,17 +105,15 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px; /* GIF 與文字的間距 */
+      gap: 8px;
     }
 
-    /* 目錄前面的小 GIF */
     .menu-icon {
       width: 24px;
       height: 24px;
       object-fit: contain;
     }
 
-    /* 選單展開按鈕區 */
     .menu-links {
       display: none;
       flex-direction: column;
@@ -124,7 +130,7 @@
     .menu-btn {
       text-decoration: none;
       color: #5C4A4A;
-      font-family: 'Gamja Flower', cursive; /* 套用 Gamja Flower */
+      font-family: 'Gamja Flower', cursive;
       font-size: 1.25rem;
       font-weight: 600;
       background: #FFFDF9;
@@ -153,7 +159,6 @@
       text-align: center;
     }
 
-    /* GIF 圖標 */
     .card-icon {
       position: absolute;
       top: -22px;
@@ -184,7 +189,6 @@
       font-weight: 700;
     }
 
-    /* ===== 左下角音樂播放按鈕 ===== */
     .music-btn {
       position: absolute;
       bottom: -15px;
@@ -224,35 +228,61 @@
     @keyframes spin {
       100% { transform: rotate(360deg); }
     }
+
+    /* ===== 關鍵：平板與電腦版（螢幕寬度超過 680px 時自動變左右兩欄） ===== */
+    @media (min-width: 680px) {
+      .main-container {
+        max-width: 720px;       /* 放大容器總寬度 */
+        flex-direction: row;    /* 改為左右橫向排列 */
+        align-items: flex-start;/* 頂部對齊 */
+        gap: 30px;              /* 左右兩欄間距 */
+      }
+
+      .left-column {
+        width: 220px;          /* 左欄（大頭貼+目錄）固定寬度 */
+        flex-shrink: 0;
+      }
+
+      .menu-card {
+        width: 100%;           /* 目錄條在左欄中滿寬 */
+      }
+
+      .ribbon-card {
+        flex: 1;               /* 右欄（歡迎語卡片）自動佔滿剩餘空間 */
+      }
+    }
   </style>
 </head>
 <body>
 
   <div class="main-container">
 
-    <!-- 第一層：獨立大頭貼 -->
-    <div class="avatar-section">
-      <div class="circle-avatar-container">
-        <div class="circle-frame">
-          <img class="circle-img" src="IMG_3979.PNG" alt="大頭照">
+    <!-- 左欄區塊（手機時在上方，平板/電腦時在左邊） -->
+    <div class="left-column">
+      <!-- 第一層：大頭貼 -->
+      <div class="avatar-section">
+        <div class="circle-avatar-container">
+          <div class="circle-frame">
+            <img class="circle-img" src="IMG_3979.PNG" alt="大頭照">
+          </div>
+        </div>
+      </div>
+
+      <!-- 第二層：Contents 目錄條 -->
+      <div class="menu-card">
+        <div class="menu-header" onclick="toggleMenu()">
+          <img src="IMG_3836.GIF" alt="icon" class="menu-icon">
+          <span>Contents</span>
+        </div>
+        <div class="menu-links" id="menuLinks">
+          <a href="about.html" class="menu-btn">About</a>
+          <a href="dream.html" class="menu-btn">Dream</a>
+          <a href="memo.html" class="menu-btn">Memo</a>
         </div>
       </div>
     </div>
 
-    <!-- 第二層：精緻短版 Contents 選單條（帶有 GIF 與 Gamja Flower 字體） -->
-    <div class="menu-card">
-      <div class="menu-header" onclick="toggleMenu()">
-        <img src="IMG_3836.GIF" alt="icon" class="menu-icon">
-        <span>Contents</span>
-      </div>
-      <div class="menu-links" id="menuLinks">
-        <a href="about.html" class="menu-btn">About</a>
-        <a href="dream.html" class="menu-btn">Dream</a>
-        <a href="memo.html" class="menu-btn">Memo</a>
-      </div>
-    </div>
-
-    <!-- 第三層：歡迎語卡片 -->
+    <!-- 右欄區塊：歡迎語卡片（手機時在下方，平板/電腦時在右邊） -->
     <div class="ribbon-card">
       <div class="card-icon">
         <img src="IMG_4880.GIF" alt="GIF Icon">
@@ -284,13 +314,11 @@
   </div> <!-- 結束 main-container -->
 
   <script>
-    // 控制目錄展開與收合
     function toggleMenu() {
       const menuLinks = document.getElementById('menuLinks');
       menuLinks.classList.toggle('show');
     }
 
-    // 控制背景音樂播放與暫停
     function toggleMusic() {
       const audio = document.getElementById('bgm');
       const btn = document.getElementById('musicBtn');

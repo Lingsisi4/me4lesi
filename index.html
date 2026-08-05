@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>︵‿୨♡୧‿︵</title>
+  <title>Ling Xiao & Me 🌸</title>
   <style>
-    /* 引入圓潤手寫感中文字體與英文手寫體 */
-    @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap');
+    /* 引入圓潤可愛風格字體 */
+    @import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap');
 
     * {
       box-sizing: border-box;
@@ -49,9 +49,7 @@
       width: 100%;
       height: 100%;
       border-radius: 50%;
-      border: 4px solid #FCE1E4;
-      outline: 2px dashed #E29598;
-      outline-offset: 3px;
+      border: 4px solid #FCE1E4; /* 僅保留粉紅實線邊框 */
       background-color: #FFFFFF;
       overflow: hidden;
       box-shadow: 0px 4px 12px rgba(92, 74, 74, 0.08);
@@ -76,20 +74,13 @@
     }
 
     .menu-header {
-      font-family: 'Caveat', cursive;
-      font-size: 1.5rem;
+      font-family: 'Zen Maru Gothic', sans-serif; /* 改為圓潤可愛字體 */
+      font-size: 1.25rem;
       color: #E29598;
       font-weight: 700;
       cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      text-align: center; /* 標題置中 */
       user-select: none;
-    }
-
-    .menu-header::after {
-      content: "🌸";
-      font-size: 0.9rem;
     }
 
     /* 選單展開按鈕區（預設隱藏） */
@@ -109,13 +100,14 @@
     .menu-btn {
       text-decoration: none;
       color: #5C4A4A;
-      font-family: 'Caveat', cursive;
-      font-size: 1.3rem;
+      font-family: 'Zen Maru Gothic', sans-serif; /* 改為圓潤可愛字體 */
+      font-size: 1.05rem;
+      font-weight: 700;
       background: #FFFDF9;
       border: 1px solid #FCE1E4;
       padding: 6px 12px;
       border-radius: 8px;
-      text-align: center;
+      text-align: center; /* 按鈕文字置中 */
       transition: all 0.2s;
     }
 
@@ -174,8 +166,8 @@
       position: absolute;
       bottom: -15px;
       left: 15px;
-      width: 38px;
-      height: 38px;
+      width: 42px;
+      height: 42px;
       background-color: #FFFFFF;
       border: 2px solid #FCE1E4;
       border-radius: 50%;
@@ -184,9 +176,16 @@
       align-items: center;
       cursor: pointer;
       box-shadow: 0px 3px 8px rgba(226, 149, 152, 0.2);
-      font-size: 1rem;
+      overflow: hidden;
+      padding: 4px;
       transition: transform 0.2s, background-color 0.2s;
       user-select: none;
+    }
+
+    .music-btn img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
 
     .music-btn:hover {
@@ -237,16 +236,18 @@
       <p class="notice-highlight" style="font-size: 1.1rem; margin-top: 5px; margin-bottom: 12px;">
         戀與製作人 ｜ 凌肖夢向
       </p>
-      <p style="margin: 8px 0;">若無法承接中國乙遊/凌肖夢向皆可直接退設。</p>
+      <p style="margin: 8px 0;">若無法承接中國乙遊/凌肖夢向皆可直接退幣/退設。</p>
       <p style="margin: 8px 0;">不會催稿，但如果老師有延期需求希望主動告知。</p>
       <p style="margin: 8px 0;">趕時間的話建議直接看 About。</p>
       <p style="margin: 12px 0 0 0; font-size: 0.85rem; color: #A08888;">
-        建議使用電腦版網頁或平板開啟。
+        💡 建議使用電腦版網頁或平板開啟。
       </p>
     </div>
 
-    <!-- 左下角音樂播放按鈕（預設載入 bgm.mp3） -->
-    <div class="music-btn" id="musicBtn" onclick="toggleMusic()" title="播放音樂">🎵</div>
+    <!-- 左下角音樂播放按鈕（帶有自訂圖片） -->
+    <div class="music-btn" id="musicBtn" onclick="toggleMusic()" title="播放音樂">
+      <img src="1785943711222-removebg-preview.png" alt="Music Icon">
+    </div>
     <audio id="bgm" src="bgm.mp3" loop></audio>
   </div>
 

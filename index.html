@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
-    /* 引入可愛中文字體 (Zen Maru Gothic，包含 300/400/500/700 字重) 與日系古典英文字體 (Cormorant Garamond) */
+    /* 引入可愛中文字體 (Zen Maru Gothic) 與日系古典英文字體 (Cormorant Garamond) */
     @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=Zen+Maru+Gothic:wght@300;400;500;700&display=swap');
 
     * {
@@ -693,7 +693,6 @@
       z-index: 2;
     }
 
-    /* ===== 🔥 Character 文字專用精準控制 ===== */
     .char-detail {
       font-size: 0.8rem;
       line-height: 1.7;
@@ -949,6 +948,136 @@
       letter-spacing: 1px;
       font-weight: 500;
       text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    /* ===== Painting 幻燈片輪播展示區塊樣式 ===== */
+    .slideshow-container {
+      position: relative;
+      width: 100%;
+      margin-top: 15px;
+      background: #FFFDF9;
+      border: 2px solid #FCE1E4;
+      border-radius: 16px;
+      padding: 14px;
+      box-shadow: 0px 4px 12px rgba(226, 149, 152, 0.08);
+    }
+
+    .main-slide-box {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #FFFFFF;
+      border: 1px solid #FCE1E4;
+      cursor: pointer;
+    }
+
+    .main-slide-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.3s ease;
+    }
+
+    /* 左右切換箭頭 */
+    .slide-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid #FCE1E4;
+      color: #D87074;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      font-size: 0.9rem;
+      box-shadow: 0px 2px 6px rgba(92, 74, 74, 0.1);
+      transition: background 0.2s, transform 0.2s;
+      z-index: 10;
+      user-select: none;
+    }
+
+    .slide-arrow:hover {
+      background: #FFFFFF;
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .slide-prev {
+      left: 8px;
+    }
+
+    .slide-next {
+      right: 8px;
+    }
+
+    /* 主圖下方繪師名稱 */
+    .main-slide-artist {
+      font-family: "新細明體", "PMingLiU", "MingLiU", serif;
+      font-size: 0.88rem;
+      color: #8C7576;
+      margin-top: 10px;
+      text-align: center;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    /* 縮圖導覽列表 (橫向滾動) */
+    .thumbnails-scroll-container {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      margin-top: 12px;
+      padding-bottom: 6px;
+      scrollbar-width: thin;
+      scrollbar-color: #FCE1E4 transparent;
+    }
+
+    .thumbnails-scroll-container::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .thumbnails-scroll-container::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .thumbnails-scroll-container::-webkit-scrollbar-thumb {
+      background-color: #FCE1E4;
+      border-radius: 4px;
+    }
+
+    .thumb-item {
+      width: 55px;
+      height: 55px;
+      flex-shrink: 0;
+      border-radius: 8px;
+      border: 2px solid #FCE1E4;
+      overflow: hidden;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: all 0.2s ease;
+      background: #FFFFFF;
+    }
+
+    .thumb-item:hover {
+      opacity: 0.9;
+    }
+
+    .thumb-item.active {
+      opacity: 1;
+      border-color: #D87074;
+      transform: scale(1.05);
+      box-shadow: 0px 2px 8px rgba(226, 149, 152, 0.3);
+    }
+
+    .thumb-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     /* ===== 紀念日區塊 ===== */
@@ -1418,9 +1547,14 @@
             大頭或其他由我提出的情況就可以無視～
           </p>
           
-          <!-- 無外框照片 IMG_3816.jpeg (點擊可開啟大圖) -->
-          <div class="height-photo-box" onclick="openLightbox('IMG_3816.jpeg', '')">
-            <img src="IMG_3816.jpeg" alt="Height Difference Photo" class="height-photo-img">
+          <!-- 新增的第一張照片 (無標題16_20260806194928.png) -->
+          <div class="height-photo-box" onclick="openLightbox('無標題16_20260806194928.png', '')">
+            <img src="無標題16_20260806194928.png" alt="Height Difference Photo 1" class="height-photo-img">
+          </div>
+
+          <!-- 原有的第二張照片 (IMG_3816.jpeg) -->
+          <div class="height-photo-box" style="margin-top: 15px;" onclick="openLightbox('IMG_3816.jpeg', '')">
+            <img src="IMG_3816.jpeg" alt="Height Difference Photo 2" class="height-photo-img">
           </div>
 
           <hr class="pink-divider">
@@ -1455,9 +1589,19 @@
         </div>
         <p style="margin: 10px 0; line-height: 1.8;">
           排序為隨機，並非喜歡程度。<br>
-          提供一些氛圍和我們肢體接觸的情況參考。<br>
-          很喜歡摟腰（嗯！）
+          提供一些氛圍和我們肢體接觸的情況參考。
         </p>
+
+        <!-- Painting 幻燈片輪播區塊 -->
+        <div class="slideshow-container" id="slideshowContainer">
+          <div class="main-slide-box" id="mainSlideBox" onclick="openCurrentSlideLightbox()">
+            <img src="" alt="Main Slide" class="main-slide-img" id="mainSlideImg">
+            <div class="slide-arrow slide-prev" onclick="event.stopPropagation(); changeSlide(-1)"><i class="fa-solid fa-chevron-left"></i></div>
+            <div class="slide-arrow slide-next" onclick="event.stopPropagation(); changeSlide(1)"><i class="fa-solid fa-chevron-right"></i></div>
+          </div>
+          <div class="main-slide-artist" id="mainSlideArtist">繪師名稱</div>
+          <div class="thumbnails-scroll-container" id="thumbnailsContainer"></div>
+        </div>
 
         <!-- 2. Article 分隔線 (靠右：虛線 + GIF + 英文) -->
         <div class="custom-section-divider align-right" id="dream-article">
@@ -1696,6 +1840,102 @@
       document.getElementById('todayDate').innerText = `${year}. ${month}. ${date}`;
     }
 
+    /* Painting 幻燈片輪播資料與邏輯 */
+    const paintingSlides = [
+      { url: "IMG_9543 (1).JPG", artist: "©️嗶瞇" },
+      { url: "IMG_6353.JPG", artist: "©️妙兒" },
+      { url: "IMG_5610.png", artist: "©️哈尼" },
+      { url: "IMG_4419.PNG", artist: "©️綠松石" },
+      { url: "IMG_3848.JPG", artist: "©️椛糸" },
+      { url: "IMG_3847.JPG", artist: "©️白蔥" },
+      { url: "c83cfb1419920e062902d993772ea14f.png", artist: "©️夕犬" },
+      { url: "IMG_3846.PNG", artist: "©️Lilo Yurim" },
+      { url: "be02fc4e1db30ee362681c03fe9ac731.png", artist: "©️百晨" },
+      { url: "1784910373979.png", artist: "©️聿自弓長" },
+      { url: "92dc56679666351d783bad74fcad2fec.jpeg", artist: "©️咪咪ger" },
+      { url: "34a6ecae0f43e1cfa53b453ce93cda21.png", artist: "©️揚默" },
+      { url: "3bb3fb13d02c36895521e8bf3d4519bf.jpeg", artist: "©️池鳥安川" },
+      { url: "IMG_4939.jpeg", artist: "©️閒魚悠游" },
+      { url: "QQ20260728-075614.png", artist: "©️三毒總是睡覺" }
+    ];
+
+    let currentSlideIndex = 0;
+    let slideInterval = null;
+
+    function initSlideshow() {
+      const thumbnailsContainer = document.getElementById('thumbnailsContainer');
+      thumbnailsContainer.innerHTML = '';
+
+      paintingSlides.forEach((slide, index) => {
+        const thumb = document.createElement('div');
+        thumb.className = `thumb-item ${index === 0 ? 'active' : ''}`;
+        thumb.onclick = () => {
+          goToSlide(index);
+          resetSlideInterval();
+        };
+
+        const img = document.createElement('img');
+        img.src = slide.url;
+        img.className = 'thumb-img';
+        img.alt = `Thumb ${index + 1}`;
+
+        thumb.appendChild(img);
+        thumbnailsContainer.appendChild(thumb);
+      });
+
+      updateSlideDisplay();
+      startSlideInterval();
+    }
+
+    function updateSlideDisplay() {
+      const currentObj = paintingSlides[currentSlideIndex];
+      const mainImg = document.getElementById('mainSlideImg');
+      const mainArtist = document.getElementById('mainSlideArtist');
+
+      mainImg.style.opacity = 0;
+      setTimeout(() => {
+        mainImg.src = currentObj.url;
+        mainArtist.textContent = currentObj.artist;
+        mainImg.style.opacity = 1;
+      }, 150);
+
+      const thumbs = document.querySelectorAll('.thumb-item');
+      thumbs.forEach((thumb, idx) => {
+        if (idx === currentSlideIndex) {
+          thumb.classList.add('active');
+          thumb.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
+        } else {
+          thumb.classList.remove('active');
+        }
+      });
+    }
+
+    function goToSlide(index) {
+      currentSlideIndex = (index + paintingSlides.length) % paintingSlides.length;
+      updateSlideDisplay();
+    }
+
+    function changeSlide(direction) {
+      goToSlide(currentSlideIndex + direction);
+      resetSlideInterval();
+    }
+
+    function startSlideInterval() {
+      slideInterval = setInterval(() => {
+        goToSlide(currentSlideIndex + 1);
+      }, 1000);
+    }
+
+    function resetSlideInterval() {
+      clearInterval(slideInterval);
+      startSlideInterval();
+    }
+
+    function openCurrentSlideLightbox() {
+      const currentObj = paintingSlides[currentSlideIndex];
+      openLightbox(currentObj.url, currentObj.artist);
+    }
+
     /* 相冊資料庫 */
     const albumsData = {
       shaw: {
@@ -1845,6 +2085,7 @@
     updateAnniversary();
     setDailyWeather();
     displayRandomNews();
+    initSlideshow();
   </script>
 
 </body>

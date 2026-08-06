@@ -698,10 +698,17 @@
       font-size: 0.8rem;
       line-height: 1.7;
       color: #704E50;
-      font-weight: 700; /* 設定與 character 完全相同的粗度 */
+      font-weight: 400; /* 設定為指定的較細字體 */
     }
 
-    .char-detail b {
+    /* 項目名稱維持粗體，描述內容保持細體 */
+    .char-detail b, .label-bold {
+      font-weight: 700;
+      color: #704E50;
+    }
+
+    .desc-thin {
+      font-weight: 400;
       color: #704E50;
     }
 
@@ -1085,13 +1092,13 @@
       100% { transform: rotate(360deg); }
     }
 
-    /* ===== 身高與 Pro Pic 說明獨立樣式 (設定為與 Character 完全相同的粗度與顏色) ===== */
+    /* ===== 身高與 Pro Pic 說明獨立樣式 (設定為指定的細字體 weight: 400) ===== */
     .height-desc-text {
       font-size: 0.88rem;
-      color: #704E50; /* 調整為與 Character 文字一致的顏色 */
+      color: #704E50;
       line-height: 1.7;
       margin: 8px 0 14px 0;
-      font-weight: 700; /* 設定與 Character 相同的超顯眼粗度 */
+      font-weight: 400; /* 設定為較細字體 */
     }
 
     .height-photo-box {
@@ -1321,7 +1328,7 @@
           <div class="custom-divider-line"></div>
         </div>
 
-        <!-- Character 雙人對話氣泡區塊 -->
+        <!-- Character 雙人對話氣泡區塊 (標題粗體，文字描述細體) -->
         <div id="about-character" class="char-container">
           
           <div class="char-card male">
@@ -1333,10 +1340,10 @@
             </div>
             <div class="char-info-box male-bg">
               <div class="char-detail">
-                <b>年齡：</b>20歲｜<b>生日：</b>6/21<br>
-                <b>身高：</b>182 cm<br>
-                <b>身材：</b>穿衣不明顯，但是倒三角壯男，胸圍 104 cm<br>
-                <b>外貌：</b>藍紫色髮（偏灰調）、琥珀色眼、左眉三截斷眉、雙耳耳洞（左3右2）
+                <b class="label-bold">年齡：</b><span class="desc-thin">20歲</span> <span class="label-bold">｜ 生日：</span><span class="desc-thin">6/21</span><br>
+                <b class="label-bold">身高：</b><span class="desc-thin">182 cm</span><br>
+                <b class="label-bold">身材：</b><span class="desc-thin">穿衣不明顯，但是倒三角壯男，胸圍 104 cm</span><br>
+                <b class="label-bold">外貌：</b><span class="desc-thin">藍紫色髮（偏灰調）、琥珀色眼、左眉三截斷眉、雙耳耳洞（左3 右2）</span>
               </div>
             </div>
           </div>
@@ -1344,10 +1351,10 @@
           <div class="char-card female">
             <div class="char-info-box female-bg">
               <div class="char-detail">
-                <b>年齡：</b>19歲｜<b>生日：</b>3/11<br>
-                <b>身高：</b>157 cm<br>
-                <b>身材：</b>身形勻稱，是競技運動員所以隱約可見馬甲線，約B cup<br>
-                <b>外貌：</b>淺褐色中長髮（及肩~肩下）、齊瀏海、粉紅眼、左眼下有痣
+                <b class="label-bold">年齡：</b><span class="desc-thin">19歲</span> <span class="label-bold">｜ 生日：</span><span class="desc-thin">3/11</span><br>
+                <b class="label-bold">身高：</b><span class="desc-thin">157 cm</span><br>
+                <b class="label-bold">身材：</b><span class="desc-thin">身形勻稱，是競技運動員所以隱約可見馬甲線，約B cup</span><br>
+                <b class="label-bold">外貌：</b><span class="desc-thin">淺褐色中長髮（及肩~肩下）、齊瀏海、粉紅眼、左眼下有痣</span>
               </div>
             </div>
             <div class="char-avatar-box">
@@ -1372,9 +1379,9 @@
           <span class="custom-divider-text">Pro pic</span>
         </div>
 
-        <!-- Pro pic 相冊上方提示文字 (粗度已全面升級與 Character 100% 一致) -->
+        <!-- Pro pic 相冊上方提示文字 (文字描述已調整為指定細度) -->
         <p class="height-desc-text" style="text-align: center;">
-          請<span style="color: #FF8A8A;">一定一定</span>要參考男方相簿中的官圖及官方設定。
+          請<span style="color: #FF8A8A; font-weight: 700;">一定一定</span>要參考男方相簿中的官圖及官方設定。
         </p>
 
         <!-- Pro pic 相冊展示區塊 -->
@@ -1409,7 +1416,7 @@
           <div class="custom-divider-line"></div>
         </div>
 
-        <!-- Height 內容區塊 (粗度已全面升級與 Character 100% 一致) -->
+        <!-- Height 內容區塊 (文字描述已調整為指定細度) -->
         <div id="about-height" style="text-align: center; padding: 4px 0;">
           <p class="height-desc-text">
             兩人有身高&amp;體型差，<br>

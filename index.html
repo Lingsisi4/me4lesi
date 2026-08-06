@@ -1279,8 +1279,10 @@
         border-top: 1px dashed #FCE1E4;
       }
 
+      /* 讓電腦版的三個分頁卡片維持固定且相同的寬度，不再被內容撐開 */
       .page-card {
-        flex: 1;
+        width: 460px;
+        flex-shrink: 0;
       }
     }
 

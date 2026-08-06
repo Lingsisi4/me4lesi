@@ -329,7 +329,7 @@
       transform: scale(1.1);
     }
 
-    /* ===== 1️⃣ 戀語市氣象預報卡片 (改版樣式) ===== */
+    /* ===== 戀語市氣象預報卡片 ===== */
     .weather-card {
       background: #FFFFFF;
       border: 2px solid #FCE1E4;
@@ -384,7 +384,7 @@
       color: #6C7A89;
     }
 
-    /* ===== 2️⃣ 戀語快報卡片 (新版樣式) ===== */
+    /* ===== 戀語快報卡片 ===== */
     .news-card {
       background: #FFFFFF;
       border: 2px solid #FCE1E4;
@@ -500,13 +500,18 @@
       width: 100%;
     }
 
-    /* ===== 設計感主題分隔線 ===== */
+    /* ===== 設計感主題分隔線 (預設：靠左風格) ===== */
     .custom-section-divider {
       display: flex;
       align-items: center;
       gap: 8px;
       margin: 24px 0 16px 0;
       width: 100%;
+    }
+
+    /* 1️⃣ 右側對齊分隔線 (用於 Pro pic) */
+    .custom-section-divider.align-right {
+      justify-content: flex-end;
     }
 
     .custom-divider-gif {
@@ -671,6 +676,223 @@
       color: #704E50;
     }
 
+    /* ===== Pro pic 相冊展示區塊 ===== */
+    .albums-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .album-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      transition: transform 0.25s ease;
+      width: 120px;
+    }
+
+    .album-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .album-cover-frame {
+      width: 110px;
+      height: 110px;
+      border-radius: 16px;
+      border: 3px solid #FFFFFF;
+      box-shadow: 0px 6px 14px rgba(226, 149, 152, 0.2);
+      overflow: hidden;
+      background-color: #FFFFFF;
+      position: relative;
+    }
+
+    .album-cover-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .album-card:hover .album-cover-img {
+      transform: scale(1.05);
+    }
+
+    .album-title-box {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 8px;
+    }
+
+    .album-gif {
+      width: 16px;
+      height: 16px;
+      object-fit: contain;
+    }
+
+    .album-name {
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .album-name.male-color {
+      color: #6C7A89;
+    }
+
+    .album-name.female-color {
+      color: #D87074;
+    }
+
+    /* ===== 相冊 Modal (第一層彈窗) ===== */
+    .album-modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(92, 74, 74, 0.35);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .album-modal-card {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      background: #FFFFFF;
+      border: 2px solid #FCE1E4;
+      border-radius: 20px;
+      padding: 25px 20px 20px 20px;
+      box-shadow: 0px 10px 25px rgba(226, 149, 152, 0.25);
+      width: 90%;
+      max-width: 460px;
+      max-height: 80vh;
+      z-index: 1001;
+      opacity: 0;
+      transition: all 0.3s ease;
+      overflow-y: auto;
+    }
+
+    .album-modal-overlay.active {
+      display: block;
+      opacity: 1;
+    }
+
+    .album-modal-card.active {
+      display: block;
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .album-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      border-bottom: 1px dashed #FCE1E4;
+      padding-bottom: 8px;
+    }
+
+    .album-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+      gap: 12px;
+    }
+
+    .album-grid-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .album-grid-img-frame {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 12px;
+      border: 2px solid #FCE1E4;
+      overflow: hidden;
+      background: #FFFDF9;
+      box-shadow: 0px 3px 8px rgba(92, 74, 74, 0.06);
+      transition: transform 0.2s;
+    }
+
+    .album-grid-img-frame:hover {
+      transform: scale(1.04);
+      border-color: #E29598;
+    }
+
+    .album-grid-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .artist-tag {
+      font-size: 0.72rem;
+      color: #8C7576;
+      margin-top: 4px;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    /* ===== Lightbox 大圖放大觀看 (第二層彈窗) ===== */
+    .lightbox-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(5px);
+      z-index: 1100;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .lightbox-overlay.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .lightbox-img-box {
+      max-width: 88vw;
+      max-height: 75vh;
+      border-radius: 12px;
+      box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+    }
+
+    .lightbox-img {
+      width: 100%;
+      height: 100%;
+      max-height: 75vh;
+      object-fit: contain;
+    }
+
+    .lightbox-artist {
+      margin-top: 12px;
+      color: #FFFFFF;
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      font-weight: 500;
+      text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
     /* ===== 紀念日區塊 ===== */
     .anniversary-card {
       position: relative;
@@ -792,7 +1014,7 @@
       100% { transform: rotate(360deg); }
     }
 
-    /* ===== 3️⃣ 跨裝置顯示邏輯與響應式設計 ===== */
+    /* ===== 跨裝置顯示邏輯與響應式設計 ===== */
     @media (min-width: 900px) {
       .main-container {
         max-width: 1000px;
@@ -809,7 +1031,7 @@
       .right-column {
         width: 220px;
         flex-shrink: 0;
-        display: flex !important; /* 電腦版固定顯示側邊欄 */
+        display: flex !important;
       }
 
       .menu-card {
@@ -841,7 +1063,7 @@
     /* 手機版 (螢幕寬度 899px 以下) 的側邊欄隱藏邏輯 */
     @media (max-width: 899px) {
       body:not(.current-page-home) .right-column {
-        display: none !important; /* 不是 Home 頁面時，手機版隱藏側邊欄 */
+        display: none !important;
       }
     }
   </style>
@@ -938,7 +1160,6 @@
           存放有關夢的一切。
         </p>
 
-        <!-- 4️⃣ 修改後的歡迎語 -->
         <p style="margin: 6px 0;">展示夢言夢語的地方，<br>同時作為委託資料使用。</p>
         
         <p style="margin: 14px 0 6px 0;">若無法承接中國乙遊/凌肖夢向可直接退設。</p>
@@ -998,7 +1219,7 @@
           但希望不要為了交稿畫出和例圖不符的臉ㅠㅠ
         </p>
 
-        <!-- Character 分隔線 -->
+        <!-- Character 分隔線 (靠左) -->
         <div class="custom-section-divider">
           <img src="IMG_3839.GIF" alt="icon" class="custom-divider-gif">
           <span class="custom-divider-text">Character</span>
@@ -1020,7 +1241,8 @@
                 <b>年齡：</b>20歲｜<b>生日：</b>6/21<br>
                 <b>身高：</b>182 cm<br>
                 <b>身材：</b>穿衣不明顯，但是倒三角壯男，胸圍 104 cm<br>
-                <b>外貌：</b>藍紫色髮（偏灰調）、琥珀色眼、三截斷眉、雙耳耳洞（左3右2）
+                <!-- 4️⃣ 修改後的凌肖外貌 -->
+                <b>外貌：</b>藍紫色髮（偏灰調）、琥珀色眼、左眉三截斷眉、雙耳耳洞（左3右2）
               </div>
             </div>
           </div>
@@ -1044,15 +1266,36 @@
 
         </div>
 
-        <!-- Pro pic 分隔線 -->
-        <div class="custom-section-divider">
+        <!-- 1️⃣ Pro pic 分隔線 (靠右：虛線 ➔ GIF ➔ Pro pic) -->
+        <div class="custom-section-divider align-right">
+          <div class="custom-divider-line"></div>
           <img src="IMG_3839.GIF" alt="icon" class="custom-divider-gif">
           <span class="custom-divider-text">Pro pic</span>
-          <div class="custom-divider-line"></div>
         </div>
 
-        <div id="about-propic" style="text-align: left; padding: 4px 0;">
-          <p style="margin: 5px 0; color: #8C7576;">（這裡放你的 Pro pic 設定圖或圖片）</p>
+        <!-- 2️⃣ & 3️⃣ Pro pic 相冊展示區塊 -->
+        <div id="about-propic" class="albums-container">
+          <!-- 左邊：凌肖相冊 -->
+          <div class="album-card" onclick="openAlbum('shaw')">
+            <div class="album-cover-frame">
+              <img src="IMG_4654.jpeg" alt="凌肖相冊封面" class="album-cover-img">
+            </div>
+            <div class="album-title-box">
+              <img src="IMG_4922.gif" alt="gif" class="album-gif">
+              <span class="album-name male-color">凌肖</span>
+            </div>
+          </div>
+
+          <!-- 右邊：余思思相冊 -->
+          <div class="album-card" onclick="openAlbum('sisi')">
+            <div class="album-cover-frame">
+              <img src="IMG_3857.jpeg" alt="余思思相冊封面" class="album-cover-img">
+            </div>
+            <div class="album-title-box">
+              <img src="IMG_4921.gif" alt="gif" class="album-gif">
+              <span class="album-name female-color">余思思</span>
+            </div>
+          </div>
         </div>
 
         <!-- Height 分隔線 -->
@@ -1091,7 +1334,7 @@
     <!-- 右欄區塊 (氣象與新聞) -->
     <div class="right-column">
       
-      <!-- 1️⃣ 戀語市氣象預報卡片 (新版排版) -->
+      <!-- 戀語市氣象預報卡片 -->
       <div class="weather-card">
         <div class="weather-header">
           <i class="fa-solid fa-cloud-sun"></i> 戀語市氣象預報
@@ -1107,7 +1350,7 @@
         </div>
       </div>
 
-      <!-- 2️⃣ 戀語快報卡片 (新聞資料庫連動) -->
+      <!-- 戀語快報卡片 -->
       <div class="news-card">
         <div class="news-header">
           <span><i class="fa-regular fa-newspaper"></i> 戀語快報</span>
@@ -1130,7 +1373,7 @@
   </div>
   <audio id="bgm" src="bgm.mp3" loop></audio>
 
-  <!-- 手機版彈出卡片 -->
+  <!-- 手機版目錄彈出卡片 -->
   <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
   <div class="menu-popup-card" id="menuPopup">
     <div class="popup-close-btn" onclick="closeMenu()">✕</div>
@@ -1169,6 +1412,22 @@
     </div>
   </div>
 
+  <!-- 相冊彈窗 (第一層 Modal) -->
+  <div class="album-modal-overlay" id="albumModalOverlay" onclick="closeAlbum()"></div>
+  <div class="album-modal-card" id="albumModalCard">
+    <div class="popup-close-btn" onclick="closeAlbum()">✕</div>
+    <div class="album-modal-header" id="albumModalHeader"></div>
+    <div class="album-grid" id="albumGrid"></div>
+  </div>
+
+  <!-- 全螢幕大圖放大 Lightbox (第二層) -->
+  <div class="lightbox-overlay" id="lightboxOverlay" onclick="closeLightbox()">
+    <div class="lightbox-img-box">
+      <img src="" alt="大圖" id="lightboxImg" class="lightbox-img">
+    </div>
+    <div class="lightbox-artist" id="lightboxArtist"></div>
+  </div>
+
   <script>
     const loader = document.getElementById('loading-screen');
 
@@ -1196,7 +1455,7 @@
       document.getElementById('menuPopup').classList.remove('active');
     }
 
-    /* 3️⃣ 切換頁面與手機版側邊欄控制 */
+    /* 切換頁面與手機版側邊欄控制 */
     function switchPage(target) {
       loader.classList.add('show');
 
@@ -1266,7 +1525,86 @@
       document.getElementById('todayDate').innerText = `${year}. ${month}. ${date}`;
     }
 
-    /* 1️⃣ 天氣資料庫（每日固定天氣） */
+    /* 2️⃣ 相冊資料庫 (檔名 + 繪師名稱) */
+    const albumsData = {
+      shaw: {
+        title: "凌肖",
+        gif: "IMG_4922.gif",
+        titleClass: "male-color",
+        images: [
+          { url: "IMG_4654.jpeg", artist: "" },
+          { url: "IMG_4917.jpeg", artist: "" },
+          { url: "IMG_4918.jpeg", artist: "" },
+          { url: "IMG_4919.jpeg", artist: "" },
+          { url: "IMG_4273.jpeg", artist: "" },
+          { url: "IMG_4920.jpeg", artist: "" },
+          { url: "IMG_3815.jpeg", artist: "" },
+          { url: "IMG_4281.jpeg", artist: "" }
+        ]
+      },
+      sisi: {
+        title: "余思思",
+        gif: "IMG_4921.gif",
+        titleClass: "female-color",
+        images: [
+          { url: "IMG_3857.jpeg", artist: "©️踏波" },
+          { url: "IMG_3858.png", artist: "©️沏魚" },
+          { url: "IMG_3859.png", artist: "©️噗轉" },
+          { url: "IMG_3860.jpeg", artist: "©️咩月" },
+          { url: "IMG_3865.jpeg", artist: "©️雍幽" },
+          { url: "IMG_9554.jpeg", artist: "©️嗶瞇" }
+        ]
+      }
+    };
+
+    /* 開啟相冊彈窗 (第一層) */
+    function openAlbum(characterKey) {
+      const album = albumsData[characterKey];
+      if (!album) return;
+
+      const headerEl = document.getElementById('albumModalHeader');
+      headerEl.innerHTML = `<img src="${album.gif}" class="album-gif"><span class="${album.titleClass}">${album.title}</span>`;
+
+      const gridEl = document.getElementById('albumGrid');
+      gridEl.innerHTML = '';
+
+      album.images.forEach(imgData => {
+        const item = document.createElement('div');
+        item.className = 'album-grid-item';
+        item.onclick = () => openLightbox(imgData.url, imgData.artist);
+
+        const artistHtml = imgData.artist ? `<div class="artist-tag">${imgData.artist}</div>` : '';
+
+        item.innerHTML = `
+          <div class="album-grid-img-frame">
+            <img src="${imgData.url}" class="album-grid-img" alt="大頭照">
+          </div>
+          ${artistHtml}
+        `;
+        gridEl.appendChild(item);
+      });
+
+      document.getElementById('albumModalOverlay').classList.add('active');
+      document.getElementById('albumModalCard').classList.add('active');
+    }
+
+    function closeAlbum() {
+      document.getElementById('albumModalOverlay').classList.remove('active');
+      document.getElementById('albumModalCard').classList.remove('active');
+    }
+
+    /* 開啟 Lightbox 全螢幕放大檢視 (第二層) */
+    function openLightbox(imgUrl, artistName) {
+      document.getElementById('lightboxImg').src = imgUrl;
+      document.getElementById('lightboxArtist').textContent = artistName || '';
+      document.getElementById('lightboxOverlay').classList.add('active');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightboxOverlay').classList.remove('active');
+    }
+
+    /* 天氣資料庫 */
     const weatherOptions = [
       { icon: "fa-sun", temp: "24°C", max: "27°C", min: "19°C", rain: "10%" },
       { icon: "fa-cloud-sun", temp: "22°C", max: "25°C", min: "18°C", rain: "20%" },
@@ -1286,7 +1624,7 @@
       document.getElementById('rainProb').textContent = weather.rain;
     }
 
-    /* 2️⃣ 戀語市新聞資料庫 (9則) */
+    /* 戀語市新聞資料庫 (9則) */
     const newsList = [
       {
         title: "再入文明城市光榮榜！",

@@ -700,13 +700,11 @@
       color: #704E50;
     }
 
-    /* 項目名稱 (年齡、生日等)：粗體 700 */
     .char-detail b {
       font-weight: 700 !important;
       color: #704E50;
     }
 
-    /* 描述內容文字：調整為中等粗細 (font-weight: 500)，比標題軟但比極細體清楚 */
     .char-detail .desc-thin {
       font-weight: 500 !important;
       color: #704E50;
@@ -1088,7 +1086,6 @@
       100% { transform: rotate(360deg); }
     }
 
-    /* ===== 🔥 Pro pic & Height 說明文字樣式 (同步改為 font-weight: 500) ===== */
     .height-desc-text {
       font-size: 0.88rem;
       color: #704E50;
@@ -1444,24 +1441,44 @@
         <img src="IMG_4905.GIF" alt="GIF Icon">
       </div>
       <div class="notice-text">
-        <p class="notice-highlight" style="font-size: 1.2rem; margin-top: 5px; margin-bottom: 12px;">
-          Dream World
-        </p>
         
         <p style="margin: 6px 0; line-height: 1.7;">
           雙人互動的畫面及文章。<br>
           為私人夢向委託，僅作為展示和參考用途。
         </p>
 
-        <hr class="pink-divider">
+        <!-- 1. Painting 分隔線 (靠左：GIF + 英文 + 虛線) -->
+        <div class="custom-section-divider" id="dream-painting">
+          <img src="IMG_3842.gif" alt="icon" class="custom-divider-gif">
+          <span class="custom-divider-text">Painting</span>
+          <div class="custom-divider-line"></div>
+        </div>
+        <p style="margin: 10px 0;">夢向繪圖作品存放處。</p>
 
-        <p style="margin: 10px 0;" id="dream-painting">【Painting 區塊】<br>夢向繪圖作品存放處。</p>
-        <hr class="pink-divider">
-        <p style="margin: 10px 0;" id="dream-article">【Article 區塊】<br>夢向短文或小說存放處。</p>
-        <hr class="pink-divider">
-        <p style="margin: 10px 0;" id="dream-song">【Song 區塊】<br>印象曲或音樂清單。</p>
-        <hr class="pink-divider">
-        <p style="margin: 10px 0;" id="dream-memo">【Memo 區塊】<br>碎碎念與雜記。</p>
+        <!-- 2. Article 分隔線 (靠右：虛線 + GIF + 英文) -->
+        <div class="custom-section-divider align-right" id="dream-article">
+          <div class="custom-divider-line"></div>
+          <img src="IMG_3843.gif" alt="icon" class="custom-divider-gif">
+          <span class="custom-divider-text">Article</span>
+        </div>
+        <p style="margin: 10px 0;">夢向短文或小說存放處。</p>
+
+        <!-- 3. Song 分隔線 (靠左：GIF + 英文 + 虛線) -->
+        <div class="custom-section-divider" id="dream-song">
+          <img src="IMG_3844.gif" alt="icon" class="custom-divider-gif">
+          <span class="custom-divider-text">Song</span>
+          <div class="custom-divider-line"></div>
+        </div>
+        <p style="margin: 10px 0;">印象曲或音樂清單。</p>
+
+        <!-- 4. Memo 分隔線 (靠右：虛線 + GIF + 英文) -->
+        <div class="custom-section-divider align-right" id="dream-memo">
+          <div class="custom-divider-line"></div>
+          <img src="ZsGPHo5.gif" alt="icon" class="custom-divider-gif">
+          <span class="custom-divider-text">Memo</span>
+        </div>
+        <p style="margin: 10px 0;">碎碎念與雜記。</p>
+
       </div>
     </div>
 

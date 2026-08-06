@@ -1025,11 +1025,19 @@
       font-weight: normal;
     }
 
-    /* ===== 音樂播放按鈕 ===== */
-    .music-btn {
+    /* ===== 右下角雙懸浮按鈕區塊 ===== */
+    .floating-buttons-container {
       position: fixed;
       bottom: 25px;
       right: 25px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 990;
+    }
+
+    /* 懸浮小球通用圓框 (TOP & Music 按鈕共用樣式) */
+    .float-circle-btn {
       width: 48px;
       height: 48px;
       background-color: #FFFFFF;
@@ -1044,18 +1052,27 @@
       padding: 6px;
       transition: transform 0.2s, background-color 0.2s;
       user-select: none;
-      z-index: 990;
     }
 
+    .float-circle-btn:hover {
+      transform: scale(1.1);
+      background-color: #FFFDF9;
+    }
+
+    /* TOP 按鈕文字專屬樣式 */
+    .top-btn {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #D87074;
+      letter-spacing: 0.5px;
+    }
+
+    /* 音樂按鈕圖片與旋轉動畫 */
     .music-btn img {
       width: 100%;
       height: 100%;
       object-fit: contain;
-    }
-
-    .music-btn:hover {
-      transform: scale(1.1);
-      background-color: #FFFDF9;
     }
 
     .music-btn.playing {
@@ -1067,12 +1084,13 @@
       100% { transform: rotate(360deg); }
     }
 
-    /* ===== 身高說明獨立樣式 ===== */
+    /* ===== 身高與 Pro Pic 說明獨立樣式 (確保粗度一致) ===== */
     .height-desc-text {
       font-size: 0.88rem;
       color: #8C7576;
       line-height: 1.7;
       margin: 8px 0 14px 0;
+      font-weight: normal;
     }
 
     .height-photo-box {
@@ -1346,15 +1364,15 @@
           <img src="無標題1_20260726005104.jpeg" alt="Character Illustration">
         </div>
 
-        <!-- 1️⃣ Pro pic 分隔線 (靠右) -->
+        <!-- Pro pic 分隔線 (靠右) -->
         <div class="custom-section-divider align-right">
           <div class="custom-divider-line"></div>
           <img src="IMG_4308.gif" alt="icon" class="custom-divider-gif">
           <span class="custom-divider-text">Pro pic</span>
         </div>
 
-        <!-- Pro pic 相冊上方提示文字 (已改為細體) -->
-        <p style="color: #8B5A2B; font-size: 0.88rem; font-weight: normal; margin: 10px 0 14px 0; text-align: center;">
+        <!-- Pro pic 相冊上方提示文字 (已套用 height-desc-text，確保字體粗度完全相同) -->
+        <p class="height-desc-text" style="text-align: center;">
           請<span style="color: #FF8A8A;">一定一定</span>要參考男方相簿中的官圖及官方設定。
         </p>
 
@@ -1383,7 +1401,7 @@
           </div>
         </div>
 
-        <!-- Height 分隔線 (修改 GIF 檔名為 IMG_3841.gif) -->
+        <!-- Height 分隔線 -->
         <div class="custom-section-divider">
           <img src="IMG_3841.gif" alt="icon" class="custom-divider-gif">
           <span class="custom-divider-text">Height</span>
@@ -1437,7 +1455,7 @@
     <!-- 右欄區塊 (單張圖卡片、氣象與新聞) -->
     <div class="right-column">
       
-      <!-- 新增：氣象與新聞上方的單張照片卡片 (點擊放大) -->
+      <!-- 氣象與新聞上方的單張照片卡片 (點擊放大) -->
       <div class="photo-card" onclick="openLightbox('61494faa9204e5d0fe49e4a67ced807c.png', '')">
         <img src="61494faa9204e5d0fe49e4a67ced807c.png" alt="Photo" class="photo-card-img">
       </div>
@@ -1475,9 +1493,14 @@
 
   </div>
 
-  <!-- 音樂播放按鈕 -->
-  <div class="music-btn" id="musicBtn" onclick="toggleMusic()" title="播放音樂">
-    <img src="1785943711222-removebg-preview.png" alt="Music Icon">
+  <!-- 右下角雙懸浮按鈕 (TOP 按鈕在上面，音樂按鈕在下面) -->
+  <div class="floating-buttons-container">
+    <div class="float-circle-btn top-btn" onclick="scrollToTop()" title="回到頂端">
+      TOP
+    </div>
+    <div class="float-circle-btn music-btn" id="musicBtn" onclick="toggleMusic()" title="播放音樂">
+      <img src="1785943711222-removebg-preview.png" alt="Music Icon">
+    </div>
   </div>
   <audio id="bgm" src="bgm.mp3" loop></audio>
 
@@ -1563,6 +1586,14 @@
       document.getElementById('menuPopup').classList.remove('active');
     }
 
+    /* 點擊 TOP 平滑滑動回頂端 */
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
     /* 切換頁面與手機版側邊欄控制 */
     function switchPage(target) {
       loader.classList.add('show');
@@ -1633,7 +1664,7 @@
       document.getElementById('todayDate').innerText = `${year}. ${month}. ${date}`;
     }
 
-    /* 相冊資料庫 (已將繪師標註字體在 CSS 中調整為新細明體) */
+    /* 相冊資料庫 */
     const albumsData = {
       shaw: {
         title: "凌肖",

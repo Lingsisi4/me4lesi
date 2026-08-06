@@ -298,7 +298,7 @@
       color: #D87074;
     }
 
-    /* ===== 社群與 Home 圖示區塊 ===== */
+    /* ===== 社群圖示區塊 ===== */
     .social-links {
       display: flex;
       justify-content: center;
@@ -318,18 +318,6 @@
 
     .social-icon:hover {
       transform: scale(1.1);
-    }
-
-    .home-icon-btn {
-      width: 35px;
-      height: 35px;
-      object-fit: contain;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-    }
-
-    .home-icon-btn:hover {
-      transform: scale(1.15);
     }
 
     /* ===== 內容卡片共用樣式 ===== */
@@ -571,7 +559,7 @@
         </div>
       </div>
 
-      <!-- Contents 目錄按鈕 -->
+      <!-- Contents 目錄按鈕與選單卡片 -->
       <div class="menu-card">
         <div class="menu-header" onclick="toggleMenu()">
           <img src="IMG_3836.GIF" alt="icon" class="menu-icon">
@@ -580,6 +568,15 @@
         
         <!-- 平板/電腦版目錄 -->
         <div class="menu-links" id="desktopMenuLinks" style="display: none;">
+          <!-- 1. Home 返回首頁按鈕（放在 Contents 分隔線下方、About 上方） -->
+          <div class="menu-item-group">
+            <a onclick="switchPage('home')" class="menu-main-title">
+              <img src="IMG_4880.GIF" alt="icon" class="title-gif">
+              <span>Home</span>
+            </a>
+          </div>
+
+          <!-- 2. About 區塊 -->
           <div class="menu-item-group">
             <a onclick="switchPage('about')" class="menu-main-title">
               <img src="IMG_4904.GIF" alt="icon" class="title-gif">
@@ -592,6 +589,7 @@
             </div>
           </div>
 
+          <!-- 3. Dream 區塊 -->
           <div class="menu-item-group">
             <a onclick="switchPage('dream')" class="menu-main-title">
               <img src="IMG_4905.GIF" alt="icon" class="title-gif">
@@ -607,7 +605,7 @@
         </div>
       </div>
 
-      <!-- 社群連結與 Home 返回目錄按鈕 -->
+      <!-- 社群連結區塊 -->
       <div class="social-links">
         <a href="https://www.facebook.com/share/1DKCVjFYUC/?mibextid=wwXIfr" target="_blank" title="Facebook">
           <img src="1785949250711.jpg" alt="FB" class="social-icon">
@@ -615,7 +613,6 @@
         <a href="https://www.plurk.com/u/sisi_0311" target="_blank" title="Plurk">
           <img src="1785949250411.jpg" alt="Plurk" class="social-icon">
         </a>
-        <img src="IMG_4880.GIF" alt="Home" class="home-icon-btn" onclick="switchPage('home')" title="返回首頁">
       </div>
     </div>
 
@@ -726,6 +723,15 @@
   <div class="menu-popup-card" id="menuPopup">
     <div class="popup-close-btn" onclick="closeMenu()">✕</div>
     <div class="menu-links">
+      <!-- 手機版的 Home 按鈕 -->
+      <div class="menu-item-group">
+        <a onclick="switchPage('home'); closeMenu();" class="menu-main-title">
+          <img src="IMG_4880.GIF" alt="icon" class="title-gif">
+          <span>Home</span>
+        </a>
+      </div>
+
+      <!-- 手機版的 About 區塊 -->
       <div class="menu-item-group">
         <a onclick="switchPage('about'); closeMenu();" class="menu-main-title">
           <img src="IMG_4904.GIF" alt="icon" class="title-gif">
@@ -738,6 +744,7 @@
         </div>
       </div>
 
+      <!-- 手機版的 Dream 區塊 -->
       <div class="menu-item-group">
         <a onclick="switchPage('dream'); closeMenu();" class="menu-main-title">
           <img src="IMG_4905.GIF" alt="icon" class="title-gif">
@@ -762,11 +769,11 @@
       }
     }
 
-    // 進入網站時，最多等待 3.0 秒自動關閉 Loading (防卡死時間拉長)
+    // 進入網站時，最多等待 3.0 秒自動關閉 Loading
     setTimeout(hideLoader, 3000);
 
     window.addEventListener('load', function() {
-      setTimeout(hideLoader, 1000); // 正常載入完成後多留 1 秒動畫感
+      setTimeout(hideLoader, 1000);
     });
 
     // 控制手機版彈窗目錄
@@ -814,9 +821,9 @@
           }
         }
 
-        setTimeout(hideLoader, 600); // 切換頁面時 Loading 動畫停留時間拉長
+        setTimeout(hideLoader, 600);
 
-      }, 1000); // 轉場等待秒數拉長
+      }, 1000);
     }
 
     // 控制背景音樂播放/暫停

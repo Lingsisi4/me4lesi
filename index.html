@@ -607,7 +607,7 @@
         </div>
       </div>
 
-      <!-- 社群連結與 Home 返回首頁按鈕 -->
+      <!-- 社群連結與 Home 返回目錄按鈕 -->
       <div class="social-links">
         <a href="https://www.facebook.com/share/1DKCVjFYUC/?mibextid=wwXIfr" target="_blank" title="Facebook">
           <img src="1785949250711.jpg" alt="FB" class="social-icon">
@@ -615,7 +615,7 @@
         <a href="https://www.plurk.com/u/sisi_0311" target="_blank" title="Plurk">
           <img src="1785949250411.jpg" alt="Plurk" class="social-icon">
         </a>
-        <img src="1785958414265-removebg-preview.png" alt="Home" class="home-icon-btn" onclick="switchPage('home')" title="返回首頁">
+        <img src="IMG_4880.GIF" alt="Home" class="home-icon-btn" onclick="switchPage('home')" title="返回首頁">
       </div>
     </div>
 
@@ -762,11 +762,11 @@
       }
     }
 
-    // 進入網站時，最多等待 1.5 秒自動關閉 Loading，防止卡死
-    setTimeout(hideLoader, 1500);
+    // 進入網站時，最多等待 3.0 秒自動關閉 Loading (防卡死時間拉長)
+    setTimeout(hideLoader, 3000);
 
     window.addEventListener('load', function() {
-      setTimeout(hideLoader, 500);
+      setTimeout(hideLoader, 1000); // 正常載入完成後多留 1 秒動畫感
     });
 
     // 控制手機版彈窗目錄
@@ -814,9 +814,9 @@
           }
         }
 
-        setTimeout(hideLoader, 300);
+        setTimeout(hideLoader, 600); // 切換頁面時 Loading 動畫停留時間拉長
 
-      }, 800); 
+      }, 1000); // 轉場等待秒數拉長
     }
 
     // 控制背景音樂播放/暫停

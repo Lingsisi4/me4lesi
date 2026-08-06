@@ -1284,9 +1284,10 @@
       }
     }
 
+    /* 已修正：讓手機版或平板在任何頁面（包含dream頁面）都能正常顯示右欄區塊 */
     @media (max-width: 899px) {
-      body:not(.current-page-home) .right-column {
-        display: none !important;
+      .right-column {
+        display: flex !important;
       }
     }
   </style>
@@ -1903,7 +1904,7 @@
       thumbs.forEach((thumb, idx) => {
         if (idx === currentSlideIndex) {
           thumb.classList.add('active');
-          thumb.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
+          // 已移除 scrollIntoView，避免每次換照片時畫面被強制捲動到藝廊位置
         } else {
           thumb.classList.remove('active');
         }

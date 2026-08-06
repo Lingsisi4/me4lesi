@@ -887,8 +887,10 @@
       object-fit: cover;
     }
 
+    /* 繪師標註專用字體：新細明體 */
     .artist-tag {
-      font-size: 0.72rem;
+      font-family: "新細明體", "PMingLiU", "MingLiU", serif;
+      font-size: 0.75rem;
       color: #8C7576;
       margin-top: 4px;
       text-align: center;
@@ -933,9 +935,11 @@
       object-fit: contain;
     }
 
+    /* Lightbox 內的繪師標註字體：新細明體 */
     .lightbox-artist {
       margin-top: 12px;
       color: #FFFFFF;
+      font-family: "新細明體", "PMingLiU", "MingLiU", serif;
       font-size: 0.95rem;
       letter-spacing: 1px;
       font-weight: 500;
@@ -1061,6 +1065,29 @@
 
     @keyframes spin {
       100% { transform: rotate(360deg); }
+    }
+
+    /* ===== 身高說明獨立樣式 ===== */
+    .height-desc-text {
+      font-size: 0.88rem;
+      color: #8C7576;
+      line-height: 1.7;
+      margin: 8px 0 14px 0;
+    }
+
+    .height-photo-box {
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .height-photo-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: none !important;
+      outline: none !important;
+      box-shadow: none !important;
+      border-radius: 0 !important;
     }
 
     /* ===== 跨裝置顯示邏輯與響應式設計 ===== */
@@ -1319,12 +1346,17 @@
           <img src="無標題1_20260726005104.jpeg" alt="Character Illustration">
         </div>
 
-        <!-- 1️⃣ Pro pic 分隔線 (靠右：虛線 ➔ GIF ➔ Pro pic，已更換為 IMG_4308.gif) -->
+        <!-- 1️⃣ Pro pic 分隔線 (靠右) -->
         <div class="custom-section-divider align-right">
           <div class="custom-divider-line"></div>
           <img src="IMG_4308.gif" alt="icon" class="custom-divider-gif">
           <span class="custom-divider-text">Pro pic</span>
         </div>
+
+        <!-- Pro pic 相冊上方提示文字 -->
+        <p style="color: #8B5A2B; font-size: 0.88rem; font-weight: bold; margin: 10px 0 14px 0; text-align: center;">
+          請<span style="color: #FF8A8A;">一定一定</span>要參考男方相簿中的官圖及官方設定。
+        </p>
 
         <!-- Pro pic 相冊展示區塊 -->
         <div id="about-propic" class="albums-container">
@@ -1351,15 +1383,25 @@
           </div>
         </div>
 
-        <!-- Height 分隔線 -->
+        <!-- Height 分隔線 (修改 GIF 檔名為 IMG_3841.GIF) -->
         <div class="custom-section-divider">
-          <img src="IMG_3839.GIF" alt="icon" class="custom-divider-gif">
+          <img src="IMG_3841.GIF" alt="icon" class="custom-divider-gif">
           <span class="custom-divider-text">Height</span>
           <div class="custom-divider-line"></div>
         </div>
 
-        <div id="about-height" style="text-align: left; padding: 4px 0;">
-          <p style="margin: 5px 0; color: #8C7576;">（這裡放你的 Height 身高差相關資訊）</p>
+        <!-- Height 內容區塊 -->
+        <div id="about-height" style="text-align: center; padding: 4px 0;">
+          <p class="height-desc-text">
+            兩人有身高&amp;體型差，<br>
+            若委託半/全身希望能夠表現出來，<br>
+            大頭或其他由我提出的情況就可以無視～
+          </p>
+          
+          <!-- 無外框照片 IMG_3816.jpeg (點擊可開啟大圖) -->
+          <div class="height-photo-box" onclick="openLightbox('IMG_3816.jpeg', '')">
+            <img src="IMG_3816.jpeg" alt="Height Difference Photo" class="height-photo-img">
+          </div>
         </div>
 
       </div>
@@ -1583,7 +1625,7 @@
       document.getElementById('todayDate').innerText = `${year}. ${month}. ${date}`;
     }
 
-    /* 相冊資料庫 */
+    /* 相冊資料庫 (已將繪師標註字體在 CSS 中調整為新細明體) */
     const albumsData = {
       shaw: {
         title: "凌肖",

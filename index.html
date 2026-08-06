@@ -608,18 +608,94 @@
             </a>
           </div>
 
-          <!-- 2. About 區塊 -->
-          <div class="menu-item-group">
-            <a onclick="switchPage('about')" class="menu-main-title">
-              <img src="IMG_4904.GIF" alt="icon" class="title-gif">
-              <span>About</span>
-            </a>
-            <div class="menu-sub-links">
-              <a onclick="switchPage('about-character')" class="menu-sub-btn">Character</a>
-              <a onclick="switchPage('about-propic')" class="menu-sub-btn">Pro pic</a>
-              <a onclick="switchPage('about-height')" class="menu-sub-btn">Height</a>
+    <!-- 2. About 頁面卡片 -->
+    <div class="page-card" id="page-about">
+      <div class="card-icon">
+        <img src="IMG_4904.GIF" alt="GIF Icon">
+      </div>
+      <div class="notice-text">
+        <!-- 歡迎語部分 -->
+        <p style="margin: 8px 0 6px 0;">以下資訊為自我流解讀。</p>
+        <p style="margin: 6px 0;">有特別寫在外貌中的部分請不要遺忘。</p>
+        <p class="notice-highlight" style="margin: 8px 0; font-size: 1.05rem;">
+          兩人的臉&gt;&gt;&gt;&gt;&gt;一切！
+        </p>
+        <p style="margin: 6px 0; line-height: 1.7;">
+          會委託就是喜歡您畫的臉，手感不好接受延期，<br>但希望不要為了交稿畫出和例圖不符的臉ㅠㅠ
+        </p>
+
+        <!-- Character 分隔線 -->
+        <div class="custom-section-divider">
+          <img src="IMG_3839.GIF" alt="icon" class="custom-divider-gif">
+          <span class="custom-divider-text">Character</span>
+          <div class="custom-divider-line"></div>
+        </div>
+
+        <!-- Character 雙人資訊區塊 -->
+        <div id="about-character" class="char-container">
+          
+          <!-- 男生卡片：左 1/3 圓形大頭貼，右 2/3 灰色暈染 -->
+          <div class="char-card male">
+            <div class="char-avatar-box">
+              <div class="char-avatar-frame">
+                <img src="SmartSelect_20260726_002942_Samsung Browser.jpg" alt="凌肖" class="char-avatar-img">
+              </div>
+            </div>
+            <div class="char-info-box male-bg">
+              <div class="char-name">凌肖</div>
+              <div class="char-detail">
+                <b>年齡：</b>20歲｜<b>生日：</b>6/21<br>
+                <b>身高：</b>182 cm<br>
+                <b>身材：</b>穿衣顯瘦脫衣有肉的壯男，倒三角不明顯，胸圍 104 cm<br>
+                <b>外貌：</b>藍紫色髮（偏灰調）、琥珀色眼、三截斷眉、雙耳耳洞（左3右2）
+              </div>
             </div>
           </div>
+
+          <!-- 女生卡片：左 2/3 粉色暈染，右 1/3 圓形大頭貼 -->
+          <div class="char-card female">
+            <div class="char-info-box female-bg">
+              <div class="char-name">（名字/暱稱）</div>
+              <div class="char-detail">
+                <b>年齡：</b>19歲｜<b>生日：</b>3/11<br>
+                <b>身高：</b>157 cm<br>
+                <b>身材：</b>瘦而勻稱，競技運動員，隱約可見馬甲線<br>
+                <b>外貌：</b>淺褐色中長髮（及肩~肩下）、微眉上瀏海、粉紅眼、左眼下淚痣、身形偏瘦弱
+              </div>
+            </div>
+            <div class="char-avatar-box">
+              <div class="char-avatar-frame">
+                <img src="2A8771DF-0E6F-4642-A362-18275F78E31D.png.jpg" alt="女主" class="char-avatar-img">
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Pro pic 分隔線 -->
+        <div class="custom-section-divider">
+          <img src="IMG_3839.GIF" alt="icon" class="custom-divider-gif">
+          <span class="custom-divider-text">Pro pic</span>
+          <div class="custom-divider-line"></div>
+        </div>
+
+        <div id="about-propic" style="text-align: left; padding: 4px 0;">
+          <p style="margin: 5px 0; color: #8C7576;">（這裡放你的 Pro pic 設定圖或圖片）</p>
+        </div>
+
+        <!-- Height 分隔線 -->
+        <div class="custom-section-divider">
+          <img src="IMG_3839.GIF" alt="icon" class="custom-divider-gif">
+          <span class="custom-divider-text">Height</span>
+          <div class="custom-divider-line"></div>
+        </div>
+
+        <div id="about-height" style="text-align: left; padding: 4px 0;">
+          <p style="margin: 5px 0; color: #8C7576;">（這裡放你的 Height 身高差相關資訊）</p>
+        </div>
+
+      </div>
+    </div>
 
           <!-- 3. Dream 區塊 -->
           <div class="menu-item-group">

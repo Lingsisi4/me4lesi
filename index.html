@@ -1255,7 +1255,7 @@
       .right-column {
         width: 220px;
         flex-shrink: 0;
-        display: flex !important;
+        display: flex !important; /* 電腦/平板版強制固定顯示右欄 */
       }
 
       .menu-card {
@@ -1286,9 +1286,12 @@
       }
     }
 
-    /* 強制確保在所有螢幕尺寸與所有頁面下，右欄都顯示 */
+    /* 手機版網頁設定：預設不強制顯示右欄，透過 JS 依頁面控制 */
     @media (max-width: 899px) {
       .right-column {
+        display: none; 
+      }
+      .right-column.mobile-show {
         display: flex !important;
       }
     }
@@ -1633,8 +1636,8 @@
       </div>
     </div>
 
-    <!-- 右欄區塊 (單張圖卡片、氣象與新聞) -->
-    <div class="right-column">
+    <!-- 右欄區塊 (單張圖卡片、氣象與新聞) - 手機版預設加上 mobile-show 讓首頁顯示 -->
+    <div class="right-column mobile-show" id="rightColumn">
       
       <!-- 氣象與新聞上方的單張照片卡片 (點擊放大) -->
       <div class="photo-card" onclick="openLightbox('61494faa9204e5d0fe49e4a67ced807c.png', '')">
@@ -1782,13 +1785,19 @@
         document.getElementById('page-about').classList.remove('active');
         document.getElementById('page-dream').classList.remove('active');
 
+        const rightColumn = document.getElementById('rightColumn');
+
         if (target === 'home') {
           document.getElementById('page-home').classList.add('active');
           document.body.className = 'current-page-home';
+          // 手機版在 Home 頁顯示右欄
+          rightColumn.classList.add('mobile-show');
           window.scrollTo({ top: 0, behavior: 'auto' });
         } else if (target.startsWith('about')) {
           document.getElementById('page-about').classList.add('active');
           document.body.className = 'current-page-about';
+          // 手機版在 About 頁隱藏右欄
+          rightColumn.classList.remove('mobile-show');
           const el = document.getElementById(target);
           if (el) {
             el.scrollIntoView({ behavior: 'auto', block: 'center' });
@@ -1798,6 +1807,8 @@
         } else if (target.startsWith('dream')) {
           document.getElementById('page-dream').classList.add('active');
           document.body.className = 'current-page-dream';
+          // 手機版在 Dream 頁隱藏右欄
+          rightColumn.classList.remove('mobile-show');
           const el = document.getElementById(target);
           if (el) {
             el.scrollIntoView({ behavior: 'auto', block: 'center' });

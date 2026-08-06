@@ -329,6 +329,34 @@
       transform: scale(1.1);
     }
 
+    /* ===== 右側單張照片邊框卡片 ===== */
+    .photo-card {
+      background: #FFFFFF;
+      border: 2px solid #FCE1E4;
+      border-radius: 20px;
+      padding: 10px;
+      box-shadow: 0px 6px 18px rgba(226, 149, 152, 0.12);
+      width: 100%;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .photo-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .photo-card-img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      display: block;
+      object-fit: cover;
+    }
+
     /* ===== 戀語市氣象預報卡片 ===== */
     .weather-card {
       background: #FFFFFF;
@@ -676,6 +704,27 @@
       color: #704E50;
     }
 
+    /* ===== About 內單張照片樣式 (無邊框) ===== */
+    .about-single-photo {
+      width: 100%;
+      margin-top: 20px;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .about-single-photo:hover {
+      transform: scale(1.02);
+    }
+
+    .about-single-photo img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+    }
+
     /* ===== Pro pic 相冊展示區塊 ===== */
     .albums-container {
       display: flex;
@@ -846,7 +895,7 @@
       white-space: nowrap;
     }
 
-    /* ===== Lightbox 大圖放大觀看 (第二層彈窗) ===== */
+    /* ===== Lightbox 大圖放大觀看 (第二層) ===== */
     .lightbox-overlay {
       display: none;
       position: fixed;
@@ -1241,7 +1290,6 @@
                 <b>年齡：</b>20歲｜<b>生日：</b>6/21<br>
                 <b>身高：</b>182 cm<br>
                 <b>身材：</b>穿衣不明顯，但是倒三角壯男，胸圍 104 cm<br>
-                <!-- 4️⃣ 修改後的凌肖外貌 -->
                 <b>外貌：</b>藍紫色髮（偏灰調）、琥珀色眼、左眉三截斷眉、雙耳耳洞（左3右2）
               </div>
             </div>
@@ -1266,14 +1314,19 @@
 
         </div>
 
-        <!-- 1️⃣ Pro pic 分隔線 (靠右：虛線 ➔ GIF ➔ Pro pic) -->
+        <!-- 余思思 Character 下方的單張照片 (無邊框，點擊可放大) -->
+        <div class="about-single-photo" onclick="openLightbox('無標題1_20260726005104.jpeg', '')">
+          <img src="無標題1_20260726005104.jpeg" alt="Character Illustration">
+        </div>
+
+        <!-- 1️⃣ Pro pic 分隔線 (靠右：虛線 ➔ GIF ➔ Pro pic，已更換為 IMG_4308.gif) -->
         <div class="custom-section-divider align-right">
           <div class="custom-divider-line"></div>
-          <img src="IMG_3839.GIF" alt="icon" class="custom-divider-gif">
+          <img src="IMG_4308.gif" alt="icon" class="custom-divider-gif">
           <span class="custom-divider-text">Pro pic</span>
         </div>
 
-        <!-- 2️⃣ & 3️⃣ Pro pic 相冊展示區塊 -->
+        <!-- Pro pic 相冊展示區塊 -->
         <div id="about-propic" class="albums-container">
           <!-- 左邊：凌肖相冊 -->
           <div class="album-card" onclick="openAlbum('shaw')">
@@ -1331,9 +1384,14 @@
       </div>
     </div>
 
-    <!-- 右欄區塊 (氣象與新聞) -->
+    <!-- 右欄區塊 (單張圖卡片、氣象與新聞) -->
     <div class="right-column">
       
+      <!-- 新增：氣象與新聞上方的單張照片卡片 (點擊放大) -->
+      <div class="photo-card" onclick="openLightbox('61494faa9204e5d0fe49e4a67ced807c.png', '')">
+        <img src="61494faa9204e5d0fe49e4a67ced807c.png" alt="Photo" class="photo-card-img">
+      </div>
+
       <!-- 戀語市氣象預報卡片 -->
       <div class="weather-card">
         <div class="weather-header">
@@ -1525,7 +1583,7 @@
       document.getElementById('todayDate').innerText = `${year}. ${month}. ${date}`;
     }
 
-    /* 2️⃣ 相冊資料庫 (檔名 + 繪師名稱) */
+    /* 相冊資料庫 */
     const albumsData = {
       shaw: {
         title: "凌肖",
@@ -1593,7 +1651,7 @@
       document.getElementById('albumModalCard').classList.remove('active');
     }
 
-    /* 開啟 Lightbox 全螢幕放大檢視 (第二層) */
+    /* 開啟 Lightbox 全螢幕放大檢視 (第二層 / 單張照片共用) */
     function openLightbox(imgUrl, artistName) {
       document.getElementById('lightboxImg').src = imgUrl;
       document.getElementById('lightboxArtist').textContent = artistName || '';

@@ -407,6 +407,108 @@
       height: 0;
     }
 
+    /* ===== Character 雙人對稱卡片排版 ===== */
+    .char-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 12px;
+    }
+
+    .char-card {
+      display: flex;
+      align-items: center; /* 大頭貼與文字垂直置中 */
+      gap: 12px;
+      width: 100%;
+    }
+
+    /* 男生卡片：左圖右文 */
+    .char-card.male {
+      flex-direction: row;
+    }
+
+    /* 女生卡片：左文右圖 */
+    .char-card.female {
+      flex-direction: row;
+    }
+
+    /* 1/3 圓形大頭貼區塊 */
+    .char-avatar-box {
+      width: 30%;
+      flex-shrink: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .char-avatar-frame {
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+      border: 3px solid #FFFFFF;
+      box-shadow: 0px 4px 10px rgba(92, 74, 74, 0.12);
+      overflow: hidden;
+      background-color: #FFFFFF;
+    }
+
+    .char-avatar-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* 2/3 資訊文字區塊（背景柔光暈染） */
+    .char-info-box {
+      width: 70%;
+      padding: 12px 14px;
+      border-radius: 16px;
+      box-sizing: border-box;
+      text-align: left;
+    }
+
+    /* 男生灰色柔光暈染 */
+    .char-info-box.male-bg {
+      background: radial-gradient(ellipse at center, rgba(215, 218, 224, 0.75) 0%, rgba(245, 246, 248, 0.4) 100%);
+      border: 1px solid rgba(200, 204, 212, 0.6);
+    }
+
+    /* 女生粉色柔光暈染 */
+    .char-info-box.female-bg {
+      background: radial-gradient(ellipse at center, rgba(252, 225, 228, 0.85) 0%, rgba(255, 245, 246, 0.4) 100%);
+      border: 1px solid rgba(243, 197, 200, 0.6);
+    }
+
+    /* 置中名字樣式 */
+    .char-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 8px;
+      padding-bottom: 4px;
+      border-bottom: 1px dashed rgba(140, 117, 118, 0.25);
+    }
+
+    /* 男生名字代表色：灰藍色調 */
+    .char-name.male-color {
+      color: #6C7A89;
+    }
+
+    /* 女生名字代表色：粉色調 */
+    .char-name.female-color {
+      color: #D87074;
+    }
+
+    /* 介紹文字顏色改為淺褐色 */
+    .char-detail {
+      font-size: 0.8rem;
+      line-height: 1.65;
+      color: #8C7576;
+    }
+
+    .char-detail b {
+      color: #704E50;
+    }
+
     /* ===== 紀念日區塊 ===== */
     .anniversary-card {
       position: relative;
@@ -608,94 +710,18 @@
             </a>
           </div>
 
-    <!-- 2. About 頁面卡片 -->
-    <div class="page-card" id="page-about">
-      <div class="card-icon">
-        <img src="IMG_4904.GIF" alt="GIF Icon">
-      </div>
-      <div class="notice-text">
-        <!-- 歡迎語部分 -->
-        <p style="margin: 8px 0 6px 0;">以下資訊為自我流解讀。</p>
-        <p style="margin: 6px 0;">有特別寫在外貌中的部分請不要遺忘。</p>
-        <p class="notice-highlight" style="margin: 8px 0; font-size: 1.05rem;">
-          兩人的臉&gt;&gt;&gt;&gt;&gt;一切！
-        </p>
-        <p style="margin: 6px 0; line-height: 1.7;">
-          會委託就是喜歡您畫的臉，手感不好接受延期，<br>但希望不要為了交稿畫出和例圖不符的臉ㅠㅠ
-        </p>
-
-        <!-- Character 分隔線 -->
-        <div class="custom-section-divider">
-          <img src="IMG_3839.GIF" alt="icon" class="custom-divider-gif">
-          <span class="custom-divider-text">Character</span>
-          <div class="custom-divider-line"></div>
-        </div>
-
-        <!-- Character 雙人資訊區塊 -->
-        <div id="about-character" class="char-container">
-          
-          <!-- 男生卡片：左 1/3 圓形大頭貼，右 2/3 灰色暈染 -->
-          <div class="char-card male">
-            <div class="char-avatar-box">
-              <div class="char-avatar-frame">
-                <img src="SmartSelect_20260726_002942_Samsung Browser.jpg" alt="凌肖" class="char-avatar-img">
-              </div>
-            </div>
-            <div class="char-info-box male-bg">
-              <div class="char-name">凌肖</div>
-              <div class="char-detail">
-                <b>年齡：</b>20歲｜<b>生日：</b>6/21<br>
-                <b>身高：</b>182 cm<br>
-                <b>身材：</b>穿衣顯瘦脫衣有肉的壯男，倒三角不明顯，胸圍 104 cm<br>
-                <b>外貌：</b>藍紫色髮（偏灰調）、琥珀色眼、三截斷眉、雙耳耳洞（左3右2）
-              </div>
+          <!-- 2. About 區塊 -->
+          <div class="menu-item-group">
+            <a onclick="switchPage('about')" class="menu-main-title">
+              <img src="IMG_4904.GIF" alt="icon" class="title-gif">
+              <span>About</span>
+            </a>
+            <div class="menu-sub-links">
+              <a onclick="switchPage('about-character')" class="menu-sub-btn">Character</a>
+              <a onclick="switchPage('about-propic')" class="menu-sub-btn">Pro pic</a>
+              <a onclick="switchPage('about-height')" class="menu-sub-btn">Height</a>
             </div>
           </div>
-
-          <!-- 女生卡片：左 2/3 粉色暈染，右 1/3 圓形大頭貼 -->
-          <div class="char-card female">
-            <div class="char-info-box female-bg">
-              <div class="char-name">（名字/暱稱）</div>
-              <div class="char-detail">
-                <b>年齡：</b>19歲｜<b>生日：</b>3/11<br>
-                <b>身高：</b>157 cm<br>
-                <b>身材：</b>瘦而勻稱，競技運動員，隱約可見馬甲線<br>
-                <b>外貌：</b>淺褐色中長髮（及肩~肩下）、微眉上瀏海、粉紅眼、左眼下淚痣、身形偏瘦弱
-              </div>
-            </div>
-            <div class="char-avatar-box">
-              <div class="char-avatar-frame">
-                <img src="2A8771DF-0E6F-4642-A362-18275F78E31D.png.jpg" alt="女主" class="char-avatar-img">
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Pro pic 分隔線 -->
-        <div class="custom-section-divider">
-          <img src="IMG_3839.GIF" alt="icon" class="custom-divider-gif">
-          <span class="custom-divider-text">Pro pic</span>
-          <div class="custom-divider-line"></div>
-        </div>
-
-        <div id="about-propic" style="text-align: left; padding: 4px 0;">
-          <p style="margin: 5px 0; color: #8C7576;">（這裡放你的 Pro pic 設定圖或圖片）</p>
-        </div>
-
-        <!-- Height 分隔線 -->
-        <div class="custom-section-divider">
-          <img src="IMG_3839.GIF" alt="icon" class="custom-divider-gif">
-          <span class="custom-divider-text">Height</span>
-          <div class="custom-divider-line"></div>
-        </div>
-
-        <div id="about-height" style="text-align: left; padding: 4px 0;">
-          <p style="margin: 5px 0; color: #8C7576;">（這裡放你的 Height 身高差相關資訊）</p>
-        </div>
-
-      </div>
-    </div>
 
           <!-- 3. Dream 區塊 -->
           <div class="menu-item-group">
@@ -805,8 +831,45 @@
           <div class="custom-divider-line"></div>
         </div>
 
-        <div id="about-character" style="text-align: left; padding: 4px 0;">
-          <p style="margin: 5px 0; color: #8C7576;">（這裡放你的 Character 設定內容）</p>
+        <!-- Character 雙人資訊區塊 -->
+        <div id="about-character" class="char-container">
+          
+          <!-- 男生卡片：左 1/3 圓形大頭貼，右 2/3 灰色暈染 -->
+          <div class="char-card male">
+            <div class="char-avatar-box">
+              <div class="char-avatar-frame">
+                <img src="SmartSelect_20260726_002942_Samsung Browser.jpg" alt="凌肖" class="char-avatar-img">
+              </div>
+            </div>
+            <div class="char-info-box male-bg">
+              <div class="char-name male-color">凌肖</div>
+              <div class="char-detail">
+                <b>年齡：</b>20歲｜<b>生日：</b>6/21<br>
+                <b>身高：</b>182 cm<br>
+                <b>身材：</b>穿衣顯瘦脫衣有肉的壯男，倒三角不明顯，胸圍 104 cm<br>
+                <b>外貌：</b>藍紫色髮（偏灰調）、琥珀色眼、三截斷眉、雙耳耳洞（左3右2）
+              </div>
+            </div>
+          </div>
+
+          <!-- 女生卡片：左 2/3 粉色暈染，右 1/3 圓形大頭貼 -->
+          <div class="char-card female">
+            <div class="char-info-box female-bg">
+              <div class="char-name female-color">余思思</div>
+              <div class="char-detail">
+                <b>年齡：</b>19歲｜<b>生日：</b>3/11<br>
+                <b>身高：</b>157 cm<br>
+                <b>身材：</b>瘦而勻稱，競技運動員，隱約可見馬甲線<br>
+                <b>外貌：</b>淺褐色中長髮（及肩~肩下）、微眉上瀏海、粉紅眼、左眼下淚痣、身形偏瘦弱
+              </div>
+            </div>
+            <div class="char-avatar-box">
+              <div class="char-avatar-frame">
+                <img src="2A8771DF-0E6F-4642-A362-18275F78E31D.png.jpg" alt="女主" class="char-avatar-img">
+              </div>
+            </div>
+          </div>
+
         </div>
 
         <!-- Pro pic 分隔線 -->

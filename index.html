@@ -13,8 +13,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
-    /* 引入可愛中文字體 (Zen Maru Gothic) 與日系古典英文字體 (Cormorant Garamond) */
-    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=Zen+Maru+Gothic:wght@400;500;700&display=swap');
+    /* 引入可愛中文字體 (Zen Maru Gothic，包含 300/400/500/700 字重) 與日系古典英文字體 (Cormorant Garamond) */
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=Zen+Maru+Gothic:wght@300;400;500;700&display=swap');
 
     * {
       box-sizing: border-box;
@@ -528,7 +528,7 @@
       width: 100%;
     }
 
-    /* ===== 設計感主題分隔線 (預設：靠左風格) ===== */
+    /* ===== 設計感主題分隔線 ===== */
     .custom-section-divider {
       display: flex;
       align-items: center;
@@ -537,7 +537,6 @@
       width: 100%;
     }
 
-    /* 1️⃣ 右側對齊分隔線 (用於 Pro pic) */
     .custom-section-divider.align-right {
       justify-content: flex-end;
     }
@@ -694,25 +693,27 @@
       z-index: 2;
     }
 
+    /* ===== 🔥 Character 文字專用精準控制 ===== */
     .char-detail {
       font-size: 0.8rem;
       line-height: 1.7;
       color: #704E50;
-      font-weight: 400 !important; /* 強制細體 */
     }
 
-    /* 關鍵修正：精準指定標題粗體與描述細體 */
-    .char-detail b, .label-bold {
-      font-weight: 700 !important; /* 項目名稱：強行加粗 */
+    /* 項目名稱 (年齡、生日等)：強制粗體 */
+    .char-detail b {
+      font-weight: 700 !important;
       color: #704E50;
     }
 
-    .desc-thin {
-      font-weight: 400 !important; /* 描述內容：強行套用細體 */
+    /* 描述內容文字：高權重強制極細體 */
+    .char-detail .desc-thin {
+      font-weight: 300 !important;
       color: #704E50;
+      display: inline;
     }
 
-    /* ===== About 內單張照片樣式 (無邊框) ===== */
+    /* ===== About 內單張照片樣式 ===== */
     .about-single-photo {
       width: 100%;
       margin-top: 20px;
@@ -895,7 +896,6 @@
       object-fit: cover;
     }
 
-    /* 繪師標註專用字體：新細明體 */
     .artist-tag {
       font-family: "新細明體", "PMingLiU", "MingLiU", serif;
       font-size: 0.75rem;
@@ -905,7 +905,7 @@
       white-space: nowrap;
     }
 
-    /* ===== Lightbox 大圖放大觀看 (第二層) ===== */
+    /* ===== Lightbox 大圖放大觀看 ===== */
     .lightbox-overlay {
       display: none;
       position: fixed;
@@ -943,7 +943,6 @@
       object-fit: contain;
     }
 
-    /* Lightbox 內的繪師標註字體：新細明體 */
     .lightbox-artist {
       margin-top: 12px;
       color: #FFFFFF;
@@ -1044,7 +1043,6 @@
       z-index: 990;
     }
 
-    /* 懸浮小球通用圓框 (TOP & Music 按鈕共用樣式) */
     .float-circle-btn {
       width: 48px;
       height: 48px;
@@ -1067,7 +1065,6 @@
       background-color: #FFFDF9;
     }
 
-    /* TOP 按鈕文字專屬樣式 */
     .top-btn {
       font-family: 'Cormorant Garamond', serif;
       font-size: 0.95rem;
@@ -1076,7 +1073,6 @@
       letter-spacing: 0.5px;
     }
 
-    /* 音樂按鈕圖片與旋轉動畫 */
     .music-btn img {
       width: 100%;
       height: 100%;
@@ -1092,13 +1088,12 @@
       100% { transform: rotate(360deg); }
     }
 
-    /* ===== 身高與 Pro Pic 說明獨立樣式 (精準強制為細字體 400) ===== */
+    /* ===== 身高說明文字樣式 ===== */
     .height-desc-text {
       font-size: 0.88rem;
       color: #704E50;
       line-height: 1.7;
       margin: 8px 0 14px 0;
-      font-weight: 400 !important; /* 強制細體 */
     }
 
     .height-photo-box {
@@ -1162,7 +1157,6 @@
       }
     }
 
-    /* 手機版 (螢幕寬度 899px 以下) 的側邊欄隱藏邏輯 */
     @media (max-width: 899px) {
       body:not(.current-page-home) .right-column {
         display: none !important;
@@ -1328,9 +1322,10 @@
           <div class="custom-divider-line"></div>
         </div>
 
-        <!-- Character 雙人對話氣泡區塊 (標題強行粗體，文字描述強行細體) -->
+        <!-- Character 雙人對話氣泡區塊 (已精準修正字體：標題粗體、說明極細體) -->
         <div id="about-character" class="char-container">
           
+          <!-- 男方：凌肖 -->
           <div class="char-card male">
             <div class="char-avatar-box">
               <div class="char-avatar-frame">
@@ -1340,21 +1335,22 @@
             </div>
             <div class="char-info-box male-bg">
               <div class="char-detail">
-                <b class="label-bold">年齡：</b><span class="desc-thin">20歲</span> <b class="label-bold">｜ 生日：</b><span class="desc-thin">6/21</span><br>
-                <b class="label-bold">身高：</b><span class="desc-thin">182 cm</span><br>
-                <b class="label-bold">身材：</b><span class="desc-thin">穿衣不明顯，但是倒三角壯男，胸圍 104 cm</span><br>
-                <b class="label-bold">外貌：</b><span class="desc-thin">藍紫色髮（偏灰調）、琥珀色眼、左眉三截斷眉、雙耳耳洞（左3 右2）</span>
+                <b>年齡：</b><span class="desc-thin">20歲</span> <b>｜ 生日：</b><span class="desc-thin">6/21</span><br>
+                <b>身高：</b><span class="desc-thin">182 cm</span><br>
+                <b>身材：</b><span class="desc-thin">穿衣不明顯，但是倒三角壯男，胸圍 104 cm</span><br>
+                <b>外貌：</b><span class="desc-thin">藍紫色髮（偏灰調）、琥珀色眼、左眉三截斷眉、雙耳耳洞（左3 右2）</span>
               </div>
             </div>
           </div>
 
+          <!-- 女方：余思思 -->
           <div class="char-card female">
             <div class="char-info-box female-bg">
               <div class="char-detail">
-                <b class="label-bold">年齡：</b><span class="desc-thin">19歲</span> <b class="label-bold">｜ 生日：</b><span class="desc-thin">3/11</span><br>
-                <b class="label-bold">身高：</b><span class="desc-thin">157 cm</span><br>
-                <b class="label-bold">身材：</b><span class="desc-thin">身形勻稱，是競技運動員所以隱約可見馬甲線，約B cup</span><br>
-                <b class="label-bold">外貌：</b><span class="desc-thin">淺褐色中長髮（及肩~肩下）、齊瀏海、粉紅眼、左眼下有痣</span>
+                <b>年齡：</b><span class="desc-thin">19歲</span> <b>｜ 生日：</b><span class="desc-thin">3/11</span><br>
+                <b>身高：</b><span class="desc-thin">157 cm</span><br>
+                <b>身材：</b><span class="desc-thin">身形勻稱，是競技運動員所以隱約可見馬甲線，約B cup</span><br>
+                <b>外貌：</b><span class="desc-thin">淺褐色中長髮（及肩~肩下）、齊瀏海、粉紅眼、左眼下有痣</span>
               </div>
             </div>
             <div class="char-avatar-box">
@@ -1381,7 +1377,7 @@
 
         <!-- Pro pic 相冊上方提示文字 -->
         <p class="height-desc-text" style="text-align: center;">
-          請<span style="color: #FF8A8A; font-weight: 700 !important;">一定一定</span>要參考男方相簿中的官圖及官方設定。
+          請<span style="color: #FF8A8A; font-weight: 700;">一定一定</span>要參考男方相簿中的官圖及官方設定。
         </p>
 
         <!-- Pro pic 相冊展示區塊 -->
@@ -1501,7 +1497,7 @@
 
   </div>
 
-  <!-- 右下角雙懸浮按鈕 (TOP 按鈕在上面，音樂按鈕在下面) -->
+  <!-- 右下角雙懸浮按鈕 -->
   <div class="floating-buttons-container">
     <div class="float-circle-btn top-btn" onclick="scrollToTop()" title="回到頂端">
       TOP
@@ -1594,7 +1590,6 @@
       document.getElementById('menuPopup').classList.remove('active');
     }
 
-    /* 點擊 TOP 平滑滑動回頂端 */
     function scrollToTop() {
       window.scrollTo({
         top: 0,
@@ -1602,7 +1597,6 @@
       });
     }
 
-    /* 切換頁面與手機版側邊欄控制 */
     function switchPage(target) {
       loader.classList.add('show');
 
@@ -1704,7 +1698,6 @@
       }
     };
 
-    /* 開啟相冊彈窗 (第一層) */
     function openAlbum(characterKey) {
       const album = albumsData[characterKey];
       if (!album) return;
@@ -1740,7 +1733,6 @@
       document.getElementById('albumModalCard').classList.remove('active');
     }
 
-    /* 開啟 Lightbox 全螢幕放大檢視 (第二層 / 單張照片共用) */
     function openLightbox(imgUrl, artistName) {
       document.getElementById('lightboxImg').src = imgUrl;
       document.getElementById('lightboxArtist').textContent = artistName || '';
@@ -1771,7 +1763,7 @@
       document.getElementById('rainProb').textContent = weather.rain;
     }
 
-    /* 戀語市新聞資料庫 (9則) */
+    /* 戀語市新聞資料庫 */
     const newsList = [
       {
         title: "再入文明城市光榮榜！",

@@ -374,7 +374,7 @@
       width: 100%;
     }
 
-    /* ===== 設計感主題分隔線 (GIF + 英文字 + 虛線) ===== */
+    /* ===== 設計感主題分隔線 ===== */
     .custom-section-divider {
       display: flex;
       align-items: center;
@@ -422,13 +422,14 @@
       width: 100%;
     }
 
-    /* 大頭貼區塊 */
+    /* 大頭貼與名字垂直組合區塊 */
     .char-avatar-box {
       width: 65px;
       flex-shrink: 0;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
+      gap: 6px;
     }
 
     .char-avatar-frame {
@@ -447,78 +448,104 @@
       object-fit: cover;
     }
 
-    /* 對話氣泡框主體 */
+    /* 移動至頭像下方的名字樣式 */
+    .char-name-below {
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .char-name-below.male-color {
+      color: #6C7A89;
+    }
+
+    .char-name-below.female-color {
+      color: #D87074;
+    }
+
+    /* 對話氣泡框主體 (全圓角 18px) */
     .char-info-box {
       position: relative;
       flex: 1;
-      padding: 12px 14px;
+      padding: 14px 16px;
       border-radius: 18px;
       box-sizing: border-box;
       text-align: left;
     }
 
-    /* 男生氣泡（向左尖角） */
+    /* 男生氣泡（向左空心小尖角） */
     .char-info-box.male-bg {
       background: radial-gradient(ellipse at center, rgba(220, 224, 232, 0.9) 0%, rgba(245, 246, 248, 0.75) 100%);
       border: 1px solid rgba(190, 196, 206, 0.7);
-      border-top-left-radius: 4px;
       box-shadow: 0px 4px 10px rgba(100, 110, 120, 0.08);
     }
 
+    /* 男生左側空心小尖角：利用雙層偽元素蓋出空心框線質感 */
     .char-info-box.male-bg::before {
       content: "";
       position: absolute;
-      top: 18px;
+      top: 22px;
       left: -9px;
       width: 0;
       height: 0;
       border-top: 6px solid transparent;
       border-bottom: 6px solid transparent;
-      border-right: 9px solid rgba(220, 224, 232, 0.9);
+      border-right: 9px solid rgba(190, 196, 206, 0.7);
+      z-index: 1;
     }
 
-    /* 女生氣泡（向右尖角） */
+    .char-info-box.male-bg::after {
+      content: "";
+      position: absolute;
+      top: 22px;
+      left: -7px;
+      width: 0;
+      height: 0;
+      border-top: 6px solid transparent;
+      border-bottom: 6px solid transparent;
+      border-right: 9px solid rgba(235, 238, 242, 0.95);
+      z-index: 2;
+    }
+
+    /* 女生氣泡（向右空心小尖角） */
     .char-info-box.female-bg {
       background: radial-gradient(ellipse at center, rgba(255, 228, 232, 0.95) 0%, rgba(255, 245, 246, 0.8) 100%);
       border: 1px solid rgba(243, 197, 200, 0.8);
-      border-top-right-radius: 4px;
       box-shadow: 0px 4px 10px rgba(226, 149, 152, 0.12);
     }
 
-    .char-info-box.female-bg::after {
+    /* 女生右側空心小尖角 */
+    .char-info-box.female-bg::before {
       content: "";
       position: absolute;
-      top: 18px;
+      top: 22px;
       right: -9px;
       width: 0;
       height: 0;
       border-top: 6px solid transparent;
       border-bottom: 6px solid transparent;
-      border-left: 9px solid rgba(255, 228, 232, 0.95);
+      border-left: 9px solid rgba(243, 197, 200, 0.8);
+      z-index: 1;
     }
 
-    /* 置中名字樣式 */
-    .char-name {
-      font-size: 1.1rem;
-      font-weight: 700;
-      text-align: center;
-      margin-bottom: 8px;
-      padding-bottom: 4px;
-      border-bottom: 1px dashed rgba(140, 117, 118, 0.25);
-    }
-
-    .char-name.male-color {
-      color: #6C7A89;
-    }
-
-    .char-name.female-color {
-      color: #D87074;
+    .char-info-box.female-bg::after {
+      content: "";
+      position: absolute;
+      top: 22px;
+      right: -7px;
+      width: 0;
+      height: 0;
+      border-top: 6px solid transparent;
+      border-bottom: 6px solid transparent;
+      border-left: 9px solid rgba(255, 238, 241, 0.95);
+      z-index: 2;
     }
 
     /* 介紹文字 */
     .char-detail {
       font-size: 0.8rem;
-      line-height: 1.65;
+      line-height: 1.7;
       color: #8C7576;
     }
 
@@ -831,7 +858,7 @@
         <img src="IMG_4904.GIF" alt="GIF Icon">
       </div>
       <div class="notice-text">
-        <!-- 歡迎語部分 (已依要求修改) -->
+        <!-- 歡迎語部分 -->
         <p style="margin: 8px 0 6px 0;">以下資訊為自我流解讀。</p>
         <p style="margin: 6px 0;">有特別寫在外貌中的部分請不要遺忘。</p>
         <p class="notice-highlight" style="margin: 12px 0; font-size: 1.05rem;">
@@ -853,15 +880,15 @@
         <!-- Character 雙人對話氣泡區塊 -->
         <div id="about-character" class="char-container">
           
-          <!-- 男生卡片：左大頭貼，右向左對話氣泡 -->
+          <!-- 男生卡片：左頭像+名字，右對話氣泡 -->
           <div class="char-card male">
             <div class="char-avatar-box">
               <div class="char-avatar-frame">
                 <img src="SmartSelect_20260726_002942_Samsung Browser.jpg" alt="凌肖" class="char-avatar-img">
               </div>
+              <div class="char-name-below male-color">凌肖</div>
             </div>
             <div class="char-info-box male-bg">
-              <div class="char-name male-color">凌肖</div>
               <div class="char-detail">
                 <b>年齡：</b>20歲｜<b>生日：</b>6/21<br>
                 <b>身高：</b>182 cm<br>
@@ -871,10 +898,9 @@
             </div>
           </div>
 
-          <!-- 女生卡片：左向右對話氣泡，右大頭貼 -->
+          <!-- 女生卡片：左對話氣泡，右頭像+名字 -->
           <div class="char-card female">
             <div class="char-info-box female-bg">
-              <div class="char-name female-color">余思思</div>
               <div class="char-detail">
                 <b>年齡：</b>19歲｜<b>生日：</b>3/11<br>
                 <b>身高：</b>157 cm<br>
@@ -886,6 +912,7 @@
               <div class="char-avatar-frame">
                 <img src="2A8771DF-0E6F-4642-A362-18275F78E31D.png.jpg" alt="余思思" class="char-avatar-img">
               </div>
+              <div class="char-name-below female-color">余思思</div>
             </div>
           </div>
 

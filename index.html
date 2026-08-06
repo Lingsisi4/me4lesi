@@ -9,6 +9,9 @@
   <link rel="shortcut icon" href="1785953107867-removebg-preview.png" type="image/png">
   <link rel="apple-touch-icon" href="1785953107867-removebg-preview.png">
 
+  <!-- Font Awesome 圖示庫 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <style>
     /* 引入可愛中文字體 (Zen Maru Gothic) 與日系古典英文字體 (Cormorant Garamond) */
     @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=Zen+Maru+Gothic:wght@400;500;700&display=swap');
@@ -128,7 +131,7 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 15px;
     }
 
     /* ===== 大頭貼 ===== */
@@ -326,62 +329,120 @@
       transform: scale(1.1);
     }
 
-    /* ===== 戀語市氣象預報卡片 ===== */
+    /* ===== 1️⃣ 戀語市氣象預報卡片 (改版樣式) ===== */
     .weather-card {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(254, 243, 245, 0.9) 100%);
+      background: #FFFFFF;
       border: 2px solid #FCE1E4;
       border-radius: 20px;
       padding: 16px 20px;
       box-shadow: 0px 6px 18px rgba(226, 149, 152, 0.12);
+      text-align: center;
+      width: 100%;
+    }
+
+    .weather-header {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #8CA0BA;
+      border-bottom: 1px dashed #FCE1E4;
+      padding-bottom: 6px;
+      margin-bottom: 10px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      box-sizing: border-box;
+      justify-content: center;
+      gap: 6px;
     }
 
-    .weather-info {
+    .weather-body {
       display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .weather-city {
-      font-size: 1rem;
-      font-weight: 700;
-      color: #8CA0BA;
-      letter-spacing: 1px;
-    }
-
-    .weather-desc {
-      font-size: 0.8rem;
-      color: #9AAEC4;
-      font-weight: 500;
-    }
-
-    .weather-temp-box {
-      display: flex;
-      align-items: baseline;
-      color: #8CA0BA;
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 700;
-      line-height: 1;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 10px;
     }
 
     .weather-temp-num {
-      font-size: 2.8rem;
-    }
-
-    .weather-temp-unit {
-      font-size: 1.4rem;
-      margin-left: 2px;
-    }
-
-    .weather-icon-svg {
-      width: 50px;
-      height: 50px;
-      flex-shrink: 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
       color: #8CA0BA;
+    }
+
+    .weather-details-row {
+      display: flex;
+      justify-content: space-around;
+      background: #FFFDF9;
+      border-radius: 10px;
+      padding: 6px;
+      font-size: 0.78rem;
+      color: #9AAEC4;
+      border: 1px solid #FCE1E4;
+    }
+
+    .weather-details-row span {
+      font-weight: 700;
+      color: #6C7A89;
+    }
+
+    /* ===== 2️⃣ 戀語快報卡片 (新版樣式) ===== */
+    .news-card {
+      background: #FFFFFF;
+      border: 2px solid #FCE1E4;
+      border-radius: 20px;
+      padding: 16px 18px;
+      box-shadow: 0px 6px 18px rgba(226, 149, 152, 0.12);
+      width: 100%;
+      text-align: left;
+    }
+
+    .news-header {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #D87074;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .news-tag {
+      background: #FCE1E4;
+      color: #D87074;
+      font-size: 0.7rem;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-weight: 500;
+    }
+
+    .news-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #5C4A4A;
+      margin-bottom: 4px;
+      line-height: 1.4;
+    }
+
+    .news-body {
+      font-size: 0.82rem;
+      color: #8C7576;
+      line-height: 1.6;
+    }
+
+    .refresh-news-btn {
+      background: none;
+      border: none;
+      color: #E29598;
+      font-size: 0.75rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 8px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+    }
+
+    .refresh-news-btn:hover {
+      color: #D87074;
     }
 
     /* ===== 內容卡片共用樣式 ===== */
@@ -487,7 +548,6 @@
       width: 100%;
     }
 
-    /* 大頭貼與名字垂直組合區塊 */
     .char-avatar-box {
       width: 65px;
       flex-shrink: 0;
@@ -513,7 +573,6 @@
       object-fit: cover;
     }
 
-    /* 移動至頭像下方的名字樣式 */
     .char-name-below {
       font-size: 0.88rem;
       font-weight: 700;
@@ -529,7 +588,6 @@
       color: #D87074;
     }
 
-    /* 對話氣泡框主體 (全圓角 18px) */
     .char-info-box {
       position: relative;
       flex: 1;
@@ -539,7 +597,6 @@
       text-align: left;
     }
 
-    /* 男生氣泡（向左空心小尖角） */
     .char-info-box.male-bg {
       background: radial-gradient(ellipse at center, rgba(220, 224, 232, 0.9) 0%, rgba(245, 246, 248, 0.75) 100%);
       border: 1px solid rgba(190, 196, 206, 0.7);
@@ -572,7 +629,6 @@
       z-index: 2;
     }
 
-    /* 女生氣泡（向右空心小尖角） */
     .char-info-box.female-bg {
       background: radial-gradient(ellipse at center, rgba(255, 228, 232, 0.95) 0%, rgba(255, 245, 246, 0.8) 100%);
       border: 1px solid rgba(243, 197, 200, 0.8);
@@ -605,7 +661,6 @@
       z-index: 2;
     }
 
-    /* 介紹文字 */
     .char-detail {
       font-size: 0.8rem;
       line-height: 1.7;
@@ -737,7 +792,7 @@
       100% { transform: rotate(360deg); }
     }
 
-    /* ===== 平板與電腦版三欄式響應式設計 ===== */
+    /* ===== 3️⃣ 跨裝置顯示邏輯與響應式設計 ===== */
     @media (min-width: 900px) {
       .main-container {
         max-width: 1000px;
@@ -752,8 +807,9 @@
       }
 
       .right-column {
-        width: 210px;
+        width: 220px;
         flex-shrink: 0;
+        display: flex !important; /* 電腦版固定顯示側邊欄 */
       }
 
       .menu-card {
@@ -781,9 +837,16 @@
         flex: 1;
       }
     }
+
+    /* 手機版 (螢幕寬度 899px 以下) 的側邊欄隱藏邏輯 */
+    @media (max-width: 899px) {
+      body:not(.current-page-home) .right-column {
+        display: none !important; /* 不是 Home 頁面時，手機版隱藏側邊欄 */
+      }
+    }
   </style>
 </head>
-<body>
+<body class="current-page-home">
 
   <!-- Fullscreen Loading Screen -->
   <div id="loading-screen" class="show" onclick="hideLoader()">
@@ -875,6 +938,7 @@
           存放有關夢的一切。
         </p>
 
+        <!-- 4️⃣ 修改後的歡迎語 -->
         <p style="margin: 6px 0;">展示夢言夢語的地方，<br>同時作為委託資料使用。</p>
         
         <p style="margin: 14px 0 6px 0;">若無法承接中國乙遊/凌肖夢向可直接退設。</p>
@@ -1024,22 +1088,38 @@
       </div>
     </div>
 
-    <!-- 右欄區塊 (電腦版在最右側，手機版順序在最後面) -->
+    <!-- 右欄區塊 (氣象與新聞) -->
     <div class="right-column">
-      <!-- 戀語市氣象預報卡片 -->
+      
+      <!-- 1️⃣ 戀語市氣象預報卡片 (新版排版) -->
       <div class="weather-card">
-        <div class="weather-info">
-          <div class="weather-city">戀語市</div>
-          <div class="weather-desc" id="weatherDesc">日間晴 22/28°C</div>
+        <div class="weather-header">
+          <i class="fa-solid fa-cloud-sun"></i> 戀語市氣象預報
         </div>
-        <div class="weather-temp-box">
-          <span class="weather-temp-num" id="weatherTemp">25</span>
-          <span class="weather-temp-unit">°C</span>
+        <div class="weather-body">
+          <i class="fa-solid fa-sun" id="weatherIcon" style="font-size: 2.2rem; color: #FFB74D;"></i>
+          <div class="weather-temp-num" id="currentTemp">22°C</div>
         </div>
-        <div id="weatherIconContainer">
-          <!-- 向量天氣 SVG 圖示動態生成 -->
+        <div class="weather-details-row">
+          <div>最高 <span id="maxTemp">25°C</span></div>
+          <div>最低 <span id="minTemp">17°C</span></div>
+          <div>降雨 <span id="rainProb">15%</span></div>
         </div>
       </div>
+
+      <!-- 2️⃣ 戀語快報卡片 (新聞資料庫連動) -->
+      <div class="news-card">
+        <div class="news-header">
+          <span><i class="fa-regular fa-newspaper"></i> 戀語快報</span>
+          <span class="news-tag">即時新聞</span>
+        </div>
+        <div class="news-title" id="newsTitle">載入中...</div>
+        <div class="news-body" id="newsContent">載入中...</div>
+        <button class="refresh-news-btn" onclick="displayRandomNews()">
+          <i class="fa-solid fa-rotate-right"></i> 換一則新聞
+        </button>
+      </div>
+
     </div>
 
   </div>
@@ -1116,6 +1196,7 @@
       document.getElementById('menuPopup').classList.remove('active');
     }
 
+    /* 3️⃣ 切換頁面與手機版側邊欄控制 */
     function switchPage(target) {
       loader.classList.add('show');
 
@@ -1126,9 +1207,11 @@
 
         if (target === 'home') {
           document.getElementById('page-home').classList.add('active');
+          document.body.className = 'current-page-home';
           window.scrollTo({ top: 0, behavior: 'auto' });
         } else if (target.startsWith('about')) {
           document.getElementById('page-about').classList.add('active');
+          document.body.className = 'current-page-about';
           const el = document.getElementById(target);
           if (el) {
             el.scrollIntoView({ behavior: 'auto', block: 'center' });
@@ -1137,6 +1220,7 @@
           }
         } else if (target.startsWith('dream')) {
           document.getElementById('page-dream').classList.add('active');
+          document.body.className = 'current-page-dream';
           const el = document.getElementById(target);
           if (el) {
             el.scrollIntoView({ behavior: 'auto', block: 'center' });
@@ -1182,63 +1266,78 @@
       document.getElementById('todayDate').innerText = `${year}. ${month}. ${date}`;
     }
 
-    /* ===== 戀語市每日天氣隨機生成邏輯 (模式 B) ===== */
-    function initLianyuWeather() {
+    /* 1️⃣ 天氣資料庫（每日固定天氣） */
+    const weatherOptions = [
+      { icon: "fa-sun", temp: "24°C", max: "27°C", min: "19°C", rain: "10%" },
+      { icon: "fa-cloud-sun", temp: "22°C", max: "25°C", min: "18°C", rain: "20%" },
+      { icon: "fa-cloud-rain", temp: "19°C", max: "21°C", min: "16°C", rain: "75%" },
+      { icon: "fa-cloud", temp: "20°C", max: "23°C", min: "17°C", rain: "30%" }
+    ];
+
+    function setDailyWeather() {
       const today = new Date();
-      const seedStr = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
-      
-      let hash = 0;
-      for (let i = 0; i < seedStr.length; i++) {
-        hash = seedStr.charCodeAt(i) + ((hash << 5) - hash);
-      }
+      const dateSeed = today.getFullYear() + today.getMonth() + today.getDate();
+      const weather = weatherOptions[dateSeed % weatherOptions.length];
 
-      function pseudoRandom(offset = 0) {
-        const x = Math.sin(hash + offset) * 10000;
-        return x - Math.floor(x);
-      }
-
-      const weatherTypes = [
-        { 
-          name: '日間晴', 
-          minT: 21, maxT: 28,
-          svg: `<svg class="weather-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>`
-        },
-        { 
-          name: '多雲', 
-          minT: 19, maxT: 25,
-          svg: `<svg class="weather-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>`
-        },
-        { 
-          name: '陣雨', 
-          minT: 17, maxT: 23,
-          svg: `<svg class="weather-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="16" y1="13" x2="16" y2="21"/><line x1="8" y1="13" x2="8" y2="21"/><line x1="12" y1="15" x2="12" y2="23"/><path d="M20 16.58A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25"/></svg>`
-        },
-        { 
-          name: '微風', 
-          minT: 20, maxT: 26,
-          svg: `<svg class="weather-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/></svg>`
-        },
-        { 
-          name: '雷陣雨', 
-          minT: 18, maxT: 24,
-          svg: `<svg class="weather-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 16.9A5 5 0 0 0 18 7h-1.26a8 8 0 1 0-11.62 9"/><polyline points="13 11 9 17 15 17 11 23"/></svg>`
-        }
-      ];
-
-      const selectedIndex = Math.floor(pseudoRandom(1) * weatherTypes.length);
-      const selectedType = weatherTypes[selectedIndex];
-
-      const lowTemp = Math.floor(selectedType.minT + pseudoRandom(2) * 3);
-      const highTemp = Math.floor(selectedType.maxT + pseudoRandom(3) * 3);
-      const currentTemp = Math.floor(lowTemp + pseudoRandom(4) * (highTemp - lowTemp + 1));
-
-      document.getElementById('weatherTemp').innerText = currentTemp;
-      document.getElementById('weatherDesc').innerText = `${selectedType.name} ${lowTemp}/${highTemp}°C`;
-      document.getElementById('weatherIconContainer').innerHTML = selectedType.svg;
+      document.getElementById('weatherIcon').className = `fa-solid ${weather.icon}`;
+      document.getElementById('currentTemp').textContent = weather.temp;
+      document.getElementById('maxTemp').textContent = weather.max;
+      document.getElementById('minTemp').textContent = weather.min;
+      document.getElementById('rainProb').textContent = weather.rain;
     }
 
+    /* 2️⃣ 戀語市新聞資料庫 (9則) */
+    const newsList = [
+      {
+        title: "再入文明城市光榮榜！",
+        content: "文明網發佈了第37屆全國文明城市名單，戀語市再被評為「全國文明城市」。"
+      },
+      {
+        title: "鬼影重重！妙齡少女上演臥室驚魂！",
+        content: "吳小姐在窗外看到鬼影，調查後發現有衣物掛在窗外樹枝上，在霧中好似人影。"
+      },
+      {
+        title: "大逃亡！鴨子一家上演生死時速！",
+        content: "鴨棚因大雨坍塌，鴨媽媽帶領孩子們馬路飛奔被圍觀，結果路過下水道時悲劇了。"
+      },
+      {
+        title: "爆滿！Souvenir餐廳春季限定布丁引發排隊熱潮！",
+        content: "戀語市知名餐廳Souvenir今日推出限量限定甜點，許多市民凌晨便前往排隊，現場盛況空前。"
+      },
+      {
+        title: "驚喜！市中心公園流浪貓阿橘獲封「社區守護星」！",
+        content: "西區社區居民發起投票，常年在公園巡邏的橘貓因多次幫忙驅趕害鼠獲得榮譽證書。"
+      },
+      {
+        title: "奇觀！昨夜戀語市夜空出現璀璨極光現象？",
+        content: "天文愛好者捕捉到神秘夜空光芒，天文台表示為罕見的大氣折射現象，網友紛紛許願。"
+      },
+      {
+        title: "熱議！戀語大學音樂廳深夜琴聲傳聞真相大白！",
+        content: "學生傳言音樂廳深夜有幽靈彈琴，後經證實為鋼琴系教授為巡演深夜加練，虛驚一場。"
+      },
+      {
+        title: "注意！戀語市交通局提醒：西區路段大霧請減速慢行！",
+        content: "受近期氣候影響，西區局部路段晨間易出現濃霧，提醒廣大車主注意行車安全。"
+      },
+      {
+        title: "暖心！市民自發組織「戀語市社區愛心花園」計畫！",
+        content: "由多位市民聯合發起的社區綠化活動獲得熱烈響應，預計將於本週末在中央公園舉辦植樹活動。"
+      }
+    ];
+
+    function displayRandomNews() {
+      const randomIndex = Math.floor(Math.random() * newsList.length);
+      const selectedNews = newsList[randomIndex];
+
+      document.getElementById('newsTitle').textContent = selectedNews.title;
+      document.getElementById('newsContent').textContent = selectedNews.content;
+    }
+
+    // 初始化執行
     updateAnniversary();
-    initLianyuWeather();
+    setDailyWeather();
+    displayRandomNews();
   </script>
 
 </body>

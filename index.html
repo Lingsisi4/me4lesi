@@ -2001,10 +2001,11 @@
       }
     }
 
-    setTimeout(hideLoader, 3000);
+    // [修改處] 強制設定最多等待 1.2 秒，若圖片有漏掉或載入慢也會自動關閉動畫
+    setTimeout(hideLoader, 1200);
 
     window.addEventListener('load', function() {
-      setTimeout(hideLoader, 1000);
+      setTimeout(hideLoader, 300);
     });
 
     function toggleMenu() {
@@ -2361,7 +2362,7 @@
         articles: [
           { name: "《打屁股》", url: "https://telegra.ph/%E6%89%93%E5%B1%81%E8%82%A1-08-07", locked: false },
           { name: "《事後煙》", url: "https://telegra.ph/%E4%BA%8B%E5%BE%8C%E7%85%99-08-07", locked: false },
-          { name: "《略施懲罰》", url: "https://telegra.ph/%E7%95%A5%E6%96%BD%E6%87%B2%E7%BD%B0-08-07", locked: true }[cite: 7]
+          { name: "《略施懲罰》", url: "https://telegra.ph/%E7%95%A5%E6%96%BD%E6%87%B2%E7%BD%B0-08-07", locked: true }
         ]
       }
     };

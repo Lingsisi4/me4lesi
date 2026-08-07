@@ -1823,20 +1823,22 @@
         <div class="albums-container" style="margin-top: 20px; margin-bottom: 20px;">
           <!-- 左邊資料夾：手札 -->
           <div class="album-card" onclick="openArticleFolder('shouza')">
-            <div class="album-cover-frame">
-              <img src="IMG_3990.gif" alt="手札資料夾" class="album-cover-img" style="padding: 15px; object-fit: contain;">
+            <div class="album-cover-frame" style="border: none; box-shadow: none;">
+              <img src="IMG_4986.png" alt="手札資料夾" class="album-cover-img" style="padding: 0; object-fit: contain;">
             </div>
             <div class="album-title-box">
+              <img src="IMG_3990.gif" alt="gif" class="album-gif">
               <span class="album-name">手札</span>
             </div>
           </div>
 
           <!-- 右邊資料夾：傳唱 -->
           <div class="album-card" onclick="openArticleFolder('chuanchang')">
-            <div class="album-cover-frame">
-              <img src="IMG_3840.gif" alt="傳唱資料夾" class="album-cover-img" style="padding: 15px; object-fit: contain;">
+            <div class="album-cover-frame" style="border: none; box-shadow: none;">
+              <img src="IMG_4987.png" alt="傳唱資料夾" class="album-cover-img" style="padding: 0; object-fit: contain;">
             </div>
             <div class="album-title-box">
+              <img src="IMG_3840.gif" alt="gif" class="album-gif">
               <span class="album-name">傳唱</span>
             </div>
           </div>
@@ -1979,7 +1981,7 @@
   <div class="password-modal-overlay" id="passwordModalOverlay" onclick="closePasswordModal(event)">
     <div class="password-modal-card" onclick="event.stopPropagation()">
       <div class="password-modal-title">請輸入閱讀密碼</div>
-      <input type="password" id="passwordInput" class="password-input" placeholder="請輸入密碼 (0499)" onkeydown="if(event.key==='Enter') verifyPassword()">
+      <input type="password" id="passwordInput" class="password-input" placeholder="請輸入密碼" onkeydown="if(event.key==='Enter') verifyPassword()">
       <button class="password-submit-btn" onclick="verifyPassword()">確認</button>
     </div>
   </div>
@@ -2389,6 +2391,7 @@
         } else {
           btn.href = art.url;
           btn.target = "_blank";
+          btn.innerHTML = `${art.name}`;
         }
         gridEl.appendChild(btn);
       });
@@ -2494,27 +2497,22 @@
       {
         title: "注意！戀語市交通局提醒：西區路段大霧請減速慢行！",
         content: "受近期氣候影響，西區局部路段晨間易出現濃霧，提醒廣大車主注意行車安全。"
-      },
-      {
-        title: "暖心！市民自發組織「戀語市社區愛心花園」計畫！",
-        content: "由多位市民聯合發起的社區綠地活動獲得熱烈響應，預計將於本週末在中央公園舉辦植樹活動。"
       }
     ];
 
     function displayRandomNews() {
       const randomIndex = Math.floor(Math.random() * newsList.length);
-      const selectedNews = newsList[randomIndex];
-
-      document.getElementById('newsTitle').textContent = selectedNews.title;
-      document.getElementById('newsContent').textContent = selectedNews.content;
+      const news = newsList[randomIndex];
+      document.getElementById('newsTitle').textContent = news.title;
+      document.getElementById('newsContent').textContent = news.content;
     }
 
+    // 初始化執行
     updateAnniversary();
-    setDailyWeather();
-    displayRandomNews();
     initSlideshow();
     displayRandomMoment();
+    setDailyWeather();
+    displayRandomNews();
   </script>
-
 </body>
 </html>

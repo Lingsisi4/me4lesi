@@ -831,7 +831,7 @@
       border-radius: 12px;
     }
 
-    /* ===== Pro pic 相冊展示區塊 ===== */
+    /* ===== Pro pic 相冊展示區塊 / 資料夾區塊 ===== */
     .albums-container {
       display: flex;
       justify-content: center;
@@ -890,6 +890,7 @@
     .album-name {
       font-size: 0.92rem;
       font-weight: 700;
+      color: #D87074;
     }
 
     .album-name.male-color {
@@ -900,7 +901,7 @@
       color: #D87074;
     }
 
-    /* ===== 相冊 Modal (第一層彈窗) ===== */
+    /* ===== 相冊 Modal / 文章資料夾彈窗 (第一層彈窗) ===== */
     .album-modal-overlay {
       display: none;
       position: fixed;
@@ -1002,6 +1003,118 @@
       white-space: nowrap;
     }
 
+    /* ===== 文章清單專用：圓角長條形按鈕樣式 ===== */
+    .article-buttons-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 5px 10px;
+    }
+
+    .article-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #FFFDF9;
+      border: 2px solid #FCE1E4;
+      border-radius: 30px;
+      padding: 12px 20px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #5C4A4A;
+      cursor: pointer;
+      box-shadow: 0px 3px 8px rgba(226, 149, 152, 0.1);
+      transition: all 0.2s ease;
+      text-decoration: none;
+      position: relative;
+    }
+
+    .article-btn:hover {
+      background: #FCE1E4;
+      color: #D87074;
+      transform: translateY(-2px);
+      box-shadow: 0px 5px 12px rgba(226, 149, 152, 0.2);
+    }
+
+    .article-btn i.fa-lock {
+      position: absolute;
+      right: 18px;
+      font-size: 0.85rem;
+      color: #D87074;
+    }
+
+    /* ===== 密碼輸入彈窗專用 ===== */
+    .password-modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(92, 74, 74, 0.4);
+      backdrop-filter: blur(4px);
+      z-index: 1200;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .password-modal-overlay.active {
+      display: flex;
+    }
+
+    .password-modal-card {
+      background: #FFFFFF;
+      border: 2px solid #FCE1E4;
+      border-radius: 20px;
+      padding: 25px 20px;
+      width: 90%;
+      max-width: 320px;
+      text-align: center;
+      box-shadow: 0px 10px 25px rgba(226, 149, 152, 0.3);
+    }
+
+    .password-modal-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #D87074;
+      margin-bottom: 12px;
+    }
+
+    .password-input {
+      width: 100%;
+      padding: 10px 15px;
+      border: 2px solid #FCE1E4;
+      border-radius: 12px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 0.95rem;
+      text-align: center;
+      outline: none;
+      color: #5C4A4A;
+      background: #FFFDF9;
+      margin-bottom: 15px;
+    }
+
+    .password-input:focus {
+      border-color: #D87074;
+    }
+
+    .password-submit-btn {
+      background: #D87074;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 20px;
+      padding: 8px 20px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .password-submit-btn:hover {
+      background: #C05B5F;
+    }
+
     /* ===== Lightbox 大圖放大觀看 ===== */
     .lightbox-overlay {
       display: none;
@@ -1050,7 +1163,7 @@
       text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
     }
 
-    /* ===== Painting 幻燈片輪播展示區塊樣式 (已改為 4:5 比例) ===== */
+    /* ===== Painting 幻燈片輪播展示區塊樣式 (4:5 比例) ===== */
     .slideshow-container {
       position: relative;
       width: 100%;
@@ -1065,7 +1178,7 @@
     .main-slide-box {
       position: relative;
       width: 100%;
-      aspect-ratio: 4 / 5; /* 比例改為 4:5 */
+      aspect-ratio: 4 / 5;
       border-radius: 12px;
       overflow: hidden;
       background: #FFFFFF;
@@ -1080,7 +1193,6 @@
       transition: opacity 0.3s ease;
     }
 
-    /* 左右切換箭頭 */
     .slide-arrow {
       position: absolute;
       top: 50%;
@@ -1115,7 +1227,6 @@
       right: 8px;
     }
 
-    /* 主圖下方繪師名稱 */
     .main-slide-artist {
       font-family: "新細明體", "PMingLiU", "MingLiU", serif;
       font-size: 0.88rem;
@@ -1126,7 +1237,6 @@
       letter-spacing: 0.5px;
     }
 
-    /* 縮圖導覽列表 (橫向滾動) */
     .thumbnails-scroll-container {
       display: flex;
       gap: 8px;
@@ -1239,7 +1349,6 @@
       letter-spacing: 1px;
     }
 
-    /* ===== 極簡低調 Thanks 區塊 ===== */
     .thanks-section {
       padding-top: 2px;
       font-family: "新細明體", PMingLiU, "Times New Roman", sans-serif;
@@ -1338,7 +1447,6 @@
       border-radius: 0 !important;
     }
 
-    /* ===== 跨裝置顯示邏輯與響應式設計 ===== */
     @media (min-width: 900px) {
       .main-container {
         max-width: 1000px;
@@ -1355,7 +1463,7 @@
       .right-column {
         width: 260px;
         flex-shrink: 0;
-        display: flex !important; /* 電腦/平板版強制固定顯示右欄 */
+        display: flex !important;
       }
 
       .menu-card {
@@ -1379,14 +1487,12 @@
         border-top: 1px dashed #FCE1E4;
       }
 
-      /* 統一所有分頁卡片的固定寬度，讓三張卡片寬度一致 */
       .page-card {
         width: 480px;
         flex-shrink: 0;
       }
     }
 
-    /* 手機版網頁設定：預設不強制顯示右欄，透過 JS 依頁面控制 */
     @media (max-width: 899px) {
       .right-column {
         display: none; 
@@ -1596,7 +1702,6 @@
 
         </div>
 
-        <!-- 余思思 Character 下方的單張照片 (無邊框，點擊可放大) -->
         <div class="about-single-photo" onclick="openLightbox('無標題1_20260726005104.jpeg', '')">
           <img src="無標題1_20260726005104.jpeg" alt="Character Illustration">
         </div>
@@ -1608,14 +1713,12 @@
           <span class="custom-divider-text">Pro pic</span>
         </div>
 
-        <!-- Pro pic 相冊上方提示文字 -->
         <p class="height-desc-text" style="text-align: center;">
           請<span style="color: #FF8A8A; font-weight: 700;">一定一定</span>要參考男方相簿中的官圖及官方設定。
         </p>
 
         <!-- Pro pic 相冊展示區塊 -->
         <div id="about-propic" class="albums-container">
-          <!-- 左邊：凌肖相冊 -->
           <div class="album-card" onclick="openAlbum('shaw')">
             <div class="album-cover-frame">
               <img src="IMG_4654.jpeg" alt="凌肖相冊封面" class="album-cover-img">
@@ -1626,7 +1729,6 @@
             </div>
           </div>
 
-          <!-- 右邊：余思思相冊 -->
           <div class="album-card" onclick="openAlbum('sisi')">
             <div class="album-cover-frame">
               <img src="IMG_3857.jpeg" alt="余思思相冊封面" class="album-cover-img">
@@ -1645,7 +1747,6 @@
           <div class="custom-divider-line"></div>
         </div>
 
-        <!-- Height 內容區塊 -->
         <div id="about-height" style="text-align: center; padding: 4px 0;">
           <p class="height-desc-text">
             兩人有身高&amp;體型差，<br>
@@ -1653,19 +1754,16 @@
             大頭或其他由我提出的情況就可以無視～
           </p>
           
-          <!-- 新增的第一張照片 (無標題16_20260806194928.png) -->
           <div class="height-photo-box" onclick="openLightbox('無標題16_20260806194928.png', '')">
             <img src="無標題16_20260806194928.png" alt="Height Difference Photo 1" class="height-photo-img">
           </div>
 
-          <!-- 原有的第二張照片 (IMG_3816.jpeg) -->
           <div class="height-photo-box" style="margin-top: 15px;" onclick="openLightbox('IMG_3816.jpeg', '')">
             <img src="IMG_3816.jpeg" alt="Height Difference Photo 2" class="height-photo-img">
           </div>
 
           <hr class="pink-divider">
 
-          <!-- Height 下方 Thanks 繪師感謝區塊 -->
           <div class="thanks-section">
             <div class="thanks-title">Thanks</div>
             <div class="thanks-names">布米、翊云、失敗作少女、七咔、PE、安的什麼心</div>
@@ -1687,7 +1785,7 @@
           為私人夢向委託，僅做為展示和參考用途。
         </p>
 
-        <!-- 1. Painting 分げる線 (靠左：GIF + 英文 + 虛線) -->
+        <!-- 1. Painting 分隔線 -->
         <div class="custom-section-divider" id="dream-painting">
           <img src="IMG_3842.gif" alt="icon" class="custom-divider-gif">
           <span class="custom-divider-text">Painting</span>
@@ -1709,15 +1807,42 @@
           <div class="thumbnails-scroll-container" id="thumbnailsContainer"></div>
         </div>
 
-        <!-- 2. Article 分隔線 (靠右：虛線 + GIF + 英文) -->
+        <!-- 2. Article 分隔線 -->
         <div class="custom-section-divider align-right" id="dream-article">
           <div class="custom-divider-line"></div>
           <img src="IMG_3843.gif" alt="icon" class="custom-divider-gif">
           <span class="custom-divider-text">Article</span>
         </div>
-        <p style="margin: 10px 0;">夢向短文或小說存放處。</p>
+        <p style="margin: 10px 0; line-height: 1.7;">
+          包含個人創作和私人文字委託。<br>
+          「手札」內容為個人創作，有需要的話請優先參考。<br>
+          未成年請勿點開R18文檔。
+        </p>
 
-        <!-- 3. Song 分隔線 (靠左：GIF + 英文 + 虛線) -->
+        <!-- 新增：手札與傳唱兩個資料夾展示區塊 -->
+        <div class="albums-container" style="margin-top: 20px; margin-bottom: 20px;">
+          <!-- 左邊資料夾：手札 -->
+          <div class="album-card" onclick="openArticleFolder('shouza')">
+            <div class="album-cover-frame">
+              <img src="IMG_3990.gif" alt="手札資料夾" class="album-cover-img" style="padding: 15px; object-fit: contain;">
+            </div>
+            <div class="album-title-box">
+              <span class="album-name">手札</span>
+            </div>
+          </div>
+
+          <!-- 右邊資料夾：傳唱 -->
+          <div class="album-card" onclick="openArticleFolder('chuanchang')">
+            <div class="album-cover-frame">
+              <img src="IMG_3840.gif" alt="傳唱資料夾" class="album-cover-img" style="padding: 15px; object-fit: contain;">
+            </div>
+            <div class="album-title-box">
+              <span class="album-name">傳唱</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Song 分隔線 -->
         <div class="custom-section-divider" id="dream-song">
           <img src="IMG_3844.gif" alt="icon" class="custom-divider-gif">
           <span class="custom-divider-text">Song</span>
@@ -1725,7 +1850,7 @@
         </div>
         <p style="margin: 10px 0;">印象曲或音樂清單。</p>
 
-        <!-- 4. Memo 分隔線 (靠右：虛線 + GIF + 英文) -->
+        <!-- 4. Memo 分隔線 -->
         <div class="custom-section-divider align-right" id="dream-memo">
           <div class="custom-divider-line"></div>
           <img src="ZsGPHo5.gif" alt="icon" class="custom-divider-gif">
@@ -1736,10 +1861,9 @@
       </div>
     </div>
 
-    <!-- 右欄區塊 (模仿戀與朋友圈的卡片、氣象與新聞) - 手機版預設加上 mobile-show 讓首頁顯示 -->
+    <!-- 右欄區塊 -->
     <div class="right-column mobile-show" id="rightColumn">
       
-      <!-- 模仿戀與朋友圈卡片 (已將背景換成 IMG_3908.jpeg) -->
       <div class="moments-card">
         <div class="moments-cover-container" onclick="openLightbox('IMG_3908.jpeg', '')">
           <img src="IMG_3908.jpeg" alt="封面背景" class="moments-cover-img">
@@ -1755,16 +1879,13 @@
               <div class="moments-date" id="momentsDate">2026年8月3日</div>
             </div>
           </div>
-          <div class="moments-replies" id="momentsReplies">
-            <!-- 互動內容動態填入 -->
-          </div>
+          <div class="moments-replies" id="momentsReplies"></div>
           <button class="refresh-moments-btn" onclick="displayRandomMoment()">
             <i class="fa-solid fa-rotate-right"></i> 換一則朋友圈
           </button>
         </div>
       </div>
 
-      <!-- 戀語市氣象預報卡片 -->
       <div class="weather-card">
         <div class="weather-header">
           <i class="fa-solid fa-cloud-sun"></i> 戀語市氣象預報
@@ -1780,7 +1901,6 @@
         </div>
       </div>
 
-      <!-- 戀語快報卡片 -->
       <div class="news-card">
         <div class="news-header">
           <span><i class="fa-regular fa-newspaper"></i> 戀語快報</span>
@@ -1847,12 +1967,21 @@
     </div>
   </div>
 
-  <!-- 相冊彈窗 (第一層 Modal) -->
+  <!-- 相冊 / 文章資料夾彈窗 (第一層 Modal) -->
   <div class="album-modal-overlay" id="albumModalOverlay" onclick="closeAlbum()"></div>
   <div class="album-modal-card" id="albumModalCard">
     <div class="popup-close-btn" onclick="closeAlbum()">✕</div>
     <div class="album-modal-header" id="albumModalHeader"></div>
     <div class="album-grid" id="albumGrid"></div>
+  </div>
+
+  <!-- 密碼輸入彈窗 -->
+  <div class="password-modal-overlay" id="passwordModalOverlay" onclick="closePasswordModal(event)">
+    <div class="password-modal-card" onclick="event.stopPropagation()">
+      <div class="password-modal-title">請輸入閱讀密碼</div>
+      <input type="password" id="passwordInput" class="password-input" placeholder="請輸入密碼 (0499)" onkeydown="if(event.key==='Enter') verifyPassword()">
+      <button class="password-submit-btn" onclick="verifyPassword()">確認</button>
+    </div>
   </div>
 
   <!-- 全螢幕大圖放大 Lightbox (第二層) -->
@@ -1971,7 +2100,6 @@
       document.getElementById('todayDate').innerText = `${year}. ${month}. ${date}`;
     }
 
-    /* 戀語朋友圈資料與隨機顯示邏輯 */
     const momentsList = [
       {
         text: "海豹在玻璃前來了個急轉彎就游走了，但有些人還是被嚇得閉上了眼睛。",
@@ -2055,7 +2183,6 @@
       `;
     }
 
-    /* Painting 幻燈片輪播資料與邏輯 */
     const paintingSlides = [
       { url: "IMG_9543 (1).JPG", artist: "©️嗶瞇" },
       { url: "IMG_6353.JPG", artist: "©️妙兒" },
@@ -2151,7 +2278,6 @@
       openLightbox(currentObj.url, currentObj.artist);
     }
 
-    /* 相冊資料庫 */
     const albumsData = {
       shaw: {
         title: "凌肖",
@@ -2191,6 +2317,7 @@
       headerEl.innerHTML = `<img src="${album.gif}" class="album-gif"><span class="${album.titleClass}">${album.title}</span>`;
 
       const gridEl = document.getElementById('albumGrid');
+      gridEl.className = 'album-grid';
       gridEl.innerHTML = '';
 
       album.images.forEach(imgData => {
@@ -2213,6 +2340,93 @@
       document.getElementById('albumModalCard').classList.add('active');
     }
 
+    /* 文章資料夾資料庫與密碼點擊控制 */
+    const articleFoldersData = {
+      shouza: {
+        title: "手札",
+        img: "IMG_3990.gif",
+        articles: [
+          { name: "《抱我》", url: "https://telegra.ph/%E6%8A%B1%E6%88%91-08-07", locked: false },
+          { name: "《Heartbeat》", url: "https://telegra.ph/Heartbeat-08-07-4", locked: false },
+          { name: "《Amber》", url: "https://telegra.ph/Amber-08-07-2", locked: false },
+          { name: "《World》", url: "https://telegra.ph/World-08-07-2", locked: false },
+          { name: "《Sunlight》", url: "https://telegra.ph/Sunlight-08-07-2", locked: true },
+          { name: "《Poker》", url: "https://telegra.ph/Poker-08-07-6", locked: true },
+          { name: "《於無聲處》", url: "https://telegra.ph/%E6%96%BC%E7%84%A1%E8%81%B2%E8%99%95-08-07", locked: true }
+        ]
+      },
+      chuanchang: {
+        title: "傳唱",
+        img: "IMG_3840.gif",
+        articles: [
+          { name: "《打屁股》", url: "https://telegra.ph/%E6%89%93%E5%B1%81%E8%82%A1-08-07", locked: false },
+          { name: "《事後煙》", url: "https://telegra.ph/%E4%BA%8B%E5%BE%8C%E7%85%99-08-07", locked: false },
+          { name: "《略施懲罰》", url: "https://telegra.ph/%E7%95%A5%E6%96%BD%E6%87%B2%E7%BD%B0-08-07", locked: true }[cite: 7]
+        ]
+      }
+    };
+
+    let pendingUrl = "";
+
+    function openArticleFolder(folderKey) {
+      const folder = articleFoldersData[folderKey];
+      if (!folder) return;
+
+      const headerEl = document.getElementById('albumModalHeader');
+      headerEl.innerHTML = `<img src="${folder.img}" class="album-gif"><span style="color: #D87074;">${folder.title}</span>`;
+
+      const gridEl = document.getElementById('albumGrid');
+      gridEl.className = 'article-buttons-container';
+      gridEl.innerHTML = '';
+
+      folder.articles.forEach(art => {
+        const btn = document.createElement('a');
+        btn.className = 'article-btn';
+        if (art.locked) {
+          btn.innerHTML = `${art.name} <i class="fa-solid fa-lock"></i>`;
+          btn.onclick = () => openPasswordModal(art.url);
+        } else {
+          btn.href = art.url;
+          btn.target = "_blank";
+        }
+        gridEl.appendChild(btn);
+      });
+
+      document.getElementById('albumModalOverlay').classList.add('active');
+      document.getElementById('albumModalCard').classList.add('active');
+    }
+
+    function openPasswordModal(targetUrl) {
+      pendingUrl = targetUrl;
+      document.getElementById('passwordInput').value = '';
+      document.getElementById('passwordModalOverlay').classList.add('active');
+      setTimeout(() => {
+        document.getElementById('passwordInput').focus();
+      }, 100);
+    }
+
+    function closePasswordModal(e) {
+      if (!e || e.target.id === 'passwordModalOverlay') {
+        document.getElementById('passwordModalOverlay').classList.remove('active');
+        pendingUrl = "";
+      }
+    }
+
+    function verifyPassword() {
+      const pwd = document.getElementById('passwordInput').value;
+      if (pwd === "0499") {
+        document.getElementById('passwordModalOverlay').classList.remove('active');
+        if (pendingUrl) {
+          window.open(pendingUrl, '_blank');
+          pendingUrl = "";
+        }
+      } else {
+        alert("密碼錯誤，請重新輸入！");
+        document.getElementById('passwordInput').value = '';
+        document.getElementById('passwordInput').focus();
+      }
+    }
+
     function closeAlbum() {
       document.getElementById('albumModalOverlay').classList.remove('active');
       document.getElementById('albumModalCard').classList.remove('active');
@@ -2228,7 +2442,6 @@
       document.getElementById('lightboxOverlay').classList.remove('active');
     }
 
-    /* 天氣資料庫 */
     const weatherOptions = [
       { icon: "fa-sun", temp: "24°C", max: "27°C", min: "19°C", rain: "10%" },
       { icon: "fa-cloud-sun", temp: "22°C", max: "25°C", min: "18°C", rain: "20%" },
@@ -2248,7 +2461,6 @@
       document.getElementById('rainProb').textContent = weather.rain;
     }
 
-    /* 戀語市新聞資料庫 */
     const newsList = [
       {
         title: "再入文明城市光榮榜！",
@@ -2296,7 +2508,6 @@
       document.getElementById('newsContent').textContent = selectedNews.content;
     }
 
-    // 初始化執行
     updateAnniversary();
     setDailyWeather();
     displayRandomNews();

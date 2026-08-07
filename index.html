@@ -329,32 +329,134 @@
       transform: scale(1.1);
     }
 
-    /* ===== 右側單張照片邊框卡片 ===== */
-    .photo-card {
+    /* ===== 右側模仿戀與朋友圈的卡片風格 ===== */
+    .moments-card {
       background: #FFFFFF;
       border: 2px solid #FCE1E4;
       border-radius: 20px;
-      padding: 10px;
+      overflow: hidden;
       box-shadow: 0px 6px 18px rgba(226, 149, 152, 0.12);
       width: 100%;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-      overflow: hidden;
       display: flex;
-      justify-content: center;
-      align-items: center;
+      flex-direction: column;
     }
 
-    .photo-card:hover {
-      transform: translateY(-3px);
-    }
-
-    .photo-card-img {
+    .moments-cover-container {
+      position: relative;
       width: 100%;
-      height: auto;
-      border-radius: 12px;
-      display: block;
+      height: 200px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .moments-cover-img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
+      display: block;
+    }
+
+    .moments-content-box {
+      padding: 16px;
+      background: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .moments-user-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .moments-avatar-frame {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid #FCE1E4;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: #FFF;
+    }
+
+    .moments-avatar-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .moments-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .moments-name {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #D87074;
+    }
+
+    .moments-text {
+      font-size: 0.88rem;
+      color: #5C4A4A;
+      line-height: 1.5;
+    }
+
+    .moments-date {
+      font-size: 0.75rem;
+      color: #A08888;
+      margin-top: 2px;
+    }
+
+    .moments-replies {
+      background: #FFFDF9;
+      border: 1px solid #FCE1E4;
+      border-radius: 12px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+
+    .reply-item span.author-sisi {
+      color: #D87074;
+      font-weight: 700;
+    }
+
+    .reply-item span.author-shaw {
+      color: #6C7A89;
+      font-weight: 700;
+    }
+
+    .reply-item {
+      color: #5C4A4A;
+    }
+
+    .refresh-moments-btn {
+      background: #FCE1E4;
+      border: none;
+      color: #D87074;
+      font-size: 0.8rem;
+      padding: 6px 12px;
+      border-radius: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 4px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-weight: 700;
+      transition: background 0.2s;
+    }
+
+    .refresh-moments-btn:hover {
+      background: #f5cbd0;
     }
 
     /* ===== 戀語市氣象預報卡片 ===== */
@@ -1253,7 +1355,7 @@
       }
 
       .right-column {
-        width: 220px;
+        width: 260px;
         flex-shrink: 0;
         display: flex !important; /* 電腦/平板版強制固定顯示右欄 */
       }
@@ -1636,12 +1738,32 @@
       </div>
     </div>
 
-    <!-- 右欄區塊 (單張圖卡片、氣象與新聞) - 手機版預設加上 mobile-show 讓首頁顯示 -->
+    <!-- 右欄區塊 (模仿戀與朋友圈的卡片、氣象與新聞) - 手機版預設加上 mobile-show 讓首頁顯示 -->
     <div class="right-column mobile-show" id="rightColumn">
       
-      <!-- 氣象與新聞上方的單張照片卡片 (點擊放大) -->
-      <div class="photo-card" onclick="openLightbox('61494faa9204e5d0fe49e4a67ced807c.png', '')">
-        <img src="61494faa9204e5d0fe49e4a67ced807c.png" alt="Photo" class="photo-card-img">
+      <!-- 模仿戀與朋友圈卡片 (使用 IMG_3908.jpeg 作為封面背景) -->
+      <div class="moments-card">
+        <div class="moments-cover-container" onclick="openLightbox('IMG_3908.jpeg', '')">
+          <img src="IMG_3908.jpeg" alt="封面背景" class="moments-cover-img">
+        </div>
+        <div class="moments-content-box">
+          <div class="moments-user-row">
+            <div class="moments-avatar-frame">
+              <img src="SmartSelect_20260726_002942_Samsung Browser.jpg" alt="帳號大頭貼" class="moments-avatar-img">
+            </div>
+            <div class="moments-info">
+              <div class="moments-name">老公</div>
+              <div class="moments-text" id="momentsText">載入中...</div>
+              <div class="moments-date" id="momentsDate">2026年8月3日</div>
+            </div>
+          </div>
+          <div class="moments-replies" id="momentsReplies">
+            <!-- 互動內容動態填入 -->
+          </div>
+          <button class="refresh-moments-btn" onclick="displayRandomMoment()">
+            <i class="fa-solid fa-rotate-right"></i> 換一則朋友圈
+          </button>
+        </div>
       </div>
 
       <!-- 戀語市氣象預報卡片 -->
@@ -1790,13 +1912,11 @@
         if (target === 'home') {
           document.getElementById('page-home').classList.add('active');
           document.body.className = 'current-page-home';
-          // 手機版在 Home 頁顯示右欄
           rightColumn.classList.add('mobile-show');
           window.scrollTo({ top: 0, behavior: 'auto' });
         } else if (target.startsWith('about')) {
           document.getElementById('page-about').classList.add('active');
           document.body.className = 'current-page-about';
-          // 手機版在 About 頁隱藏右欄
           rightColumn.classList.remove('mobile-show');
           const el = document.getElementById(target);
           if (el) {
@@ -1807,7 +1927,6 @@
         } else if (target.startsWith('dream')) {
           document.getElementById('page-dream').classList.add('active');
           document.body.className = 'current-page-dream';
-          // 手機版在 Dream 頁隱藏右欄
           rightColumn.classList.remove('mobile-show');
           const el = document.getElementById(target);
           if (el) {
@@ -1852,6 +1971,90 @@
       const date = String(today.getDate()).padStart(2, '0');
 
       document.getElementById('todayDate').innerText = `${year}. ${month}. ${date}`;
+    }
+
+    /* 戀語朋友圈資料與隨機顯示邏輯 */
+    const momentsList = [
+      {
+        text: "海豹在玻璃前來了個急轉彎就游走了，但有些人還是被嚇得閉上了眼睛。",
+        date: "2026年8月3日",
+        sisi: "都怪你騙我有海豹之前撞裂過玻璃⋯⋯關鍵是它怎麼還真配合地衝過來了？",
+        shaw: "這就說明，海豹也喜歡逗某只笨兔子玩。"
+      },
+      {
+        text: "用街景地圖還能有意外收穫。",
+        date: "2026年8月1日",
+        sisi: "根據地點，我推測被錄入街景那時我們正在去Live House的路上！",
+        shaw: "錯。結合你傻兮兮的笑臉和我身上的大包小包，是從慶功宴回家的路上。"
+      },
+      {
+        text: "…⋯剛買的宵夜差點被奶茶店的充氣吉祥物大戰波及。",
+        date: "2026年7月28日",
+        sisi: "善良的三好大學生這時候應該熱心地上去勸架。",
+        shaw: "沒空，三好男友急著去給他正在熬夜苦讀的女朋友送夜宵。"
+      },
+      {
+        text: "有人對著盒子戳了半天了，不知道在許什麼願。",
+        date: "2026年7月25日",
+        sisi: "「天凌凌，地凌凌」——希望永遠有Love and Peace!",
+        shaw: "口號挺順，晚上來Live House喊，我給你配樂。"
+      },
+      {
+        text: "敢碰倒古董店的杯子，有人要完了。",
+        date: "2026年7月20日",
+        sisi: "小心翼翼地問一下價值⋯我賠得起嗎",
+        shaw: "難說。我買的時候十五塊錢兩個，現在應該漲價了。"
+      },
+      {
+        text: "嘖，居然夢見遲到。",
+        date: "2026年7月15日",
+        sisi: "我沒看錯吧？你是會怕點名的人嗎？",
+        shaw: "我有說是課堂遲到嗎？"
+      },
+      {
+        text: "練瑜伽閃到腰也是種絕技。",
+        date: "2026年7月10日",
+        sisi: "你到底還有多久才能到⋯⋯",
+        shaw: "買藥酒耽擱了兩分鐘都等不及？"
+      },
+      {
+        text: "學校門禁的人臉識別又認錯人了。",
+        date: "2026年7月5日",
+        sisi: "你是不是過門禁的時候戴著帽子？",
+        shaw: "有人送我的帽子，懶得摘。"
+      },
+      {
+        text: "是個翹課的好天氣。",
+        date: "2026年7月1日",
+        sisi: "又翹課？",
+        shaw: "我很忙的，不翹課可沒時間見你。"
+      },
+      {
+        text: "有人說今天免費讓我體驗古代富豪生活，快遞一拆裡面是只塑料仿古酒樽。",
+        date: "2026年6月25日",
+        sisi: "我們家財力有限，你將就一下當成真的吧。",
+        shaw: "我那有兩個明晚期的，還有成套茶具，讓你體驗一下閨閣小姐還是沒問題的。"
+      },
+      {
+        text: "前面好像有人被攔路打劫了，剛想過去看看，發現劫匪是貓主任，那沒事了。",
+        date: "2026年6月20日",
+        sisi: "貓主任就能隨便欺負學生了？不能坐視不管，我去跟它談談！",
+        shaw: "你跟它談什麼，跟我談。"
+      }
+    ];
+
+    function displayRandomMoment() {
+      const randomIndex = Math.floor(Math.random() * momentsList.length);
+      const m = momentsList[randomIndex];
+
+      document.getElementById('momentsText').textContent = m.text;
+      document.getElementById('momentsDate').textContent = m.date;
+
+      const repliesEl = document.getElementById('momentsReplies');
+      repliesEl.innerHTML = `
+        <div class="reply-item"><span class="author-sisi">思思：</span>${m.sisi}</div>
+        <div class="reply-item"><span class="author-shaw">老公回复思思：</span>${m.shaw}</div>
+      `;
     }
 
     /* Painting 幻燈片輪播資料與邏輯 */
@@ -2100,6 +2303,7 @@
     setDailyWeather();
     displayRandomNews();
     initSlideshow();
+    displayRandomMoment();
   </script>
 
 </body>

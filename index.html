@@ -339,12 +339,13 @@
       width: 100%;
       display: flex;
       flex-direction: column;
+      font-family: "新細明體", "PMingLiU", "MingLiU", serif;
     }
 
     .moments-cover-container {
       position: relative;
       width: 100%;
-      height: 200px;
+      aspect-ratio: 16 / 9;
       overflow: hidden;
       cursor: pointer;
     }
@@ -450,7 +451,7 @@
       justify-content: center;
       gap: 6px;
       margin-top: 4px;
-      font-family: 'Zen Maru Gothic', sans-serif;
+      font-family: "新細明體", "PMingLiU", "MingLiU", serif;
       font-weight: 700;
       transition: background 0.2s;
     }
@@ -1578,7 +1579,7 @@
             </div>
           </div>
 
-          <!-- 女方：余思思 -->
+          <!-- 女方：夾心土思 -->
           <div class="char-card female">
             <div class="char-info-box female-bg">
               <div class="char-detail">
@@ -1590,15 +1591,15 @@
             </div>
             <div class="char-avatar-box">
               <div class="char-avatar-frame">
-                <img src="2A8771DF-0E6F-4642-A362-18275F78E31D.png.jpg" alt="余思思" class="char-avatar-img">
+                <img src="2A8771DF-0E6F-4642-A362-18275F78E31D.png.jpg" alt="夾心土思" class="char-avatar-img">
               </div>
-              <div class="char-name-below female-color">余思思</div>
+              <div class="char-name-below female-color">夾心土思</div>
             </div>
           </div>
 
         </div>
 
-        <!-- 余思思 Character 下方的單張照片 (無邊框，點擊可放大) -->
+        <!-- 夾心土思 Character 下方的單張照片 (無邊框，點擊可放大) -->
         <div class="about-single-photo" onclick="openLightbox('無標題1_20260726005104.jpeg', '')">
           <img src="無標題1_20260726005104.jpeg" alt="Character Illustration">
         </div>
@@ -1628,14 +1629,14 @@
             </div>
           </div>
 
-          <!-- 右邊：余思思相冊 -->
+          <!-- 右邊：夾心土思相冊 -->
           <div class="album-card" onclick="openAlbum('sisi')">
             <div class="album-cover-frame">
-              <img src="IMG_3857.jpeg" alt="余思思相冊封面" class="album-cover-img">
+              <img src="IMG_3857.jpeg" alt="夾心土思相冊封面" class="album-cover-img">
             </div>
             <div class="album-title-box">
               <img src="IMG_4921.gif" alt="gif" class="album-gif">
-              <span class="album-name female-color">余思思</span>
+              <span class="album-name female-color">夾心土思</span>
             </div>
           </div>
         </div>
@@ -1752,7 +1753,7 @@
               <img src="SmartSelect_20260726_002942_Samsung Browser.jpg" alt="帳號大頭貼" class="moments-avatar-img">
             </div>
             <div class="moments-info">
-              <div class="moments-name">老公</div>
+              <div class="moments-name">Shaw</div>
               <div class="moments-text" id="momentsText">載入中...</div>
               <div class="moments-date" id="momentsDate">2026年8月3日</div>
             </div>
@@ -2052,8 +2053,8 @@
 
       const repliesEl = document.getElementById('momentsReplies');
       repliesEl.innerHTML = `
-        <div class="reply-item"><span class="author-sisi">思思：</span>${m.sisi}</div>
-        <div class="reply-item"><span class="author-shaw">老公回复思思：</span>${m.shaw}</div>
+        <div class="reply-item"><span class="author-sisi">夾心土思：</span>${m.sisi}</div>
+        <div class="reply-item"><span class="author-shaw">Shaw回復夾心土思：</span>${m.shaw}</div>
       `;
     }
 
@@ -2171,7 +2172,7 @@
         ]
       },
       sisi: {
-        title: "余思思",
+        title: "夾心土思",
         gif: "IMG_4921.gif",
         titleClass: "female-color",
         images: [

@@ -23,7 +23,7 @@
     }
 
     /* 【新增】特別針對可點擊的按鈕或連結，確保游標依然維持你的自訂圖片（避免被預設的 pointer 蓋掉） */
-    a, button, .menu-header, .menu-main-title, .menu-sub-btn, .album-card, .slide-arrow, .float-circle-btn, .moments-cover-container, .about-single-photo, .height-photo-box, .main-slide-box, .memo-card-item, .chat-next-btn, .chat-select-option {
+    a, button, .menu-header, .menu-main-title, .menu-sub-btn, .album-card, .slide-arrow, .float-circle-btn, .moments-cover-container, .about-single-photo, .height-photo-box, .main-slide-box, .memo-card-item, .chat-box-container {
       cursor: url('3dgSU8temYbeu9yKqT8gUN.png'), pointer !important;
     }
 
@@ -820,199 +820,6 @@
       color: #704E50;
     }
 
-    .char-detail b {
-      font-weight: 700 !important;
-      color: #704E50;
-    }
-
-    .char-detail .desc-thin {
-      font-weight: 500 !important;
-      color: #704E50;
-      display: inline;
-    }
-
-    /* ===== LINE 聊天室專用區塊 (新細明體) ===== */
-    .home-chat-section {
-      background: #F7F7F7;
-      border: 1px solid #E5E5E5;
-      border-radius: 16px;
-      padding: 16px 12px;
-      margin: 15px 0;
-      font-family: "新細明體", "PMingLiU", serif;
-      text-align: left;
-      box-shadow: 0px 4px 12px rgba(0,0,0,0.05);
-    }
-
-    .home-chat-header {
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: #333333;
-      text-align: center;
-      padding-bottom: 8px;
-      border-bottom: 1px solid #E5E5E5;
-      margin-bottom: 12px;
-    }
-
-    .home-chat-container {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      max-height: 360px;
-      overflow-y: auto;
-      padding-right: 4px;
-    }
-
-    .line-msg-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      width: 100%;
-    }
-
-    .line-msg-row.my-msg {
-      flex-direction: row-reverse;
-    }
-
-    .line-avatar {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      object-fit: cover;
-      flex-shrink: 0;
-      border: 1px solid #ddd;
-    }
-
-    .line-content-wrap {
-      display: flex;
-      flex-direction: column;
-      max-width: 70%;
-    }
-
-    .line-sender-name {
-      font-size: 0.72rem;
-      color: #666;
-      margin-bottom: 2px;
-    }
-
-    .line-msg-row.my-msg .line-sender-name {
-      text-align: right;
-    }
-
-    .line-bubble {
-      padding: 8px 12px;
-      border-radius: 12px;
-      font-size: 0.85rem;
-      line-height: 1.4;
-      word-break: break-all;
-    }
-
-    /* 肖寶(對方)：白色對話框 */
-    .line-msg-row.other-msg .line-bubble {
-      background: #FFFFFF;
-      color: #111111;
-      border: 1px solid #E5E5E5;
-      border-top-left-radius: 2px;
-    }
-
-    /* 我方(思思)：LINE 經典綠色對話框 */
-    .line-msg-row.my-msg .line-bubble {
-      background: #85E249;
-      color: #111111;
-      border-top-right-radius: 2px;
-    }
-
-    .chat-typing-indicator {
-      font-size: 0.85rem;
-      color: #888;
-      padding: 6px 12px;
-      background: #FFFFFF;
-      border-radius: 12px;
-      border: 1px solid #E5E5E5;
-      width: fit-content;
-      animation: typingBlink 1s infinite alternate;
-    }
-
-    @keyframes typingBlink {
-      from { opacity: 0.4; }
-      to { opacity: 1; }
-    }
-
-    .chat-action-bar {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      margin-top: 12px;
-      border-top: 1px dashed #E5E5E5;
-      padding-top: 10px;
-    }
-
-    .chat-next-btn {
-      background: none;
-      border: none;
-      color: #A08888;
-      font-size: 0.75rem;
-      font-family: "新細明體", "PMingLiU", serif;
-      letter-spacing: 0.5px;
-    }
-
-    .chat-next-btn:hover {
-      color: #D87074;
-    }
-
-    .refresh-chat-btn {
-      background: none;
-      border: none;
-      color: #E29598;
-      font-size: 0.75rem;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      font-family: "新細明體", "PMingLiU", serif;
-    }
-
-    .refresh-chat-btn:hover {
-      color: #D87074;
-    }
-
-    /* 聊天室手動選擇選單彈窗 */
-    .chat-select-menu {
-      display: none;
-      position: absolute;
-      bottom: 45px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #FFFFFF;
-      border: 1px solid #FCE1E4;
-      border-radius: 12px;
-      box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
-      padding: 6px;
-      z-index: 10;
-      width: 160px;
-      text-align: center;
-    }
-
-    .chat-select-menu.active {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .chat-select-option {
-      background: none;
-      border: none;
-      padding: 6px;
-      font-size: 0.8rem;
-      color: #5C4A4A;
-      font-family: "新細明體", "PMingLiU", serif;
-      border-radius: 6px;
-    }
-
-    .chat-select-option:hover {
-      background: #FCE1E4;
-      color: #D87074;
-    }
-
     /* ===== About 內單張照片樣式 ===== */
     .about-single-photo {
       width: 100%;
@@ -1563,6 +1370,221 @@
       font-weight: normal;
     }
 
+    /* ===== LINE 風格聊天室區塊設計 ===== */
+    .chat-box-container {
+      background: #F7F3F3;
+      border: 2px solid #FCE1E4;
+      border-radius: 16px;
+      padding: 14px 12px;
+      box-shadow: 0px 4px 12px rgba(226, 149, 152, 0.1);
+      width: 100%;
+      text-align: left;
+      font-family: "新細明體", "PMingLiU", serif;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 180px;
+      position: relative;
+    }
+
+    .chat-header-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #A08888;
+      text-align: center;
+      border-bottom: 1px dashed #FCE1E4;
+      padding-bottom: 6px;
+      margin-bottom: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .chat-messages-area {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-height: 320px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .chat-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      width: 100%;
+    }
+
+    /* 對方靠左 */
+    .chat-row.other {
+      flex-direction: row;
+      justify-content: flex-start;
+    }
+
+    /* 我方靠右 */
+    .chat-row.me {
+      flex-direction: row-reverse;
+      justify-content: flex-start;
+    }
+
+    .chat-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid #FCE1E4;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: #FFF;
+    }
+
+    .chat-content-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      max-width: 70%;
+    }
+
+    .chat-row.me .chat-content-wrap {
+      align-items: flex-end;
+    }
+
+    .chat-sender-name {
+      font-size: 0.72rem;
+      color: #8C7576;
+      font-weight: 700;
+    }
+
+    .chat-bubble {
+      padding: 8px 12px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      word-break: break-all;
+      box-shadow: 0px 2px 5px rgba(92, 74, 74, 0.05);
+    }
+
+    /* 對方氣泡：白色 */
+    .chat-row.other .chat-bubble {
+      background: #FFFFFF;
+      color: #5C4A4A;
+      border: 1px solid #FCE1E4;
+      border-top-left-radius: 2px;
+    }
+
+    /* 我方氣泡：粉嫩綠/粉色 (LINE風格改成柔和粉綠 #E1F3DB 或配合主題的粉紅 #FFE4E6) */
+    .chat-row.me .chat-bubble {
+      background: #E2F0D9;
+      color: #5C4A4A;
+      border: 1px solid #D3E5C4;
+      border-top-right-radius: 2px;
+    }
+
+    .chat-typing-indicator {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px 12px;
+      background: #FFFFFF;
+      border: 1px solid #FCE1E4;
+      border-radius: 12px;
+      width: fit-content;
+      font-size: 0.9rem;
+      color: #A08888;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+
+    .chat-click-hint {
+      text-align: center;
+      font-size: 0.75rem;
+      color: #C0A8A8;
+      margin-top: 4px;
+      user-select: none;
+      letter-spacing: 0.5px;
+    }
+
+    .refresh-chat-btn {
+      background: none;
+      border: none;
+      color: #E29598;
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      margin-top: 4px;
+      font-family: "新細明體", "PMingLiU", serif;
+      width: 100%;
+    }
+
+    .refresh-chat-btn:hover {
+      color: #D87074;
+    }
+
+    /* 聊天選項彈窗樣式 */
+    .chat-select-modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      background: #FFFFFF;
+      border: 2px solid #FCE1E4;
+      border-radius: 20px;
+      padding: 22px 20px;
+      width: 280px;
+      z-index: 1050;
+      box-shadow: 0px 10px 25px rgba(226, 149, 152, 0.25);
+      font-family: "新細明體", "PMingLiU", serif;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .chat-select-modal.active {
+      display: block;
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .chat-select-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #D87074;
+      text-align: center;
+      margin-bottom: 12px;
+      border-bottom: 1px dashed #FCE1E4;
+      padding-bottom: 6px;
+    }
+
+    .chat-select-options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .chat-option-btn {
+      background: #FFFDF9;
+      border: 1px solid #FCE1E4;
+      border-radius: 12px;
+      padding: 10px;
+      font-size: 0.88rem;
+      color: #5C4A4A;
+      text-align: center;
+      transition: all 0.2s;
+      font-family: "新細明體", "PMingLiU", serif;
+    }
+
+    .chat-option-btn:hover {
+      background: #FCE1E4;
+      color: #D87074;
+    }
+
     /* ===== 右下角雙懸浮按鈕區塊 ===== */
     .floating-buttons-container {
       position: fixed;
@@ -1822,31 +1844,26 @@
 
         <hr class="pink-divider">
 
-        <!-- 獨立聊天室區塊 (新增於 thanks 上方) -->
-        <div class="home-chat-section">
-          <div class="home-chat-header">聊天室紀錄</div>
-          <div class="home-chat-container" id="homeChatContainer">
-            <!-- 訊息動態渲染 -->
-          </div>
-          <div class="chat-action-bar" style="position: relative;">
-            <button class="chat-next-btn" id="chatNextBtn" onclick="proceedChat()">Click 點擊繼續</button>
-            <button class="refresh-chat-btn" onclick="toggleChatSelectMenu()">
-              <i class="fa-solid fa-rotate-right"></i> 換一則簡訊
-            </button>
-            <div class="chat-select-menu" id="chatSelectMenu">
-              <button class="chat-select-option" onclick="switchChatTopic('想你了')">想你了</button>
-              <button class="chat-select-option" onclick="switchChatTopic('發錯訊息')">發錯訊息</button>
-              <button class="chat-select-option" onclick="switchChatTopic('鬧鐘新曲')">鬧鐘新曲</button>
-            </div>
-          </div>
-        </div>
-
-        <hr class="pink-divider">
-
         <!-- 感謝區塊 -->
         <div class="thanks-section">
           <div class="thanks-title">Thanks</div>
           <div class="thanks-names">ㄅㄅ、噗轉、嘎、NN</div>
+        </div>
+
+        <hr class="pink-divider">
+
+        <!-- 新增：獨立的聊天室區塊 -->
+        <div class="chat-box-container" id="chatBoxContainer" onclick="progressChat()">
+          <div class="chat-header-title">
+            <i class="fa-solid fa-comments"></i> 與 肖寶 的聊天室
+          </div>
+          <div class="chat-messages-area" id="chatMessagesArea">
+            <!-- 訊息將透過 JS 動態載入 -->
+          </div>
+          <div class="chat-click-hint" id="chatClickHint">Click 點擊繼續</div>
+          <button class="refresh-chat-btn" onclick="event.stopPropagation(); openChatSelectModal()">
+            <i class="fa-solid fa-rotate-right"></i> 換一則簡訊
+          </button>
         </div>
 
       </div>
@@ -1897,7 +1914,7 @@
             </div>
           </div>
 
-          <!-- 女方：余思思 (已加入 reverse-layout 讓氣泡框小三角移到右邊) -->
+          <!-- 女方：余思思 -->
           <div class="char-card female reverse-layout">
             <div class="char-info-box female-bg">
               <div class="char-detail">
@@ -2034,9 +2051,8 @@
           未成年請勿點開R18文檔。
         </p>
 
-        <!-- 新增：手札與傳唱兩個資料夾展示區塊 -->
+        <!-- 手札與傳唱兩個資料夾展示區塊 -->
         <div class="albums-container" style="margin-top: 20px; margin-bottom: 20px;">
-          <!-- 左邊資料夾：手札 -->
           <div class="album-card" onclick="openArticleFolder('shouza')">
             <div class="album-cover-frame" style="border: none; box-shadow: none;">
               <img src="IMG_4991.png" alt="手札資料夾" class="album-cover-img" style="padding: 0; object-fit: contain;">
@@ -2047,7 +2063,6 @@
             </div>
           </div>
 
-          <!-- 右邊資料夾：傳唱 -->
           <div class="album-card" onclick="openArticleFolder('chuanchang')">
             <div class="album-cover-frame" style="border: none; box-shadow: none;">
               <img src="IMG_4992.png" alt="傳唱資料夾" class="album-cover-img" style="padding: 0; object-fit: contain;">
@@ -2078,57 +2093,43 @@
           我都在做夢了就讓讓我吧！
         </p>
 
-        <!-- Memo 四個氣泡框區塊（左右交錯、文字向左對齊、游標停駐放大） -->
+        <!-- Memo 四個氣泡框區塊 -->
         <div class="char-container">
-          
-          <!-- 1. 關於這裡 (圖片左，對話框右) -->
           <div class="char-card memo-card-item" onclick="openMemoModal('aboutHere')">
             <div class="char-avatar-box" style="width: 75px;">
               <img src="IMG_5006.png" alt="關於這裡" style="width: 100%; height: auto; display: block;">
             </div>
             <div class="char-info-box female-bg" style="flex: 2; text-align: center;">
-              <div class="char-detail">
-                <b>關於這裡</b>
-              </div>
+              <div class="char-detail"><b>關於這裡</b></div>
             </div>
           </div>
 
-          <!-- 2. 表格 (對話框左，圖片右 -> reverse-layout) -->
           <div class="char-card reverse-layout memo-card-item" onclick="openMemoModal('tableContent')">
             <div class="char-info-box female-bg" style="flex: 2; text-align: center;">
-              <div class="char-detail">
-                <b>表格</b>
-              </div>
+              <div class="char-detail"><b>表格</b></div>
             </div>
             <div class="char-avatar-box" style="width: 75px;">
               <img src="IMG_5005.png" alt="表格" style="width: 100%; height: auto; display: block;">
             </div>
           </div>
 
-          <!-- 3. 一些梗/IF (圖片左，對話框右) -->
           <div class="char-card memo-card-item" onclick="openMemoModal('someIf')">
             <div class="char-avatar-box" style="width: 75px;">
               <img src="IMG_5007.png" alt="一些梗/IF" style="width: 100%; height: auto; display: block;">
             </div>
             <div class="char-info-box female-bg" style="flex: 2; text-align: center;">
-              <div class="char-detail">
-                <b>一些梗/IF</b>
-              </div>
+              <div class="char-detail"><b>一些梗/IF</b></div>
             </div>
           </div>
 
-          <!-- 4. 夢到哪句講哪句 (對話框左，圖片右 -> reverse-layout) -->
           <div class="char-card reverse-layout memo-card-item" onclick="openMemoModal('dreamSay')">
             <div class="char-info-box female-bg" style="flex: 2; text-align: center;">
-              <div class="char-detail">
-                <b>夢到哪句講哪句</b>
-              </div>
+              <div class="char-detail"><b>夢到哪句講哪句</b></div>
             </div>
             <div class="char-avatar-box" style="width: 75px;">
               <img src="IMG_5009.png" alt="夢到哪句講哪句" style="width: 100%; height: auto; display: block;">
             </div>
           </div>
-
         </div>
 
       </div>
@@ -2188,6 +2189,18 @@
 
     </div>
 
+  </div>
+
+  <!-- 聊天內容選擇彈窗 -->
+  <div class="album-modal-overlay" id="chatSelectOverlay" onclick="closeChatSelectModal()"></div>
+  <div class="chat-select-modal" id="chatSelectModal">
+    <div class="popup-close-btn" onclick="closeChatSelectModal()">✕</div>
+    <div class="chat-select-title">選擇聊天內容</div>
+    <div class="chat-select-options">
+      <button class="chat-option-btn" onclick="selectChatSeries(0)">一：想你了</button>
+      <button class="chat-option-btn" onclick="selectChatSeries(1)">二：發錯訊息</button>
+      <button class="chat-option-btn" onclick="selectChatSeries(2)">三：鬧鐘新曲</button>
+    </div>
   </div>
 
   <!-- 右下角雙懸浮按鈕 -->
@@ -2278,6 +2291,7 @@
 
     window.addEventListener('load', function() {
       setTimeout(hideLoader, 300);
+      initChatSystem();
     });
 
     function toggleMenu() {
@@ -2373,128 +2387,146 @@
       document.getElementById('todayDate').innerText = `${year}. ${month}. ${date}`;
     }
 
-    // ===== LINE 聊天室互動腳本 =====
-    const chatTopics = {
-      "想你了": [
-        { sender: "other", text: "想你了。" },
-        { sender: "my", text: "我也想你=3=" },
-        { sender: "other", text: "⋯⋯居然這麼坦然就接受了，沒意思。" },
-        { sender: "other", text: "我還以為你會進行一番質疑猜疑懷疑，" },
-        { sender: "other", text: "然後打個視訊認證一下呢。" },
-        { sender: "my", text: "其實⋯⋯你也可以從別的方面認證一下～" },
-        { sender: "other", text: "？" },
-        { sender: "other", text: "往情侶帳戶裡面存了520，收到了吧。" },
-        { sender: "other", text: "我隨便說一句的成本還挺高。" },
-        { sender: "my", text: "凌肖，我也想你啦。" },
-        { sender: "other", text: "確認沒有後續整人文案？" },
-        { sender: "other", text: "那我就把你這句話當真心話了。" },
-        { sender: "other", text: "明天再還你一句。" }
+    // ===== 聊天室互動系統邏輯 =====
+    const chatDataSeries = [
+      [
+        { sender: 'other', text: '想你了。' },
+        { sender: 'me', text: '我也想你=3=' },
+        { sender: 'other', text: '⋯⋯居然這麼坦然就接受了，沒意思。' },
+        { sender: 'other', text: '我還以為你會進行一番質疑猜疑懷疑，' },
+        { sender: 'other', text: '然後打個視訊認證一下呢。' },
+        { sender: 'me', text: '其實⋯⋯你也可以從別的方面認證一下～' },
+        { sender: 'other', text: '？' },
+        { sender: 'other', text: '往情侶帳戶裡面存了520，收到了吧。' },
+        { sender: 'other', text: '我隨便說一句的成本還挺高。' },
+        { sender: 'me', text: '凌肖，我也想你啦。' },
+        { sender: 'other', text: '確認沒有後續整人文案？' },
+        { sender: 'other', text: '那我就把你這句話當真心話了。' },
+        { sender: 'other', text: '明天再還你一句。' }
       ],
-      "發錯訊息": [
-        { sender: "other", text: "今天來不了，要陪她。麻煩您代我向師母道謝。" },
-        { sender: "my", text: "嗯嗯，沒關係的～" },
-        { sender: "other", text: "？" },
-        { sender: "other", text: "你沒關係個什麼勁？" },
-        { sender: "other", text: "又不是傳給你的。" },
-        { sender: "my", text: "那這個「她」指的是誰啊？" },
-        { sender: "other", text: "我看你是真的來勁了。" },
-        { sender: "other", text: "拿起你的手機，打開前置鏡頭。" },
-        { sender: "other", text: "看看她是誰。" }
+      [
+        { sender: 'other', text: '今天來不了，要陪她。麻煩您代我向師母道謝。' },
+        { sender: 'me', text: '嗯嗯，沒關係的～' },
+        { sender: 'other', text: '？' },
+        { sender: 'other', text: '你沒關係個什麼勁？' },
+        { sender: 'other', text: '又不是傳給你的。' },
+        { sender: 'me', text: '那這個「她」指的是誰啊？' },
+        { sender: 'other', text: '我看你是真的來勁了。' },
+        { sender: 'other', text: '拿起你的手機，打開前置鏡頭。' },
+        { sender: 'other', text: '看看她是誰。' }
       ],
-      "鬧鐘新曲": [
-        { sender: "other", text: "我手機裡那個大清早的鬧鐘是你設的？" },
-        { sender: "my", text: "對啊！冬天這麼冷，怎麼能只有我一個人早起！" },
-        { sender: "other", text: "嘖，我就知道。" },
-        { sender: "other", text: "可惜要讓你失望了" },
-        { sender: "other", text: "鬧鐘還沒響，我就到教室了。" },
-        { sender: "my", text: "！！！告訴我，你在一間空教室對不對？" },
-        { sender: "other", text: "對，我沒有在一百個人的教室裡代課。" },
-        { sender: "other", text: "也沒人問「助教居然用女朋友的歌聲當鬧鈴啊？」" },
-        { sender: "other", text: "滿意了？" },
-        { sender: "my", text: "我下次不給你定鬧鐘了！！！" }
+      [
+        { sender: 'other', text: '我手機裡那個大清早的鬧鐘是你設的？' },
+        { sender: 'me', text: '對啊！冬天這麼冷，怎麼能只有我一個人早起！' },
+        { sender: 'other', text: '嘖，我就知道。' },
+        { sender: 'other', text: '可惜要讓你失望了' },
+        { sender: 'other', text: '鬧鐘還沒響，我就到教室了。' },
+        { sender: 'me', text: '！！！告訴我，你在一間空教室對不對？' },
+        { sender: 'other', text: '對，我沒有在一百個人的教室裡代課。' },
+        { sender: 'other', text: '也沒人問「助教居然用女朋友的歌聲當鬧鈴啊？」' },
+        { sender: 'other', text: '滿意了？' },
+        { sender: 'me', text: '我下次不給你定鬧鐘了！！！' }
       ]
-    };
+    ];
 
-    let currentChatKeys = Object.keys(chatTopics);
-    let activeChatKey = currentChatKeys[Math.floor(Math.random() * currentChatKeys.length)];
     let currentChatIndex = 0;
+    let displayedMessageCount = 1;
     let isTyping = false;
 
-    const otherAvatar = "IMG_5014.jpeg";
-    const myAvatar = "IMG_5015.jpeg";
+    const otherAvatar = 'IMG_5014.jpeg';
+    const meAvatar = 'IMG_5015.jpeg';
+    const otherName = '肖寶';
+    const meName = '我';
 
-    function initChat() {
-      currentChatIndex = 0;
+    function initChatSystem() {
+      // 隨機選擇一套
+      currentChatIndex = Math.floor(Math.random() * chatDataSeries.length);
+      displayedMessageCount = 1;
       isTyping = false;
-      const container = document.getElementById('homeChatContainer');
-      container.innerHTML = '';
-      appendChatMessage(0);
-      document.getElementById('chatNextBtn').style.display = 'block';
-      document.getElementById('chatNextBtn').textContent = "Click 點擊繼續";
+      renderChat();
     }
 
-    function appendChatMessage(index) {
-      const chatData = chatTopics[activeChatKey];
-      if (index >= chatData.length) return;
+    function renderChat() {
+      const area = document.getElementById('chatMessagesArea');
+      const hint = document.getElementById('chatClickHint');
+      area.innerHTML = '';
 
-      const msg = chatData[index];
-      const container = document.getElementById('homeChatContainer');
-      
-      const row = document.createElement('div');
-      row.className = `line-msg-row ${msg.sender === 'my' ? 'my-msg' : 'other-msg'}`;
+      const currentSeries = chatDataSeries[currentChatIndex];
+      const limit = Math.min(displayedMessageCount, currentSeries.length);
 
-      const avatarImg = msg.sender === 'my' ? myAvatar : otherAvatar;
-      const senderName = msg.sender === 'my' ? '思思' : '肖寶';
+      for (let i = 0; i < limit; i++) {
+        const msg = currentSeries[i];
+        const isOther = msg.sender === 'other';
+        const avatar = isOther ? otherAvatar : meAvatar;
+        const name = isOther ? otherName : meName;
+        const rowClass = isOther ? 'other' : 'me';
 
-      row.innerHTML = `
-        <img src="${avatarImg}" class="line-avatar" alt="頭貼">
-        <div class="line-content-wrap">
-          <div class="line-sender-name">${senderName}</div>
-          <div class="line-bubble">${msg.text}</div>
-        </div>
-      `;
-
-      container.appendChild(row);
-      container.scrollTop = container.scrollHeight;
-    }
-
-    function proceedChat() {
-      if (isTyping) return;
-      const chatData = chatTopics[activeChatKey];
-      
-      if (currentChatIndex + 1 >= chatData.length) {
-        document.getElementById('chatNextBtn').style.display = 'none';
-        return;
+        const row = document.createElement('div');
+        row.className = `chat-row ${rowClass}`;
+        row.innerHTML = `
+          <img src="${avatar}" alt="avatar" class="chat-avatar">
+          <div class="chat-content-wrap">
+            <div class="chat-sender-name">${name}</div>
+            <div class="chat-bubble">${msg.text}</div>
+          </div>
+        `;
+        area.appendChild(row);
       }
 
-      isTyping = true;
-      const nextBtn = document.getElementById('chatNextBtn');
-      nextBtn.textContent = "⋯";
-      nextBtn.classList.add('chat-typing-indicator');
+      if (isTyping) {
+        const typingRow = document.createElement('div');
+        typingRow.className = `chat-row other`;
+        typingRow.innerHTML = `
+          <img src="${otherAvatar}" alt="avatar" class="chat-avatar">
+          <div class="chat-content-wrap">
+            <div class="chat-sender-name">${otherName}</div>
+            <div class="chat-typing-indicator">⋯</div>
+          </div>
+        `;
+        area.appendChild(typingRow);
+      }
 
-      setTimeout(() => {
-        nextBtn.classList.remove('chat-typing-indicator');
-        currentChatIndex++;
-        appendChatMessage(currentChatIndex);
+      if (displayedMessageCount >= currentSeries.length && !isTyping) {
+        hint.textContent = '— 已顯示完整對話 —';
+      } else {
+        hint.textContent = 'Click 點擊繼續';
+      }
 
-        if (currentChatIndex + 1 >= chatData.length) {
-          nextBtn.style.display = 'none';
-        } else {
-          nextBtn.textContent = "Click 點擊繼續";
-        }
-        isTyping = false;
-      }, 1000);
+      area.scrollTop = area.scrollHeight;
     }
 
-    function toggleChatSelectMenu() {
-      const menu = document.getElementById('chatSelectMenu');
-      menu.classList.toggle('active');
+    function progressChat() {
+      if (isTyping) return;
+      const currentSeries = chatDataSeries[currentChatIndex];
+
+      if (displayedMessageCount < currentSeries.length) {
+        isTyping = true;
+        renderChat();
+
+        setTimeout(() => {
+          isTyping = false;
+          displayedMessageCount++;
+          renderChat();
+        }, 1000);
+      }
     }
 
-    function switchChatTopic(topicName) {
-      activeChatKey = topicName;
-      toggleChatSelectMenu();
-      initChat();
+    function openChatSelectModal() {
+      document.getElementById('chatSelectOverlay').classList.add('active');
+      document.getElementById('chatSelectModal').classList.add('active');
+    }
+
+    function closeChatSelectModal() {
+      document.getElementById('chatSelectOverlay').classList.remove('active');
+      document.getElementById('chatSelectModal').classList.remove('active');
+    }
+
+    function selectChatSeries(index) {
+      currentChatIndex = index;
+      displayedMessageCount = 1;
+      isTyping = false;
+      closeChatSelectModal();
+      renderChat();
     }
 
     const momentsList = [
@@ -2907,16 +2939,14 @@
     }
 
     function closeLightbox() {
+      document.getElementById('lightboxOverlay').classList.add('active'); // 修正確保能正常關閉
       document.getElementById('lightboxOverlay').classList.remove('active');
     }
 
-    // 初始化執行
-    window.addEventListener('DOMContentLoaded', () => {
-      updateAnniversary();
-      displayRandomMoment();
-      initSlideshow();
-      initChat();
-    });
+    updateAnniversary();
+    initSlideshow();
+    displayRandomMoment();
   </script>
 </body>
 </html>
+```[cite: 8]

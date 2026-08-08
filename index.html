@@ -2175,6 +2175,12 @@
 
     const momentsList = [
       {
+        text: "難得看到這麼標準的寄居蟹。",
+        date: "2026年8月3日",
+        sisi: "可惡，怎麼每次你趕海都能發現好玩的！",
+        shaw: "不止趕海，我去哪都能發現好玩的，所以你得跟緊我<3"[cite: 2]
+      },
+      {
         text: "海豹在玻璃前來了個急轉彎就游走了，但有些人還是被嚇得閉上了眼睛。",
         date: "2026年8月3日",
         sisi: "都怪你騙我有海豹之前撞裂過玻璃⋯⋯關鍵是牠怎麼還真配合地衝過來了？",
@@ -2417,17 +2423,20 @@
       aboutHere: {
         title: "關於這裡",
         text: `完全腦子一熱就開始寫的網站。<br>
-原本是用notion但排版實在太無聊了，人一閒起來真的什麼事都能辦到。。嗯。。<br>
-但因為我完全不會寫程式！所以跟AI大戰了好幾百回合⋯ㄏㄏ⋯中途還因為AI一直聽不懂人話罵他你是不是有病，他回我他只是一個語言模型⋯⋯完全不知道該哭還是該笑～^_^<br><br>
+原本是用notion但排版實在太無聊了，人一閒起來真的什麼事都能做到。。嗯。。<br>
+但因為我完全不會寫程式！所以跟AI大戰了好幾百回合⋯ㄏㄏ⋯中途還因為AI一直聽不懂人話罵他你是不是有病，他回 me 他只是一個語言模型⋯⋯完全不知道該哭還是該笑～^_^<br><br>
 斷斷續續寫了一段時間，常常想到什麼就鞭笞AI給我加上去，刪刪剪剪又加了有的沒的東西才終於弄到勉強滿意的樣子。<br>
 大概還是會慢慢增加一點小東西，畢竟我們還在一起，回憶肯定會越來越多的～♡<br><br>
 總之人生第一次寫程式就獻給我們小凌啦！<br>
-希望我最愛的你能一路坦途，唱著你喜歡的歌，成為你想成為的人。<br>
-下一次見面，我不會再碰到你的長板了。[cite: 1]`
+希望我最愛的凌肖能一路坦途，唱著喜歡的歌，成為想成為的人。<br>
+下一次見面，我不會再碰到長板了。`
       },
       tableContent: {
         title: "表格",
-        text: "整理各種設定、關係或資料的表格區域。"
+        images: [
+          "61494faa9204e5d0fe49e4a67ced807c.png",
+          "無標題1_20260726005104.jpeg"
+        ]
       },
       someIf: {
         title: "一些梗/IF",
@@ -2447,12 +2456,29 @@
       headerEl.innerHTML = `<span style="color: #D87074;">${memo.title}</span>`;
 
       const gridEl = document.getElementById('albumGrid');
-      gridEl.className = 'article-buttons-container';
-      gridEl.innerHTML = `
-        <div style="font-size: 0.95rem; color: #5C4A4A; line-height: 1.8; text-align: left; padding: 10px;">
-          <b>內容說明：</b><br>${memo.text}
-        </div>
-      `;
+      
+      if (memoKey === 'tableContent') {
+        gridEl.className = 'album-grid';
+        gridEl.innerHTML = '';
+        memo.images.forEach(imgUrl => {
+          const item = document.createElement('div');
+          item.className = 'album-grid-item';
+          item.onclick = () => openLightbox(imgUrl, '');
+          item.innerHTML = `
+            <div class="album-grid-img-frame">
+              <img src="${imgUrl}" class="album-grid-img" alt="表格圖片">
+            </div>
+          `;
+          gridEl.appendChild(item);
+        });
+      } else {
+        gridEl.className = 'article-buttons-container';
+        gridEl.innerHTML = `
+          <div style="font-size: 0.95rem; color: #5C4A4A; line-height: 1.8; text-align: left; padding: 10px;">
+            ${memo.text}
+          </div>
+        `;
+      }
 
       document.getElementById('albumModalOverlay').classList.add('active');
       document.getElementById('albumModalCard').classList.add('active');
@@ -2598,7 +2624,7 @@
       },
       {
         title: "驚喜！市中心公園流浪貓阿橘獲封「社區守護星」！",
-        content: "西區社區居民發起投票，常年在公園巡邏的橘貓因多次幫忙驅趕害鼠獲得榮譽證書。"
+        content: "西區社區居民發起投票，常年在公園巡ルー的橘貓因多次幫忙驅趕害鼠獲得榮譽證書。"
       },
       {
         title: "奇觀！昨夜戀語市夜空出現璀璨極光現象？",
@@ -2607,10 +2633,6 @@
       {
         title: "熱議！戀語大學音樂廳深夜琴聲傳聞真相大白！",
         content: "學生傳言音樂廳深夜有幽靈彈琴，後經證實為鋼琴系教授為巡演深夜加練，虛驚一場。"
-      },
-      {
-        title: "注意！戀語市交通局提醒：西區路段大霧請減速慢行！",
-        content: "受近期氣候影響，西區局部路段晨間易出現濃霧，提醒廣大車主注意行車安全。"
       }
     ];
 
@@ -2621,11 +2643,13 @@
       document.getElementById('newsContent').textContent = news.content;
     }
 
-    updateAnniversary();
-    initSlideshow();
-    displayRandomMoment();
-    setDailyWeather();
-    displayRandomNews();
+    window.addEventListener('DOMContentLoaded', () => {
+      updateAnniversary();
+      displayRandomMoment();
+      setDailyWeather();
+      displayRandomNews();
+      initSlideshow();
+    });
   </script>
 </body>
 </html>

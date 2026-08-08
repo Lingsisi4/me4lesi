@@ -23,7 +23,7 @@
     }
 
     /* 【新增】特別針對可點擊的按鈕或連結，確保游標依然維持你的自訂圖片（避免被預設的 pointer 蓋掉） */
-    a, button, .menu-header, .menu-main-title, .menu-sub-btn, .album-card, .slide-arrow, .float-circle-btn, .moments-cover-container, .about-single-photo, .height-photo-box, .main-slide-box {
+    a, button, .menu-header, .menu-main-title, .menu-sub-btn, .album-card, .slide-arrow, .float-circle-btn, .moments-cover-container, .about-single-photo, .height-photo-box, .main-slide-box, .memo-card-item {
       cursor: url('3dgSU8temYbeu9yKqT8gUN.png'), pointer !important;
     }
 
@@ -726,7 +726,7 @@
       padding: 14px 16px;
       border-radius: 18px;
       box-sizing: border-box;
-      text-align: left;
+      text-align: center; /* 改為文字置中 */
     }
 
     .char-info-box.male-bg {
@@ -767,7 +767,7 @@
       box-shadow: 0px 4px 10px rgba(226, 149, 152, 0.12);
     }
 
-    /* 【修改】將氣泡框小三角全部改為朝向左邊 */
+    /* 氣泡框小三角：預設朝左 (當圖片在左、對話框在右時) */
     .char-info-box.female-bg::before {
       content: "";
       position: absolute;
@@ -792,6 +792,29 @@
       border-bottom: 6px solid transparent;
       border-right: 9px solid rgba(255, 238, 241, 0.95);
       z-index: 2;
+    }
+
+    /* 【新增】當氣泡框在左、圖片在右時，小三角改為朝右 */
+    .char-card.reverse-layout .char-info-box.female-bg::before {
+      left: auto;
+      right: -9px;
+      border-right: none;
+      border-left: 9px solid rgba(243, 197, 200, 0.8);
+    }
+
+    .char-card.reverse-layout .char-info-box.female-bg::after {
+      left: auto;
+      right: -7px;
+      border-right: none;
+      border-left: 9px solid rgba(255, 238, 241, 0.95);
+    }
+
+    /* 【新增】Memo 專屬卡片懸停放大動態（仿 Article 資料夾效果） */
+    .memo-card-item {
+      transition: transform 0.25s ease;
+    }
+    .memo-card-item:hover {
+      transform: scale(1.03);
     }
 
     .char-detail {
@@ -1855,11 +1878,11 @@
           我都在做夢了就讓讓我吧！
         </p>
 
-        <!-- Memo 四個氣泡框區塊（無圓形外框、取消放大、小三角朝左、點擊跳出新畫面） -->
+        <!-- Memo 四個氣泡框區塊（左右交錯、文字置中、游標停駐放大） -->
         <div class="char-container">
           
-          <!-- 1. 關於這裡 -->
-          <div class="char-card" onclick="openMemoModal('aboutHere')">
+          <!-- 1. 關於這裡 (圖片左，對話框右) -->
+          <div class="char-card memo-card-item" onclick="openMemoModal('aboutHere')">
             <div class="char-avatar-box" style="width: 75px;">
               <img src="IMG_5006.png" alt="關於這裡" style="width: 100%; height: auto; display: block;">
             </div>
@@ -1870,20 +1893,20 @@
             </div>
           </div>
 
-          <!-- 2. 表格 -->
-          <div class="char-card" onclick="openMemoModal('tableContent')">
-            <div class="char-avatar-box" style="width: 75px;">
-              <img src="IMG_5005.png" alt="表格" style="width: 100%; height: auto; display: block;">
-            </div>
+          <!-- 2. 表格 (對話框左，圖片右 -> reverse-layout) -->
+          <div class="char-card reverse-layout memo-card-item" onclick="openMemoModal('tableContent')">
             <div class="char-info-box female-bg" style="flex: 2;">
               <div class="char-detail">
                 <b>表格</b>
               </div>
             </div>
+            <div class="char-avatar-box" style="width: 75px;">
+              <img src="IMG_5005.png" alt="表格" style="width: 100%; height: auto; display: block;">
+            </div>
           </div>
 
-          <!-- 3. 一些梗/IF -->
-          <div class="char-card" onclick="openMemoModal('someIf')">
+          <!-- 3. 一些梗/IF (圖片左，對話框右) -->
+          <div class="char-card memo-card-item" onclick="openMemoModal('someIf')">
             <div class="char-avatar-box" style="width: 75px;">
               <img src="IMG_5007.png" alt="一些梗/IF" style="width: 100%; height: auto; display: block;">
             </div>
@@ -1894,15 +1917,15 @@
             </div>
           </div>
 
-          <!-- 4. 夢到哪句講哪句 -->
-          <div class="char-card" onclick="openMemoModal('dreamSay')">
-            <div class="char-avatar-box" style="width: 75px;">
-              <img src="IMG_5009.png" alt="夢到哪句講哪句" style="width: 100%; height: auto; display: block;">
-            </div>
+          <!-- 4. 夢到哪句講哪句 (對話框左，圖片右 -> reverse-layout) -->
+          <div class="char-card reverse-layout memo-card-item" onclick="openMemoModal('dreamSay')">
             <div class="char-info-box female-bg" style="flex: 2;">
               <div class="char-detail">
                 <b>夢到哪句講哪句</b>
               </div>
+            </div>
+            <div class="char-avatar-box" style="width: 75px;">
+              <img src="IMG_5009.png" alt="夢到哪句講哪句" style="width: 100%; height: auto; display: block;">
             </div>
           </div>
 
@@ -2393,7 +2416,14 @@
     const memoContentData = {
       aboutHere: {
         title: "關於這裡",
-        text: "放置一些碎碎念與雜記的說明或導覽內容。"
+        text: `完全腦子一熱就開始寫的網站。<br>
+原本是用notion但排版實在太無聊了，人一閒起來真的什麼事都能辦到。。嗯。。<br>
+但因為我完全不會寫程式！所以跟AI大戰了好幾百回合⋯ㄏㄏ⋯中途還因為AI一直聽不懂人話罵他你是不是有病，他回我他只是一個語言模型⋯⋯完全不知道該哭還是該笑～^_^<br><br>
+斷斷續續寫了一段時間，常常想到什麼就鞭笞AI給我加上去，刪刪剪剪又加了有的沒的東西才終於弄到勉強滿意的樣子。<br>
+大概還是會慢慢增加一點小東西，畢竟我們還在一起，回憶肯定會越來越多的～♡<br><br>
+總之人生第一次寫程式就獻給我們小凌啦！<br>
+希望我最愛的你能一路坦途，唱著你喜歡的歌，成為你想成為的人。<br>
+下一次見面，我不會再碰到你的長板了。[cite: 1]`
       },
       tableContent: {
         title: "表格",

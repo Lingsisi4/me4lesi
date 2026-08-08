@@ -1875,7 +1875,7 @@
         </div>
         <p style="margin: 10px 0; line-height: 1.7;">
           什麼都有的碎碎念和雜記。<br>
-          我都在做夢了就讓讓我嘛！
+          我都在做夢了就讓讓我吧！
         </p>
 
         <!-- Memo 四個氣泡框區塊（左右交錯、文字置中、游標停駐放大） -->
@@ -2458,14 +2458,16 @@
       const gridEl = document.getElementById('albumGrid');
       
       if (memoKey === 'tableContent') {
-        gridEl.className = 'article-buttons-container';
+        gridEl.className = 'album-grid';
         gridEl.innerHTML = '';
         memo.images.forEach(imgUrl => {
           const item = document.createElement('div');
-          item.style.marginBottom = '12px';
-          item.style.textAlign = 'center';
+          item.className = 'album-grid-item';
+          item.onclick = () => openLightbox(imgUrl, '');
           item.innerHTML = `
-            <img src="${imgUrl}" style="width: 100%; height: auto; display: block;" alt="表格圖片" onclick="openLightbox('${imgUrl}', '')">
+            <div class="album-grid-img-frame">
+              <img src="${imgUrl}" class="album-grid-img" alt="表格圖片">
+            </div>
           `;
           gridEl.appendChild(item);
         });
@@ -2605,34 +2607,48 @@
 
     const newsList = [
       {
-        title: "西區社區居民發起投票，常年在公園巡邏的橘貓因多次幫忙驅趕害鼠獲得榮譽證書。",
-        content: "近日，西區社區舉辦了一場別開生面的投票活動，居民們紛紛為長期在公園巡視、抓鼠立功的橘貓「大橘」投下支持票。最終，大橘實至名歸地獲得了社區頒發的榮譽證書與專屬小罐罐獎勵。"
-      },
-      {
         title: "再入文明城市光榮榜！",
         content: "文明網發佈了第37屆全國文明城市名單，戀語市再被評為「全國文明城市」。"
       },
       {
         title: "鬼影重重！妙齡少女上演臥室驚魂！",
-        content: "吳小姐在窗外看到鬼影，調查後發現有衣物掛在窗外樹枝上，在霧中好似"
+        content: "吳小姐在窗外看到鬼影，調查後發現有衣物掛在窗外樹枝上，在霧中好似人影。"
+      },
+      {
+        title: "大逃亡！鴨子一家上演生死時速！",
+        content: "鴨棚因大雨坍塌，鴨媽媽帶領孩子們馬路飛奔被圍觀，結果路過下水道時悲劇了。"
+      },
+      {
+        title: "爆滿！Souvenir餐廳春季限定布丁引發排隊熱潮！",
+        content: "戀語市知名餐廳Souvenir今日推出限量限定甜點，許多市民凌晨便前往排隊，現場盛況空前。"
+      },
+      {
+        title: "驚喜！市中心公園流浪貓阿橘獲封「社區守護星」！",
+        content: "西區社區居民發起投票，常年在公園巡邏的橘貓因多次幫忙驅趕害鼠獲得榮譽證書。"
+      },
+      {
+        title: "奇觀！昨夜戀語市夜空出現璀璨極光現象？",
+        content: "天文愛好者捕捉到神秘夜空光芒，天文台表示為罕見的大氣折射現象，網友紛紛許願。"
+      },
+      {
+        title: "熱議！戀語大學音樂廳深夜琴聲傳聞真相大白！",
+        content: "學生傳言音樂廳深夜有幽靈彈琴，後經證實為鋼琴系教授為巡演深夜加練，虛驚一場。"
       }
     ];
 
     function displayRandomNews() {
       const randomIndex = Math.floor(Math.random() * newsList.length);
-      const n = newsList[randomIndex];
-
-      document.getElementById('newsTitle').textContent = n.title;
-      document.getElementById('newsContent').textContent = n.content;
+      const news = newsList[randomIndex];
+      document.getElementById('newsTitle').textContent = news.title;
+      document.getElementById('newsContent').textContent = news.content;
     }
 
-    window.onload = function() {
-      updateAnniversary();
-      displayRandomMoment();
-      initSlideshow();
-      setDailyWeather();
-      displayRandomNews();
-    };
+    // 初始化執行
+    updateAnniversary();
+    displayRandomMoment();
+    setDailyWeather();
+    displayRandomNews();
+    initSlideshow();
   </script>
 </body>
 </html>

@@ -23,7 +23,7 @@
     }
 
     /* 【新增】特別針對可點擊的按鈕或連結，確保游標依然維持你的自訂圖片（避免被預設的 pointer 蓋掉） */
-    a, button, .menu-header, .menu-main-title, .menu-sub-btn, .album-card, .slide-arrow, .float-circle-btn, .moments-cover-container, .about-single-photo, .height-photo-box, .main-slide-box, .memo-card-item {
+    a, button, .menu-header, .menu-main-title, .menu-sub-btn, .album-card, .slide-arrow, .float-circle-btn, .moments-cover-container, .about-single-photo, .height-photo-box, .main-slide-box, .memo-card-item, .chat-box-container {
       cursor: url('3dgSU8temYbeu9yKqT8gUN.png'), pointer !important;
     }
 
@@ -726,7 +726,7 @@
       padding: 14px 16px;
       border-radius: 18px;
       box-sizing: border-box;
-      text-align: left; /* 改為文字向左對齊 */
+      text-align: left;
     }
 
     .char-info-box.male-bg {
@@ -767,7 +767,6 @@
       box-shadow: 0px 4px 10px rgba(226, 149, 152, 0.12);
     }
 
-    /* 氣泡框小三角：預設朝左 (當圖片在左、對話框在右時) */
     .char-info-box.female-bg::before {
       content: "";
       position: absolute;
@@ -794,7 +793,6 @@
       z-index: 2;
     }
 
-    /* 【修改】當氣泡框在左、圖片在右時，小三角改為朝右 */
     .char-card.reverse-layout .char-info-box.female-bg::before {
       left: auto;
       right: -9px;
@@ -809,7 +807,6 @@
       border-left: 9px solid rgba(255, 238, 241, 0.95);
     }
 
-    /* 【新增】Memo 專屬卡片懸停放大動態（仿 Article 資料夾效果） */
     .memo-card-item {
       transition: transform 0.25s ease;
     }
@@ -821,17 +818,6 @@
       font-size: 0.8rem;
       line-height: 1.7;
       color: #704E50;
-    }
-
-    .char-detail b {
-      font-weight: 700 !important;
-      color: #704E50;
-    }
-
-    .char-detail .desc-thin {
-      font-weight: 500 !important;
-      color: #704E50;
-      display: inline;
     }
 
     /* ===== About 內單張照片樣式 ===== */
@@ -1384,6 +1370,221 @@
       font-weight: normal;
     }
 
+    /* ===== LINE 風格聊天室區塊設計 ===== */
+    .chat-box-container {
+      background: #F7F3F3;
+      border: 2px solid #FCE1E4;
+      border-radius: 16px;
+      padding: 14px 12px;
+      box-shadow: 0px 4px 12px rgba(226, 149, 152, 0.1);
+      width: 100%;
+      text-align: left;
+      font-family: "新細明體", "PMingLiU", serif;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 180px;
+      position: relative;
+    }
+
+    .chat-header-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #A08888;
+      text-align: center;
+      border-bottom: 1px dashed #FCE1E4;
+      padding-bottom: 6px;
+      margin-bottom: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .chat-messages-area {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-height: 320px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .chat-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      width: 100%;
+    }
+
+    /* 對方靠左 */
+    .chat-row.other {
+      flex-direction: row;
+      justify-content: flex-start;
+    }
+
+    /* 我方靠右 */
+    .chat-row.me {
+      flex-direction: row-reverse;
+      justify-content: flex-start;
+    }
+
+    .chat-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid #FCE1E4;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: #FFF;
+    }
+
+    .chat-content-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      max-width: 70%;
+    }
+
+    .chat-row.me .chat-content-wrap {
+      align-items: flex-end;
+    }
+
+    .chat-sender-name {
+      font-size: 0.72rem;
+      color: #8C7576;
+      font-weight: 700;
+    }
+
+    .chat-bubble {
+      padding: 8px 12px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      word-break: break-all;
+      box-shadow: 0px 2px 5px rgba(92, 74, 74, 0.05);
+    }
+
+    /* 對方氣泡：白色 */
+    .chat-row.other .chat-bubble {
+      background: #FFFFFF;
+      color: #5C4A4A;
+      border: 1px solid #FCE1E4;
+      border-top-left-radius: 2px;
+    }
+
+    /* 我方氣泡：粉嫩綠/粉色 (LINE風格改成柔和粉綠 #E1F3DB 或配合主題的粉紅 #FFE4E6) */
+    .chat-row.me .chat-bubble {
+      background: #E2F0D9;
+      color: #5C4A4A;
+      border: 1px solid #D3E5C4;
+      border-top-right-radius: 2px;
+    }
+
+    .chat-typing-indicator {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px 12px;
+      background: #FFFFFF;
+      border: 1px solid #FCE1E4;
+      border-radius: 12px;
+      width: fit-content;
+      font-size: 0.9rem;
+      color: #A08888;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+
+    .chat-click-hint {
+      text-align: center;
+      font-size: 0.75rem;
+      color: #C0A8A8;
+      margin-top: 4px;
+      user-select: none;
+      letter-spacing: 0.5px;
+    }
+
+    .refresh-chat-btn {
+      background: none;
+      border: none;
+      color: #E29598;
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      margin-top: 4px;
+      font-family: "新細明體", "PMingLiU", serif;
+      width: 100%;
+    }
+
+    .refresh-chat-btn:hover {
+      color: #D87074;
+    }
+
+    /* 聊天選項彈窗樣式 */
+    .chat-select-modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      background: #FFFFFF;
+      border: 2px solid #FCE1E4;
+      border-radius: 20px;
+      padding: 22px 20px;
+      width: 280px;
+      z-index: 1050;
+      box-shadow: 0px 10px 25px rgba(226, 149, 152, 0.25);
+      font-family: "新細明體", "PMingLiU", serif;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .chat-select-modal.active {
+      display: block;
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .chat-select-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #D87074;
+      text-align: center;
+      margin-bottom: 12px;
+      border-bottom: 1px dashed #FCE1E4;
+      padding-bottom: 6px;
+    }
+
+    .chat-select-options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .chat-option-btn {
+      background: #FFFDF9;
+      border: 1px solid #FCE1E4;
+      border-radius: 12px;
+      padding: 10px;
+      font-size: 0.88rem;
+      color: #5C4A4A;
+      text-align: center;
+      transition: all 0.2s;
+      font-family: "新細明體", "PMingLiU", serif;
+    }
+
+    .chat-option-btn:hover {
+      background: #FCE1E4;
+      color: #D87074;
+    }
+
     /* ===== 右下角雙懸浮按鈕區塊 ===== */
     .floating-buttons-container {
       position: fixed;
@@ -1649,6 +1850,22 @@
           <div class="thanks-names">ㄅㄅ、噗轉、嘎、NN</div>
         </div>
 
+        <hr class="pink-divider">
+
+        <!-- 新增：獨立的聊天室區塊 -->
+        <div class="chat-box-container" id="chatBoxContainer" onclick="progressChat()">
+          <div class="chat-header-title">
+            <i class="fa-solid fa-comments"></i> 與 肖寶 的聊天室
+          </div>
+          <div class="chat-messages-area" id="chatMessagesArea">
+            <!-- 訊息將透過 JS 動態載入 -->
+          </div>
+          <div class="chat-click-hint" id="chatClickHint">Click 點擊繼續</div>
+          <button class="refresh-chat-btn" onclick="event.stopPropagation(); openChatSelectModal()">
+            <i class="fa-solid fa-rotate-right"></i> 換一則簡訊
+          </button>
+        </div>
+
       </div>
     </div>
 
@@ -1697,7 +1914,7 @@
             </div>
           </div>
 
-          <!-- 女方：余思思 (已加入 reverse-layout 讓氣泡框小三角移到右邊) -->
+          <!-- 女方：余思思 -->
           <div class="char-card female reverse-layout">
             <div class="char-info-box female-bg">
               <div class="char-detail">
@@ -1834,9 +2051,8 @@
           未成年請勿點開R18文檔。
         </p>
 
-        <!-- 新增：手札與傳唱兩個資料夾展示區塊 -->
+        <!-- 手札與傳唱兩個資料夾展示區塊 -->
         <div class="albums-container" style="margin-top: 20px; margin-bottom: 20px;">
-          <!-- 左邊資料夾：手札 -->
           <div class="album-card" onclick="openArticleFolder('shouza')">
             <div class="album-cover-frame" style="border: none; box-shadow: none;">
               <img src="IMG_4991.png" alt="手札資料夾" class="album-cover-img" style="padding: 0; object-fit: contain;">
@@ -1847,7 +2063,6 @@
             </div>
           </div>
 
-          <!-- 右邊資料夾：傳唱 -->
           <div class="album-card" onclick="openArticleFolder('chuanchang')">
             <div class="album-cover-frame" style="border: none; box-shadow: none;">
               <img src="IMG_4992.png" alt="傳唱資料夾" class="album-cover-img" style="padding: 0; object-fit: contain;">
@@ -1878,57 +2093,43 @@
           我都在做夢了就讓讓我吧！
         </p>
 
-        <!-- Memo 四個氣泡框區塊（左右交錯、文字向左對齊、游標停駐放大） -->
+        <!-- Memo 四個氣泡框區塊 -->
         <div class="char-container">
-          
-          <!-- 1. 關於這裡 (圖片左，對話框右) -->
           <div class="char-card memo-card-item" onclick="openMemoModal('aboutHere')">
             <div class="char-avatar-box" style="width: 75px;">
               <img src="IMG_5006.png" alt="關於這裡" style="width: 100%; height: auto; display: block;">
             </div>
             <div class="char-info-box female-bg" style="flex: 2; text-align: center;">
-              <div class="char-detail">
-                <b>關於這裡</b>
-              </div>
+              <div class="char-detail"><b>關於這裡</b></div>
             </div>
           </div>
 
-          <!-- 2. 表格 (對話框左，圖片右 -> reverse-layout) -->
           <div class="char-card reverse-layout memo-card-item" onclick="openMemoModal('tableContent')">
             <div class="char-info-box female-bg" style="flex: 2; text-align: center;">
-              <div class="char-detail">
-                <b>表格</b>
-              </div>
+              <div class="char-detail"><b>表格</b></div>
             </div>
             <div class="char-avatar-box" style="width: 75px;">
               <img src="IMG_5005.png" alt="表格" style="width: 100%; height: auto; display: block;">
             </div>
           </div>
 
-          <!-- 3. 一些梗/IF (圖片左，對話框右) -->
           <div class="char-card memo-card-item" onclick="openMemoModal('someIf')">
             <div class="char-avatar-box" style="width: 75px;">
               <img src="IMG_5007.png" alt="一些梗/IF" style="width: 100%; height: auto; display: block;">
             </div>
             <div class="char-info-box female-bg" style="flex: 2; text-align: center;">
-              <div class="char-detail">
-                <b>一些梗/IF</b>
-              </div>
+              <div class="char-detail"><b>一些梗/IF</b></div>
             </div>
           </div>
 
-          <!-- 4. 夢到哪句講哪句 (對話框左，圖片右 -> reverse-layout) -->
           <div class="char-card reverse-layout memo-card-item" onclick="openMemoModal('dreamSay')">
             <div class="char-info-box female-bg" style="flex: 2; text-align: center;">
-              <div class="char-detail">
-                <b>夢到哪句講哪句</b>
-              </div>
+              <div class="char-detail"><b>夢到哪句講哪句</b></div>
             </div>
             <div class="char-avatar-box" style="width: 75px;">
               <img src="IMG_5009.png" alt="夢到哪句講哪句" style="width: 100%; height: auto; display: block;">
             </div>
           </div>
-
         </div>
 
       </div>
@@ -1988,6 +2189,18 @@
 
     </div>
 
+  </div>
+
+  <!-- 聊天內容選擇彈窗 -->
+  <div class="album-modal-overlay" id="chatSelectOverlay" onclick="closeChatSelectModal()"></div>
+  <div class="chat-select-modal" id="chatSelectModal">
+    <div class="popup-close-btn" onclick="closeChatSelectModal()">✕</div>
+    <div class="chat-select-title">選擇聊天內容</div>
+    <div class="chat-select-options">
+      <button class="chat-option-btn" onclick="selectChatSeries(0)">一：想你了</button>
+      <button class="chat-option-btn" onclick="selectChatSeries(1)">二：發錯訊息</button>
+      <button class="chat-option-btn" onclick="selectChatSeries(2)">三：鬧鐘新曲</button>
+    </div>
   </div>
 
   <!-- 右下角雙懸浮按鈕 -->
@@ -2078,6 +2291,7 @@
 
     window.addEventListener('load', function() {
       setTimeout(hideLoader, 300);
+      initChatSystem();
     });
 
     function toggleMenu() {
@@ -2171,6 +2385,148 @@
       const date = String(today.getDate()).padStart(2, '0');
 
       document.getElementById('todayDate').innerText = `${year}. ${month}. ${date}`;
+    }
+
+    // ===== 聊天室互動系統邏輯 =====
+    const chatDataSeries = [
+      [
+        { sender: 'other', text: '想你了。' },
+        { sender: 'me', text: '我也想你=3=' },
+        { sender: 'other', text: '⋯⋯居然這麼坦然就接受了，沒意思。' },
+        { sender: 'other', text: '我還以為你會進行一番質疑猜疑懷疑，' },
+        { sender: 'other', text: '然後打個視訊認證一下呢。' },
+        { sender: 'me', text: '其實⋯⋯你也可以從別的方面認證一下～' },
+        { sender: 'other', text: '？' },
+        { sender: 'other', text: '往情侶帳戶裡面存了520，收到了吧。' },
+        { sender: 'other', text: '我隨便說一句的成本還挺高。' },
+        { sender: 'me', text: '凌肖，我也想你啦。' },
+        { sender: 'other', text: '確認沒有後續整人文案？' },
+        { sender: 'other', text: '那我就把你這句話當真心話了。' },
+        { sender: 'other', text: '明天再還你一句。' }
+      ],
+      [
+        { sender: 'other', text: '今天來不了，要陪她。麻煩您代我向師母道謝。' },
+        { sender: 'me', text: '嗯嗯，沒關係的～' },
+        { sender: 'other', text: '？' },
+        { sender: 'other', text: '你沒關係個什麼勁？' },
+        { sender: 'other', text: '又不是傳給你的。' },
+        { sender: 'me', text: '那這個「她」指的是誰啊？' },
+        { sender: 'other', text: '我看你是真的來勁了。' },
+        { sender: 'other', text: '拿起你的手機，打開前置鏡頭。' },
+        { sender: 'other', text: '看看她是誰。' }
+      ],
+      [
+        { sender: 'other', text: '我手機裡那個大清早的鬧鐘是你設的？' },
+        { sender: 'me', text: '對啊！冬天這麼冷，怎麼能只有我一個人早起！' },
+        { sender: 'other', text: '嘖，我就知道。' },
+        { sender: 'other', text: '可惜要讓你失望了' },
+        { sender: 'other', text: '鬧鐘還沒響，我就到教室了。' },
+        { sender: 'me', text: '！！！告訴我，你在一間空教室對不對？' },
+        { sender: 'other', text: '對，我沒有在一百個人的教室裡代課。' },
+        { sender: 'other', text: '也沒人問「助教居然用女朋友的歌聲當鬧鈴啊？」' },
+        { sender: 'other', text: '滿意了？' },
+        { sender: 'me', text: '我下次不給你定鬧鐘了！！！' }
+      ]
+    ];
+
+    let currentChatIndex = 0;
+    let displayedMessageCount = 1;
+    let isTyping = false;
+
+    const otherAvatar = 'IMG_5014.jpeg';
+    const meAvatar = 'IMG_5015.jpeg';
+    const otherName = '肖寶';
+    const meName = '我';
+
+    function initChatSystem() {
+      // 隨機選擇一套
+      currentChatIndex = Math.floor(Math.random() * chatDataSeries.length);
+      displayedMessageCount = 1;
+      isTyping = false;
+      renderChat();
+    }
+
+    function renderChat() {
+      const area = document.getElementById('chatMessagesArea');
+      const hint = document.getElementById('chatClickHint');
+      area.innerHTML = '';
+
+      const currentSeries = chatDataSeries[currentChatIndex];
+      const limit = Math.min(displayedMessageCount, currentSeries.length);
+
+      for (let i = 0; i < limit; i++) {
+        const msg = currentSeries[i];
+        const isOther = msg.sender === 'other';
+        const avatar = isOther ? otherAvatar : meAvatar;
+        const name = isOther ? otherName : meName;
+        const rowClass = isOther ? 'other' : 'me';
+
+        const row = document.createElement('div');
+        row.className = `chat-row ${rowClass}`;
+        row.innerHTML = `
+          <img src="${avatar}" alt="avatar" class="chat-avatar">
+          <div class="chat-content-wrap">
+            <div class="chat-sender-name">${name}</div>
+            <div class="chat-bubble">${msg.text}</div>
+          </div>
+        `;
+        area.appendChild(row);
+      }
+
+      if (isTyping) {
+        const typingRow = document.createElement('div');
+        typingRow.className = `chat-row other`;
+        typingRow.innerHTML = `
+          <img src="${otherAvatar}" alt="avatar" class="chat-avatar">
+          <div class="chat-content-wrap">
+            <div class="chat-sender-name">${otherName}</div>
+            <div class="chat-typing-indicator">⋯</div>
+          </div>
+        `;
+        area.appendChild(typingRow);
+      }
+
+      if (displayedMessageCount >= currentSeries.length && !isTyping) {
+        hint.textContent = '— 已顯示完整對話 —';
+      } else {
+        hint.textContent = 'Click 點擊繼續';
+      }
+
+      area.scrollTop = area.scrollHeight;
+    }
+
+    function progressChat() {
+      if (isTyping) return;
+      const currentSeries = chatDataSeries[currentChatIndex];
+
+      if (displayedMessageCount < currentSeries.length) {
+        isTyping = true;
+        renderChat();
+
+        setTimeout(() => {
+          isTyping = false;
+          displayedMessageCount++;
+          renderChat();
+        }, 1000);
+      }
+    }
+
+    function openChatSelectModal() {
+      document.getElementById('chatSelectOverlay').classList.add('active');
+      document.getElementById('chatSelectModal').classList.add('active');
+    }
+
+    function closeChatSelectModal() {
+      document.getElementById('chatSelectOverlay').classList.remove('active');
+      document.getElementById('chatSelectModal').classList.remove('active');
+    }
+
+    function selectChatSeries(index) {
+      currentChatIndex = index;
+      displayedMessageCount = 1;
+      isTyping = false;
+      closeChatSelectModal();
+      renderChat();
     }
 
     const momentsList = [
@@ -2464,7 +2820,6 @@
           const item = document.createElement('div');
           item.className = 'album-grid-item';
           item.onclick = () => openLightbox(imgUrl, '');
-          // 修改處：將圖片外框和陰影拿掉，直接放兩張圖片
           item.innerHTML = `
             <div style="width: 100%; background: transparent; box-shadow: none; border: none; overflow: hidden;">
               <img src="${imgUrl}" style="width: 100%; height: auto; display: block; border-radius: 12px;" alt="表格圖片">
@@ -2584,88 +2939,14 @@
     }
 
     function closeLightbox() {
+      document.getElementById('lightboxOverlay').classList.add('active'); // 修正確保能正常關閉
       document.getElementById('lightboxOverlay').classList.remove('active');
     }
 
-    const weatherOptions = [
-      { icon: "fa-sun", temp: "24°C", max: "27°C", min: "19°C", rain: "10%" },
-      { icon: "fa-cloud-sun", temp: "22°C", max: "25°C", min: "18°C", rain: "20%" },
-      { icon: "fa-cloud-rain", temp: "19°C", max: "21°C", min: "16°C", rain: "75%" },
-      { icon: "fa-cloud", temp: "20°C", max: "23°C", min: "17°C", rain: "30%" }
-    ];
-
-    function setDailyWeather() {
-      const today = new Date();
-      const dateSeed = today.getFullYear() + today.getMonth() + today.getDate();
-      const weather = weatherOptions[dateSeed % weatherOptions.length];
-
-      document.getElementById('weatherIcon').className = `fa-solid ${weather.icon}`;
-      document.getElementById('currentTemp').textContent = weather.temp;
-      document.getElementById('maxTemp').textContent = weather.max;
-      document.getElementById('minTemp').textContent = weather.min;
-      document.getElementById('rainProb').textContent = weather.rain;
-    }
-
-    const newsList = [
-      {
-        title: "再入文明城市光榮榜！",
-        content: "文明網發佈了第37屆全國文明城市名單，戀語市再被評為「全國文明城市」。"
-      },
-      {
-        title: "鬼影重重！妙齡少女上演臥室驚魂！",
-        content: "吳小姐在窗外看到鬼影，調查後發現有衣物掛在窗外樹枝上，在霧中好似人影。"
-      },
-      {
-        title: "大逃亡！鴨子一家上演生死時速！",
-        content: "鴨棚因大雨坍塌，鴨媽媽帶領孩子們馬路飛奔被圍觀，結果路過下水道時悲劇了。"
-      },
-      {
-        title: "爆滿！Souvenir餐廳春季限定布丁引發排隊熱潮！",
-        content: "戀語市知名餐廳Souvenir今日推出限量限定甜點，許多市民凌晨便前往排隊，現場盛況空前。"
-      },
-      {
-        title: "驚喜！市中心公園流浪貓阿橘獲封「社區守護星」！",
-        content: "西區社區居民發起投票，常年在公園巡邏的橘貓因多次幫忙驅趕害鼠獲得榮譽證書。"
-      },
-      {
-        title: "奇觀！昨夜戀語市夜空出現璀璨極光現象？",
-        content: "天文愛好者捕捉到神秘夜空光芒，天文台表示為罕見的大氣折射現象，網友紛紛許願。"
-      },
-      {
-        title: "熱議！戀語大學音樂廳深夜琴聲傳聞真相大白！",
-        content: "學生傳言音樂廳深夜有幽靈彈琴，後經證實為鋼琴系教授為巡演深夜加練，虛驚一場。"
-      }
-    ];
-
-    function displayRandomNews() {
-      const randomIndex = Math.floor(Math.random() * newsList.length);
-      const news = newsList[randomIndex];
-      document.getElementById('newsTitle').textContent = news.title;
-      document.getElementById('newsContent').textContent = news.content;
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-      updateAnniversary();
-      displayRandomMoment();
-      setDailyWeather();
-      displayRandomNews();
-      initSlideshow();
-
-      if (window.innerWidth >= 900) {
-        document.getElementById('desktopMenuLinks').style.display = 'flex';
-      }
-    });
-
-    window.addEventListener('resize', () => {
-      const desktopMenu = document.getElementById('desktopMenuLinks');
-      if (window.innerWidth >= 900) {
-        desktopMenu.style.display = 'flex';
-        document.getElementById('menuOverlay').classList.remove('active');
-        document.getElementById('menuPopup').classList.remove('active');
-      } else {
-        desktopMenu.style.display = 'none';
-      }
-    });
+    updateAnniversary();
+    initSlideshow();
+    displayRandomMoment();
   </script>
 </body>
 </html>
+```[cite: 8]

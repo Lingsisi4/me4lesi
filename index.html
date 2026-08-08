@@ -726,7 +726,7 @@
       padding: 14px 16px;
       border-radius: 18px;
       box-sizing: border-box;
-      text-align: center; /* 改為文字置中 */
+      text-align: left; /* 改為文字向左對齊 */
     }
 
     .char-info-box.male-bg {
@@ -794,7 +794,7 @@
       z-index: 2;
     }
 
-    /* 【新增】當氣泡框在左、圖片在右時，小三角改為朝右 */
+    /* 【修改】當氣泡框在左、圖片在右時，小三角改為朝右 */
     .char-card.reverse-layout .char-info-box.female-bg::before {
       left: auto;
       right: -9px;
@@ -1697,8 +1697,8 @@
             </div>
           </div>
 
-          <!-- 女方：余思思 -->
-          <div class="char-card female">
+          <!-- 女方：余思思 (已加入 reverse-layout 讓氣泡框小三角移到右邊) -->
+          <div class="char-card female reverse-layout">
             <div class="char-info-box female-bg">
               <div class="char-detail">
                 <b>年齡：</b><span class="desc-thin">19歲</span> <b>｜ 生日：</b><span class="desc-thin">3/11</span><br>
@@ -1878,7 +1878,7 @@
           我都在做夢了就讓讓我吧！
         </p>
 
-        <!-- Memo 四個氣泡框區塊（左右交錯、文字置中、游標停駐放大） -->
+        <!-- Memo 四個氣泡框區塊（左右交錯、文字向左對齊、游標停駐放大） -->
         <div class="char-container">
           
           <!-- 1. 關於這裡 (圖片左，對話框右) -->
@@ -2643,12 +2643,13 @@
       document.getElementById('newsContent').textContent = news.content;
     }
 
-    // 初始化執行
-    updateAnniversary();
-    displayRandomMoment();
-    setDailyWeather();
-    displayRandomNews();
-    initSlideshow();
+    window.addEventListener('DOMContentLoaded', () => {
+      updateAnniversary();
+      displayRandomMoment();
+      setDailyWeather();
+      displayRandomNews();
+      initSlideshow();
+    });
   </script>
 </body>
 </html>

@@ -2175,7 +2175,6 @@
         </div>
       </div>
 
-      <!-- 更新後的戀語快報卡片 -->
       <div class="news-card">
         <div class="news-header">
           <span><i class="fa-regular fa-newspaper"></i> 戀語快報</span>
@@ -2293,7 +2292,6 @@
     window.addEventListener('load', function() {
       setTimeout(hideLoader, 300);
       initChatSystem();
-      displayRandomNews(); // 網頁載入時隨機顯示一則新聞
     });
 
     function toggleMenu() {
@@ -2389,46 +2387,6 @@
       document.getElementById('todayDate').innerText = `${year}. ${month}. ${date}`;
     }
 
-    // ===== 戀語快報隨機切換新聞邏輯 =====
-    const newsList = [
-      {
-        title: "再入文明城市光榮榜！",
-        content: "文明網發佈了第37屆全國文明城市名單，戀語市再被評為「全國文明城市」。"
-      },
-      {
-        title: "鬼影重重！妙齡少女上演臥室驚魂！",
-        content: "吳小姐在窗外看到鬼影，調查後發現有衣物掛在窗外樹枝上，在霧中好似人影。"
-      },
-      {
-        title: "大逃亡！鴨子一家上演生死時速！",
-        content: "鴨棚因大雨坍塌，鴨媽媽帶領孩子們馬路飛奔被圍觀，結果路過下水道時悲劇了。"
-      },
-      {
-        title: "爆滿！Souvenir餐廳春季限定布丁引發排隊熱潮！",
-        content: "戀語市知名餐廳Souvenir今日推出限量限定甜點，許多市民凌晨便前往排隊，現場盛況空前。"
-      },
-      {
-        title: "驚喜！市中心公園流浪貓阿橘獲封「社區守護星」！",
-        content: "西區社區居民發起投票，常年在公園巡邏的橘貓因多次幫忙驅趕害鼠獲得榮譽證書。"
-      },
-      {
-        title: "奇觀！昨夜戀語市夜空出現璀璨極光現象？",
-        content: "天文愛好者捕捉到神秘夜空光芒，天文台表示為罕見的大氣折射現象，網友紛紛許願。"
-      },
-      {
-        title: "熱議！戀語大學音樂廳深夜琴聲傳聞真相大白！",
-        content: "學生傳言音樂廳深夜有幽靈彈琴，後經證實為鋼琴系教授為巡演深夜加練，虛驚一場。"
-      }
-    ];
-
-    function displayRandomNews() {
-      const randomIndex = Math.floor(Math.random() * newsList.length);
-      const n = newsList[randomIndex];
-
-      document.getElementById('newsTitle').textContent = n.title;
-      document.getElementById('newsContent').textContent = n.content;
-    }
-
     // ===== 聊天室互動系統邏輯 =====
     const chatDataSeries = [
       [
@@ -2464,7 +2422,7 @@
         { sender: 'other', text: '可惜要讓你失望了' },
         { sender: 'other', text: '鬧鐘還沒響，我就到教室了。' },
         { sender: 'me', text: '！！！告訴我，你在一間空教室對不對？' },
-        { sender: 'other', text: '對，我沒有在一百個人的教室裡代課。' },
+        { sender: 'other', text: '對，我沒有在一百過的教室裡代課。' },
         { sender: 'other', text: '也沒人問「助教居然用女朋友的歌聲當鬧鈴啊？」' },
         { sender: 'other', text: '滿意了？' },
         { sender: 'me', text: '我下次不給你定鬧鐘了！！！' }
@@ -2481,7 +2439,6 @@
     const meName = '我';
 
     function initChatSystem() {
-      // 隨機選擇一套
       currentChatIndex = Math.floor(Math.random() * chatDataSeries.length);
       displayedMessageCount = 1;
       isTyping = false;
@@ -2659,6 +2616,374 @@
         <div class="reply-item"><span class="author-shaw">Shaw回覆夾心土思：</span>${m.shaw}</div>
       `;
     }
+
+    /* ===== 戀語快報隨機新聞資料庫 ===== */
+    const newsList = [
+      {
+        title: "再入文明城市光榮榜！",
+        body: "文明網發佈了第37屆全國文明城市名單，戀語市再被評為「全國文明城市」。"
+      },
+      {
+        title: "鬼影重重！妙齡少女上演臥室驚魂！",
+        body: "吳小姐在窗外看到鬼影，調查後發現有衣物掛在窗外樹枝上，在霧中好似人影。"
+      },
+      {
+        title: "大逃亡！鴨子一家上演生死時速！",
+        body: "鴨棚因大雨坍塌，鴨媽媽帶領孩子們馬路飛奔被圍觀，結果路過下水道時悲劇了。"
+      },
+      {
+        title: "爆滿！Souvenir餐廳春季限定布丁引發排隊熱潮！",
+        body: "戀語市知名餐廳Souvenir今日推出限量限定甜點，許多市民凌晨便前往排隊，現場盛況空前。"
+      },
+      {
+        title: "驚喜！市中心公園流浪貓阿橘獲封「社區守護星」！",
+        body: "西區社區居民發起投票，常年在公園巡邏的橘貓因多次幫忙驅趕害鼠獲得榮譽證書。"
+      },
+      {
+        title: "奇觀！昨夜戀語市夜空出現璀璨極光現象？",
+        body: "天文愛好者捕捉到神秘夜空光芒，天文台表示為罕見的大氣折射現象，網友紛紛許願。"
+      },
+      {
+        title: "熱議！戀語大學音樂廳深夜琴聲傳聞真相大白！",
+        body: "學生傳言音樂廳深夜有幽靈彈琴，後經證實為鋼琴系教授為巡演深夜加練，虛驚一場。 [source: 1]"
+      }
+    ];
+
+    function displayRandomNews() {
+      const randomIndex = Math.floor(Math.random() * newsList.length);
+      const n = newsList[randomIndex];
+
+      document.getElementById('newsTitle').textContent = n.title;
+      document.getElementById('newsContent').textContent = n.body;
+    }
+
+    const paintingSlides = [
+      { url: "IMG_9543 (1).JPG", artist: "©️嗶瞇" },
+      { url: "IMG_6353.JPG", artist: "©️妙兒" },
+      { url: "IMG_5610.png", artist: "©️哈尼" },
+      { url: "IMG_4419.PNG", artist: "©️綠松石" },
+      { url: "IMG_3848.JPG", artist: "©️椛糸" },
+      { url: "IMG_3847.JPG", artist: "©️白蔥" },
+      { url: "c83cfb1419920e062902d993772ea14f.png", artist: "©️夕犬" },
+      { url: "IMG_3846.PNG", artist: "©️Lilo Yurim" },
+      { url: "be02fc4e1db30ee362681c03fe9ac731.png", artist: "©️百晨" },
+      { url: "1784910373979.png", artist: "©️聿自弓長" },
+      { url: "92dc56679666351d783bad74fcad2fec.jpeg", artist: "©️咪咪ger" },
+      { url: "34a6ecae0f43e1cfa53b453ce93cda21.png", artist: "©️揚默" },
+      { url: "3bb3fb13d02c36895521e8bf3d4519bf.jpeg", artist: "©️池鳥安川" },
+      { url: "IMG_4940.jpeg", artist: "©️閒魚悠游" },
+      { url: "QQ20260728-075614.png", artist: "©️三毒總是睡覺" },
+      { url: "IMG_4778.jpeg", artist: "©️安的什麼心" }
+    ];
+
+    let currentSlideIndex = 0;
+    let slideInterval = null;
+
+    function initSlideshow() {
+      const thumbnailsContainer = document.getElementById('thumbnailsContainer');
+      thumbnailsContainer.innerHTML = '';
+
+      paintingSlides.forEach((slide, index) => {
+        const thumb = document.createElement('div');
+        thumb.className = `thumb-item ${index === 0 ? 'active' : ''}`;
+        thumb.onclick = () => {
+          goToSlide(index);
+          resetSlideInterval();
+        };
+
+        const img = document.createElement('img');
+        img.src = slide.url;
+        img.className = 'thumb-img';
+        img.alt = `Thumb ${index + 1}`;
+
+        thumb.appendChild(img);
+        thumbnailsContainer.appendChild(thumb);
+      });
+
+      updateSlideDisplay();
+      startSlideInterval();
+    }
+
+    function updateSlideDisplay() {
+      const currentObj = paintingSlides[currentSlideIndex];
+      const mainImg = document.getElementById('mainSlideImg');
+      const mainArtist = document.getElementById('mainSlideArtist');
+
+      mainImg.style.opacity = 0;
+      setTimeout(() => {
+        mainImg.src = currentObj.url;
+        mainArtist.textContent = currentObj.artist;
+        mainImg.style.opacity = 1;
+      }, 150);
+
+      const thumbs = document.querySelectorAll('.thumb-item');
+      thumbs.forEach((thumb, idx) => {
+        if (idx === currentSlideIndex) {
+          thumb.classList.add('active');
+        } else {
+          thumb.classList.remove('active');
+        }
+      });
+    }
+
+    function goToSlide(index) {
+      currentSlideIndex = (index + paintingSlides.length) % paintingSlides.length;
+      updateSlideDisplay();
+    }
+
+    function changeSlide(direction) {
+      goToSlide(currentSlideIndex + direction);
+      resetSlideInterval();
+    }
+
+    function startSlideInterval() {
+      slideInterval = setInterval(() => {
+        goToSlide(currentSlideIndex + 1);
+      }, 5000);
+    }
+
+    function resetSlideInterval() {
+      clearInterval(slideInterval);
+      startSlideInterval();
+    }
+
+    function openCurrentSlideLightbox() {
+      const currentObj = paintingSlides[currentSlideIndex];
+      openLightbox(currentObj.url, currentObj.artist);
+    }
+
+    const albumsData = {
+      shaw: {
+        title: "凌肖",
+        gif: "IMG_4922.gif",
+        titleClass: "male-color",
+        images: [
+          { url: "IMG_4654.jpeg", artist: "" },
+          { url: "IMG_4917.jpeg", artist: "" },
+          { url: "IMG_4918.jpeg", artist: "" },
+          { url: "IMG_4919.jpeg", artist: "" },
+          { url: "IMG_4273.jpeg", artist: "" },
+          { url: "IMG_4920.jpeg", artist: "" },
+          { url: "IMG_3815.jpeg", artist: "" },
+          { url: "IMG_4281.jpeg", artist: "" }
+        ]
+      },
+      sisi: {
+        title: "余思思",
+        gif: "IMG_4921.gif",
+        titleClass: "female-color",
+        images: [
+          { url: "IMG_3857.jpeg", artist: "©️踏波" },
+          { url: "IMG_3858.png", artist: "©️沏魚" },
+          { url: "IMG_3859.png", artist: "©️噗轉" },
+          { url: "IMG_3860.jpeg", artist: "©️咩月" },
+          { url: "IMG_3865.jpeg", artist: "©️雍幽" },
+          { url: "IMG_9554.jpeg", artist: "©️嗶瞇" }
+        ]
+      }
+    };
+
+    function openAlbum(characterKey) {
+      const album = albumsData[characterKey];
+      if (!album) return;
+
+      const headerEl = document.getElementById('albumModalHeader');
+      headerEl.innerHTML = `<img src="${album.gif}" class="album-gif"><span class="${album.titleClass}">${album.title}</span>`;
+
+      const gridEl = document.getElementById('albumGrid');
+      gridEl.className = 'album-grid';
+      gridEl.innerHTML = '';
+
+      album.images.forEach(imgData => {
+        const item = document.createElement('div');
+        item.className = 'album-grid-item';
+        item.onclick = () => openLightbox(imgData.url, imgData.artist);
+
+        const artistHtml = imgData.artist ? `<div class="artist-tag">${imgData.artist}</div>` : '';
+
+        item.innerHTML = `
+          <div class="album-grid-img-frame">
+            <img src="${imgData.url}" class="album-grid-img" alt="大頭照">
+          </div>
+          ${artistHtml}
+        `;
+        gridEl.appendChild(item);
+      });
+
+      document.getElementById('albumModalOverlay').classList.add('active');
+      document.getElementById('albumModalCard').classList.add('active');
+    }
+
+    const memoContentData = {
+      aboutHere: {
+        title: "關於這裡",
+        text: `完全腦子一熱就開始寫的網站。<br>
+原本是用notion但排版實在太無聊了，人一閒起來真的什麼事都能做到。。ㄣ。。<br>
+但因為我完全不會寫程式！所以跟AI大戰了好幾百回合⋯ㄏㄏ⋯中途還因為AI一直聽不懂人話罵他是不是有病，他回我他只是一個語言模型⋯⋯😭✋🏻完全不知道該哭還是該笑～^_^<br><br>
+斷斷續續寫了一段時間，但還是有很多不太完美的地方。常常想到什麼就鞭笞AI給我加上去，刪刪減減又加了有的沒的東西，才終於弄到勉強滿意的樣子。<br>
+大概還是會慢慢增加一點小東西，畢竟我們還在一起，回憶肯定會越來越多的～♡<br><br>
+總之人生第一次寫程式就獻給我們小凌！<br>
+希望我最愛的凌肖能一路坦途，唱著喜歡的歌，成為想成為的人。<br>
+下一次見面，我們都不要遲到了。`
+      },
+      tableContent: {
+        title: "表格",
+        images: [
+          "61494faa9204e5d0fe49e4a67ced807c.png",
+          "無標題1_20260726005104.jpeg"
+        ]
+      },
+      someIf: {
+        title: "一些梗/IF",
+        text: "收錄各種腦洞、平行世界設定或有趣的 IF 劇情梗。"
+      },
+      dreamSay: {
+        title: "夢到哪句講哪句",
+        text: "隨興記錄夢境中出現的對話或突發奇想的語句。"
+      }
+    };
+
+    function openMemoModal(memoKey) {
+      const memo = memoContentData[memoKey];
+      if (!memo) return;
+
+      const headerEl = document.getElementById('albumModalHeader');
+      headerEl.innerHTML = `<span style="color: #D87074;">${memo.title}</span>`;
+
+      const gridEl = document.getElementById('albumGrid');
+      
+      if (memoKey === 'tableContent') {
+        gridEl.className = 'album-grid';
+        gridEl.innerHTML = '';
+        memo.images.forEach(imgUrl => {
+          const item = document.createElement('div');
+          item.className = 'album-grid-item';
+          item.onclick = () => openLightbox(imgUrl, '');
+          item.innerHTML = `
+            <div style="width: 100%; background: transparent; box-shadow: none; border: none; overflow: hidden;">
+              <img src="${imgUrl}" style="width: 100%; height: auto; display: block; border-radius: 12px;" alt="表格圖片">
+            </div>
+          `;
+          gridEl.appendChild(item);
+        });
+      } else {
+        gridEl.className = 'article-buttons-container';
+        gridEl.innerHTML = `
+          <div style="font-size: 0.95rem; color: #5C4A4A; line-height: 1.8; text-align: left; padding: 10px;">
+            ${memo.text}
+          </div>
+        `;
+      }
+
+      document.getElementById('albumModalOverlay').classList.add('active');
+      document.getElementById('albumModalCard').classList.add('active');
+    }
+
+    const articleFoldersData = {
+      shouza: {
+        title: "手札",
+        img: "IMG_3990.gif",
+        articles: [
+          { name: "《抱我》", url: "https://telegra.ph/%E6%8A%B1%E6%88%91-08-07", locked: false },
+          { name: "《Heartbeat》", url: "https://telegra.ph/Heartbeat-08-07-4", locked: false },
+          { name: "《Amber》", url: "https://telegra.ph/Amber-08-07-2", locked: false },
+          { name: "《World》", url: "https://telegra.ph/World-08-07-2", locked: false },
+          { name: "《Sunlight》", url: "https://telegra.ph/Sunlight-08-07-2", locked: true },
+          { name: "《Poker》", url: "https://telegra.ph/Poker-08-07-6", locked: true },
+          { name: "《於無聲處》", url: "https://telegra.ph/%E6%96%BC%E7%84%A1%E8%81%B2%E8%99%95-08-07", locked: true }
+        ]
+      },
+      chuanchang: {
+        title: "傳唱",
+        img: "IMG_3840.gif",
+        articles: [
+          { name: "《打屁股》", url: "https://telegra.ph/%E6%89%93%E5%B1%81%E8%82%A1-08-07", locked: false },
+          { name: "《事後煙》", url: "https://telegra.ph/%E4%BA%8B%E5%BE%8C%E7%85%99-08-07", locked: false },
+          { name: "《略施懲罰》", url: "https://telegra.ph/%E7%95%A5%E6%96%BD%E6%87%B2%E7%BD%B0-08-07", locked: true }
+        ]
+      }
+    };
+
+    let pendingUrl = "";
+
+    function openArticleFolder(folderKey) {
+      const folder = articleFoldersData[folderKey];
+      if (!folder) return;
+
+      const headerEl = document.getElementById('albumModalHeader');
+      headerEl.innerHTML = `<img src="${folder.img}" class="album-gif"><span style="color: #D87074;">${folder.title}</span>`;
+
+      const gridEl = document.getElementById('albumGrid');
+      gridEl.className = 'article-buttons-container';
+      gridEl.innerHTML = '';
+
+      folder.articles.forEach(art => {
+        const btn = document.createElement('a');
+        btn.className = 'article-btn';
+        if (art.locked) {
+          btn.innerHTML = `${art.name} <i class="fa-solid fa-lock"></i>`;
+          btn.onclick = () => openPasswordModal(art.url);
+        } else {
+          btn.href = art.url;
+          btn.target = "_blank";
+          btn.innerHTML = `${art.name}`;
+        }
+        gridEl.appendChild(btn);
+      });
+
+      document.getElementById('albumModalOverlay').classList.add('active');
+      document.getElementById('albumModalCard').classList.add('active');
+    }
+
+    function openPasswordModal(targetUrl) {
+      pendingUrl = targetUrl;
+      document.getElementById('passwordInput').value = '';
+      document.getElementById('passwordModalOverlay').classList.add('active');
+      setTimeout(() => {
+        document.getElementById('passwordInput').focus();
+      }, 100);
+    }
+
+    function closePasswordModal(e) {
+      if (!e || e.target.id === 'passwordModalOverlay') {
+        document.getElementById('passwordModalOverlay').classList.remove('active');
+        pendingUrl = "";
+      }
+    }
+
+    function verifyPassword() {
+      const pwd = document.getElementById('passwordInput').value;
+      if (pwd === "0499") {
+        document.getElementById('passwordModalOverlay').classList.remove('active');
+        if (pendingUrl) {
+          window.open(pendingUrl, '_blank');
+          pendingUrl = "";
+        }
+      } else {
+        alert("密碼錯誤，請重新輸入！");
+        document.getElementById('passwordInput').value = '';
+        document.getElementById('passwordInput').focus();
+      }
+    }
+
+    function closeAlbum() {
+      document.getElementById('albumModalOverlay').classList.remove('active');
+      document.getElementById('albumModalCard').classList.remove('active');
+    }
+
+    function openLightbox(imgUrl, artistName) {
+      document.getElementById('lightboxImg').src = imgUrl;
+      document.getElementById('lightboxArtist').textContent = artistName || '';
+      document.getElementById('lightboxOverlay').classList.add('active');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightboxOverlay').classList.remove('active');
+    }
+
+    updateAnniversary();
+    initSlideshow();
+    displayRandomMoment();
   </script>
 </body>
 </html>

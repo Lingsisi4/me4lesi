@@ -872,8 +872,8 @@
     }
 
     .album-cover-img {
-      width: 110px;
-      height: 110px;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       transition: transform 0.3s ease;
     }
@@ -1495,12 +1495,6 @@
       animation: pulse 1s infinite;
     }
 
-    /* 我方正在輸入中的氣泡背景與框線配合我方氣泡樣式調整 */
-    .chat-row.me .chat-typing-indicator {
-      background: #E2F0D9;
-      border: 1px solid #D3E5C4;
-    }
-
     @keyframes pulse {
       0%, 100% { opacity: 0.6; }
       50% { opacity: 1; }
@@ -1850,7 +1844,15 @@
 
         <hr class="pink-divider">
 
-        <!-- 新增：獨立的聊天室區塊 (已移至感謝區塊上方) -->
+        <!-- 感謝區塊 -->
+        <div class="thanks-section">
+          <div class="thanks-title">Thanks</div>
+          <div class="thanks-names">ㄅㄅ、噗轉、嘎、NN</div>
+        </div>
+
+        <hr class="pink-divider">
+
+        <!-- 新增：獨立的聊天室區塊 -->
         <div class="chat-box-container" id="chatBoxContainer" onclick="progressChat()">
           <div class="chat-header-title">
             <i class="fa-solid fa-comments"></i> 與 肖寶 的聊天室
@@ -1862,14 +1864,6 @@
           <button class="refresh-chat-btn" onclick="event.stopPropagation(); openChatSelectModal()">
             <i class="fa-solid fa-rotate-right"></i> 換一則簡訊
           </button>
-        </div>
-
-        <hr class="pink-divider">
-
-        <!-- 感謝區塊 -->
-        <div class="thanks-section">
-          <div class="thanks-title">Thanks</div>
-          <div class="thanks-names">ㄅㄅ、噗轉、嘎、NN</div>
         </div>
 
       </div>
@@ -2285,16 +2279,711 @@
   </div>
 
   <script>
-    /* 這裡原本有你的 JavaScript 邏輯，為了確保程式碼正確運作，請保留原本 HTML 檔案下方的所有 script 內容 */
-    /* 若您有需要修改彈窗內容的 JS 函式 (例如 openMemoModal)，請確保其中對應的文字已更新 */
-    
-    // 範例：請在你的 JavaScript 中將 'aboutHere' 對應的內容更新如下
-    function openMemoModal(type) {
-      if (type === 'aboutHere') {
-        alert("完全腦子一熱就開始寫的網站。\n原本是用notion但排版實在太無聊了，人一閒起來真的什麼事都能做到。。ㄣ。。\n但因為我完全不會寫程式！所以跟AI大戰了好幾百回合⋯ㄏㄏ⋯中途還因為AI一直聽不懂人話罵他是不是有病，他回我他只是一個語言模型⋯⋯😭✋🏻完全不知道該哭還是該笑～^_^ \n\n斷斷續續寫了一段時間，但還是有很多不太完美的地方。常常想到什麼就鞭笞AI給我加上去，刪刪減減又加了有的沒的東西，才終於弄到勉強滿意的樣子。\n大概還是會慢慢增加一點小東西，畢竟我們還在一起，回憶肯定會越來越多的～♡\n\n總之人生第一次寫程式就獻給我們小凌！\n希望我最愛的凌肖能一路坦途，唱著喜歡的歌，成為想成為的人。\n下一次見面，我們都不要遲到了。");
+    const loader = document.getElementById('loading-screen');
+
+    function hideLoader() {
+      if (loader) {
+        loader.classList.remove('show');
       }
-      // 其他 type 的邏輯...
     }
+
+    setTimeout(hideLoader, 1200);
+
+    window.addEventListener('load', function() {
+      setTimeout(hideLoader, 300);
+      initChatSystem();
+    });
+
+    function toggleMenu() {
+      if (window.innerWidth < 900) {
+        document.getElementById('menuOverlay').classList.add('active');
+        document.getElementById('menuPopup').classList.add('active');
+      }
+    }
+
+    function closeMenu() {
+      document.getElementById('menuOverlay').classList.remove('active');
+      document.getElementById('menuPopup').classList.remove('active');
+    }
+
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
+    function switchPage(target) {
+      loader.classList.add('show');
+
+      setTimeout(() => {
+        document.getElementById('page-home').classList.remove('active');
+        document.getElementById('page-about').classList.remove('active');
+        document.getElementById('page-dream').classList.remove('active');
+
+        const rightColumn = document.getElementById('rightColumn');
+
+        if (target === 'home') {
+          document.getElementById('page-home').classList.add('active');
+          document.body.className = 'current-page-home';
+          rightColumn.classList.add('mobile-show');
+          window.scrollTo({ top: 0, behavior: 'auto' });
+        } else if (target.startsWith('about')) {
+          document.getElementById('page-about').classList.add('active');
+          document.body.className = 'current-page-about';
+          rightColumn.classList.remove('mobile-show');
+          const el = document.getElementById(target);
+          if (el) {
+            el.scrollIntoView({ behavior: 'auto', block: 'center' });
+          } else {
+            window.scrollTo({ top: 0, behavior: 'auto' });
+          }
+        } else if (target.startsWith('dream')) {
+          document.getElementById('page-dream').classList.add('active');
+          document.body.className = 'current-page-dream';
+          rightColumn.classList.remove('mobile-show');
+          const el = document.getElementById(target);
+          if (el) {
+            el.scrollIntoView({ behavior: 'auto', block: 'center' });
+          } else {
+            window.scrollTo({ top: 0, behavior: 'auto' });
+          }
+        }
+
+        setTimeout(hideLoader, 600);
+
+      }, 1000);
+    }
+
+    function toggleMusic() {
+      const audio = document.getElementById('bgm');
+      const btn = document.getElementById('musicBtn');
+      
+      if (audio.paused) {
+        audio.play().then(() => {
+          btn.classList.add('playing');
+        }).catch(err => {
+          alert('請先確認 bgm.mp3 檔案名稱正確並上傳至倉庫喔！');
+        });
+      } else {
+        audio.pause();
+        btn.classList.remove('playing');
+      }
+    }
+
+    function updateAnniversary() {
+      const startDate = new Date('2019-04-27T00:00:00');
+      const today = new Date();
+
+      const diffTime = Math.abs(today - startDate);
+      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+      
+      document.getElementById('daysCountNum').innerText = diffDays.toLocaleString();
+
+      const year = today.getFullYear();
+      const month = String(today.getMonth() + 1).padStart(2, '0');
+      const date = String(today.getDate()).padStart(2, '0');
+
+      document.getElementById('todayDate').innerText = `${year}. ${month}. ${date}`;
+    }
+
+    // ===== 聊天室互動系統邏輯 =====
+    const chatDataSeries = [
+      [
+        { sender: 'other', text: '想你了。' },
+        { sender: 'me', text: '我也想你=3=' },
+        { sender: 'other', text: '⋯⋯居然這麼坦然就接受了，沒意思。' },
+        { sender: 'other', text: '我還以為你會進行一番質疑猜疑懷疑，' },
+        { sender: 'other', text: '然後打個視訊認證一下呢。' },
+        { sender: 'me', text: '其實⋯⋯你也可以從別的方面認證一下～' },
+        { sender: 'other', text: '？' },
+        { sender: 'other', text: '往情侶帳戶裡面存了520，收到了吧。' },
+        { sender: 'other', text: '我隨便說一句的成本還挺高。' },
+        { sender: 'me', text: '凌肖，我也想你啦。' },
+        { sender: 'other', text: '確認沒有後續整人文案？' },
+        { sender: 'other', text: '那我就把你這句話當真心話了。' },
+        { sender: 'other', text: '明天再還你一句。' }
+      ],
+      [
+        { sender: 'other', text: '今天來不了，要陪她。麻煩您代我向師母道謝。' },
+        { sender: 'me', text: '嗯嗯，沒關係的～' },
+        { sender: 'other', text: '？' },
+        { sender: 'other', text: '你沒關係個什麼勁？' },
+        { sender: 'other', text: '又不是傳給你的。' },
+        { sender: 'me', text: '那這個「她」指的是誰啊？' },
+        { sender: 'other', text: '我看你是真的來勁了。' },
+        { sender: 'other', text: '拿起你的手機，打開前置鏡頭。' },
+        { sender: 'other', text: '看看她是誰。' }
+      ],
+      [
+        { sender: 'other', text: '我手機裡那個大清早的鬧鐘是你設的？' },
+        { sender: 'me', text: '對啊！冬天這麼冷，怎麼能只有我一個人早起！' },
+        { sender: 'other', text: '嘖，我就知道。' },
+        { sender: 'other', text: '可惜要讓你失望了' },
+        { sender: 'other', text: '鬧鐘還沒響，我就到教室了。' },
+        { sender: 'me', text: '！！！告訴我，你在一間空教室對不對？' },
+        { sender: 'other', text: '對，我沒有在一百過的教室裡代課。' },
+        { sender: 'other', text: '也沒人問「助教居然用女朋友的歌聲當鬧鈴啊？」' },
+        { sender: 'other', text: '滿意了？' },
+        { sender: 'me', text: '我下次不給你定鬧鐘了！！！' }
+      ]
+    ];
+
+    let currentChatIndex = 0;
+    let displayedMessageCount = 1;
+    let isTyping = false;
+
+    const otherAvatar = 'IMG_5014.jpeg';
+    const meAvatar = 'IMG_5015.jpeg';
+    const otherName = '肖寶';
+    const meName = '我';
+
+    function initChatSystem() {
+      currentChatIndex = Math.floor(Math.random() * chatDataSeries.length);
+      displayedMessageCount = 1;
+      isTyping = false;
+      renderChat();
+    }
+
+    function renderChat() {
+      const area = document.getElementById('chatMessagesArea');
+      const hint = document.getElementById('chatClickHint');
+      area.innerHTML = '';
+
+      const currentSeries = chatDataSeries[currentChatIndex];
+      const limit = Math.min(displayedMessageCount, currentSeries.length);
+
+      for (let i = 0; i < limit; i++) {
+        const msg = currentSeries[i];
+        const isOther = msg.sender === 'other';
+        const avatar = isOther ? otherAvatar : meAvatar;
+        const name = isOther ? otherName : meName;
+        const rowClass = isOther ? 'other' : 'me';
+
+        const row = document.createElement('div');
+        row.className = `chat-row ${rowClass}`;
+        row.innerHTML = `
+          <img src="${avatar}" alt="avatar" class="chat-avatar">
+          <div class="chat-content-wrap">
+            <div class="chat-sender-name">${name}</div>
+            <div class="chat-bubble">${msg.text}</div>
+          </div>
+        `;
+        area.appendChild(row);
+      }
+
+      if (isTyping) {
+        const typingRow = document.createElement('div');
+        typingRow.className = `chat-row other`;
+        typingRow.innerHTML = `
+          <img src="${otherAvatar}" alt="avatar" class="chat-avatar">
+          <div class="chat-content-wrap">
+            <div class="chat-sender-name">${otherName}</div>
+            <div class="chat-typing-indicator">⋯</div>
+          </div>
+        `;
+        area.appendChild(typingRow);
+      }
+
+      if (displayedMessageCount >= currentSeries.length && !isTyping) {
+        hint.textContent = '— 已顯示完整對話 —';
+      } else {
+        hint.textContent = 'Click 點擊繼續';
+      }
+
+      area.scrollTop = area.scrollHeight;
+    }
+
+    function progressChat() {
+      if (isTyping) return;
+      const currentSeries = chatDataSeries[currentChatIndex];
+
+      if (displayedMessageCount < currentSeries.length) {
+        isTyping = true;
+        renderChat();
+
+        setTimeout(() => {
+          isTyping = false;
+          displayedMessageCount++;
+          renderChat();
+        }, 1000);
+      }
+    }
+
+    function openChatSelectModal() {
+      document.getElementById('chatSelectOverlay').classList.add('active');
+      document.getElementById('chatSelectModal').classList.add('active');
+    }
+
+    function closeChatSelectModal() {
+      document.getElementById('chatSelectOverlay').classList.remove('active');
+      document.getElementById('chatSelectModal').classList.remove('active');
+    }
+
+    function selectChatSeries(index) {
+      currentChatIndex = index;
+      displayedMessageCount = 1;
+      isTyping = false;
+      closeChatSelectModal();
+      renderChat();
+    }
+
+    const momentsList = [
+      {
+        text: "難得看到這麼標準的寄居蟹。",
+        date: "2026年8月3日",
+        sisi: "可惡，怎麼每次你趕海都能發現好玩的！",
+        shaw: "不止趕海，我去哪都能發現好玩的，所以你得跟緊我<3"
+      },
+      {
+        text: "海豹在玻璃前來了個急轉彎就游走了，但有些人還是被嚇得閉上了眼睛。",
+        date: "2026年8月3日",
+        sisi: "都怪你騙我有海豹之前撞裂過玻璃⋯⋯關鍵是牠怎麼還真配合地衝過來了？",
+        shaw: "這就說明，海豹也喜歡逗某只笨兔子玩。"
+      },
+      {
+        text: "用街景地圖還能有意外收穫。",
+        date: "2026年8月1日",
+        sisi: "根據地點，我推測被錄入街景那時我們正在去Live House的路上！",
+        shaw: "錯。結合你傻兮兮的笑臉和我身上的大包小包，是從慶功宴回家的路上。"
+      },
+      {
+        text: "⋯⋯剛買的宵夜差點被奶茶店的充氣吉祥物大戰波及。",
+        date: "2026年7月28日",
+        sisi: "善良的三好大學生這時候應該熱心地上去勸架。",
+        shaw: "沒空，三好男友急著去給他正在熬夜苦讀的女朋友送夜宵。"
+      },
+      {
+        text: "有人對著盒子戳了半天了，不知道在許什麼願。",
+        date: "2026年7月25日",
+        sisi: "「天凌凌，地凌凌」——希望永遠有Love and Peace!",
+        shaw: "口號挺順，晚上來Live House喊，我給你配樂。"
+      },
+      {
+        text: "敢碰掉古董店的杯子，有人要完了。",
+        date: "2026年7月20日",
+        sisi: "小心翼翼地問一下價值⋯我賠得起嗎？",
+        shaw: "難說。我買的時候十五塊錢兩個，現在應該漲價了。"
+      },
+      {
+        text: "嘖，居然夢見遲到。",
+        date: "2026年7月15日",
+        sisi: "我沒看錯吧？你是會怕點名的人嗎？",
+        shaw: "我有說是課堂遲到嗎？"
+      },
+      {
+        text: "練瑜伽閃到腰也是種絕技。",
+        date: "2026年7月10日",
+        sisi: "你到底還有多久才能到⋯⋯",
+        shaw: "買藥酒耽擱了兩分鐘都等不及？"
+      },
+      {
+        text: "學校門禁的人臉識別又認錯人了。",
+        date: "2026年7月5日",
+        sisi: "你是不是過門禁的時候戴著帽子？",
+        shaw: "有人送我的帽子，懶得摘。"
+      },
+      {
+        text: "是個翹課的好天氣。",
+        date: "2026年7月1日",
+        sisi: "又翹課？",
+        shaw: "我很忙的，不翹課可沒時間見你。"
+      },
+      {
+        text: "有人說今天免費讓我體驗古代富豪生活，快遞一拆裡面是只塑料仿古酒樽。",
+        date: "2026年6月25日",
+        sisi: "我們家財力有限，你將就一下當成真的吧。",
+        shaw: "我那有兩個明末期的，還有成套茶具，讓你體驗一下閨閣小姐還是沒問題的。"
+      },
+      {
+        text: "前面好像有人被攔路打劫了，剛想過去看看，發現劫匪是貓主任，那沒事了。",
+        date: "2026年6月20日",
+        sisi: "貓主任就能隨便欺負學生了？不能坐視不管，我去跟牠談談！",
+        shaw: "你跟牠談什麼，跟我談。"
+      }
+    ];
+
+    function displayRandomMoment() {
+      const randomIndex = Math.floor(Math.random() * momentsList.length);
+      const m = momentsList[randomIndex];
+
+      document.getElementById('momentsText').textContent = m.text;
+      document.getElementById('momentsDate').textContent = m.date;
+
+      const repliesEl = document.getElementById('momentsReplies');
+      repliesEl.innerHTML = `
+        <div class="reply-item"><span class="author-sisi">夾心土思：</span>${m.sisi}</div>
+        <div class="reply-item"><span class="author-shaw">Shaw回覆夾心土思：</span>${m.shaw}</div>
+      `;
+    }
+
+    /* ===== 戀語快報隨機新聞資料庫 ===== */
+    const newsList = [
+      {
+        title: "再入文明城市光榮榜！",
+        body: "文明網發佈了第37屆全國文明城市名單，戀語市再被評為「全國文明城市」。"
+      },
+      {
+        title: "鬼影重重！妙齡少女上演臥室驚魂！",
+        body: "吳小姐在窗外看到鬼影，調查後發現有衣物掛在窗外樹枝上，在霧中好似人影。"
+      },
+      {
+        title: "大逃亡！鴨子一家上演生死時速！",
+        body: "鴨棚因大雨坍塌，鴨媽媽帶領孩子們馬路飛奔被圍觀，結果路過下水道時悲劇了。"
+      },
+      {
+        title: "爆滿！Souvenir餐廳春季限定布丁引發排隊熱潮！",
+        body: "戀語市知名餐廳Souvenir今日推出限量限定甜點，許多市民凌晨便前往排隊，現場盛況空前。"
+      },
+      {
+        title: "驚喜！市中心公園流浪貓阿橘獲封「社區守護星」！",
+        body: "西區社區居民發起投票，常年在公園巡邏的橘貓因多次幫忙驅趕害鼠獲得榮譽證書。"
+      },
+      {
+        title: "奇觀！昨夜戀語市夜空出現璀璨極光現象？",
+        body: "天文愛好者捕捉到神秘夜空光芒，天文台表示為罕見的大氣折射現象，網友紛紛許願。"
+      },
+      {
+        title: "熱議！戀語大學音樂廳深夜琴聲傳聞真相大白！",
+        body: "學生傳言音樂廳深夜有幽靈彈琴，後經證實為鋼琴系教授為巡演深夜加練，虛驚一場。"
+      }
+    ];
+
+    function displayRandomNews() {
+      const randomIndex = Math.floor(Math.random() * newsList.length);
+      const n = newsList[randomIndex];
+
+      document.getElementById('newsTitle').textContent = n.title;
+      document.getElementById('newsContent').textContent = n.body;
+    }
+
+    const paintingSlides = [
+      { url: "IMG_9543 (1).JPG", artist: "©️嗶瞇" },
+      { url: "IMG_6353.JPG", artist: "©️妙兒" },
+      { url: "IMG_5610.png", artist: "©️哈尼" },
+      { url: "IMG_4419.PNG", artist: "©️綠松石" },
+      { url: "IMG_3848.JPG", artist: "©️椛糸" },
+      { url: "IMG_3847.JPG", artist: "©️白蔥" },
+      { url: "c83cfb1419920e062902d993772ea14f.png", artist: "©️夕犬" },
+      { url: "IMG_3846.PNG", artist: "©️Lilo Yurim" },
+      { url: "be02fc4e1db30ee362681c03fe9ac731.png", artist: "©️百晨" },
+      { url: "1784910373979.png", artist: "©️聿自弓長" },
+      { url: "92dc56679666351d783bad74fcad2fec.jpeg", artist: "©️咪咪ger" },
+      { url: "34a6ecae0f43e1cfa53b453ce93cda21.png", artist: "©️揚默" },
+      { url: "3bb3fb13d02c36895521e8bf3d4519bf.jpeg", artist: "©️池鳥安川" },
+      { url: "IMG_4940.jpeg", artist: "©️閒魚悠游" },
+      { url: "QQ20260728-075614.png", artist: "©️三毒總是睡覺" },
+      { url: "IMG_4778.jpeg", artist: "©️安的什麼心" }
+    ];
+
+    let currentSlideIndex = 0;
+    let slideInterval = null;
+
+    function initSlideshow() {
+      const thumbnailsContainer = document.getElementById('thumbnailsContainer');
+      thumbnailsContainer.innerHTML = '';
+
+      paintingSlides.forEach((slide, index) => {
+        const thumb = document.createElement('div');
+        thumb.className = `thumb-item ${index === 0 ? 'active' : ''}`;
+        thumb.onclick = () => {
+          goToSlide(index);
+          resetSlideInterval();
+        };
+
+        const img = document.createElement('img');
+        img.src = slide.url;
+        img.className = 'thumb-img';
+        img.alt = `Thumb ${index + 1}`;
+
+        thumb.appendChild(img);
+        thumbnailsContainer.appendChild(thumb);
+      });
+
+      updateSlideDisplay();
+      startSlideInterval();
+    }
+
+    function updateSlideDisplay() {
+      const currentObj = paintingSlides[currentSlideIndex];
+      const mainImg = document.getElementById('mainSlideImg');
+      const mainArtist = document.getElementById('mainSlideArtist');
+
+      mainImg.style.opacity = 0;
+      setTimeout(() => {
+        mainImg.src = currentObj.url;
+        mainArtist.textContent = currentObj.artist;
+        mainImg.style.opacity = 1;
+      }, 150);
+
+      const thumbs = document.querySelectorAll('.thumb-item');
+      thumbs.forEach((thumb, idx) => {
+        if (idx === currentSlideIndex) {
+          thumb.classList.add('active');
+        } else {
+          thumb.classList.remove('active');
+        }
+      });
+    }
+
+    function goToSlide(index) {
+      currentSlideIndex = (index + paintingSlides.length) % paintingSlides.length;
+      updateSlideDisplay();
+    }
+
+    function changeSlide(direction) {
+      goToSlide(currentSlideIndex + direction);
+      resetSlideInterval();
+    }
+
+    function startSlideInterval() {
+      slideInterval = setInterval(() => {
+        goToSlide(currentSlideIndex + 1);
+      }, 5000);
+    }
+
+    function resetSlideInterval() {
+      clearInterval(slideInterval);
+      startSlideInterval();
+    }
+
+    function openCurrentSlideLightbox() {
+      const currentObj = paintingSlides[currentSlideIndex];
+      openLightbox(currentObj.url, currentObj.artist);
+    }
+
+    const albumsData = {
+      shaw: {
+        title: "凌肖",
+        gif: "IMG_4922.gif",
+        titleClass: "male-color",
+        images: [
+          { url: "IMG_4654.jpeg", artist: "" },
+          { url: "IMG_4917.jpeg", artist: "" },
+          { url: "IMG_4918.jpeg", artist: "" },
+          { url: "IMG_4919.jpeg", artist: "" },
+          { url: "IMG_4273.jpeg", artist: "" },
+          { url: "IMG_4920.jpeg", artist: "" },
+          { url: "IMG_3815.jpeg", artist: "" },
+          { url: "IMG_4281.jpeg", artist: "" }
+        ]
+      },
+      sisi: {
+        title: "余思思",
+        gif: "IMG_4921.gif",
+        titleClass: "female-color",
+        images: [
+          { url: "IMG_3857.jpeg", artist: "©️踏波" },
+          { url: "IMG_3858.png", artist: "©️沏魚" },
+          { url: "IMG_3859.png", artist: "©️噗轉" },
+          { url: "IMG_3860.jpeg", artist: "©️咩月" },
+          { url: "IMG_3865.jpeg", artist: "©️雍幽" },
+          { url: "IMG_9554.jpeg", artist: "©️嗶瞇" }
+        ]
+      }
+    };
+
+    function openAlbum(characterKey) {
+      const album = albumsData[characterKey];
+      if (!album) return;
+
+      const headerEl = document.getElementById('albumModalHeader');
+      headerEl.innerHTML = `<img src="${album.gif}" class="album-gif"><span class="${album.titleClass}">${album.title}</span>`;
+
+      const gridEl = document.getElementById('albumGrid');
+      gridEl.className = 'album-grid';
+      gridEl.innerHTML = '';
+
+      album.images.forEach(imgData => {
+        const item = document.createElement('div');
+        item.className = 'album-grid-item';
+        item.onclick = () => openLightbox(imgData.url, imgData.artist);
+
+        const artistHtml = imgData.artist ? `<div class="artist-tag">${imgData.artist}</div>` : '';
+
+        item.innerHTML = `
+          <div class="album-grid-img-frame">
+            <img src="${imgData.url}" class="album-grid-img" alt="大頭照">
+          </div>
+          ${artistHtml}
+        `;
+        gridEl.appendChild(item);
+      });
+
+      document.getElementById('albumModalOverlay').classList.add('active');
+      document.getElementById('albumModalCard').classList.add('active');
+    }
+
+    const memoContentData = {
+      aboutHere: {
+        title: "關於這裡",
+        text: `完全腦子一熱就開始寫的網站。<br>
+原本是用notion但排版實在太無聊了，人一閒起來真的什麼事都能做到。。ㄣ。。<br>
+但因為我完全不會寫程式！所以跟AI大戰了好幾百回合⋯ㄏㄏ⋯中途還因為AI一直聽不懂人話罵他是不是有病，他回我他只是一個語言模型⋯⋯😭✋🏻完全不知道該哭還是該笑～^_^<br><br>
+斷斷續續寫了一段時間，但還是有很多不太完美的地方。常常想到什麼就鞭笞AI給我加上去，刪刪減減又加了有的沒的東西，才終於弄到勉強滿意的樣子。<br>
+大概還是會慢慢增加一點小東西，畢竟我們還在一起，回憶肯定會越來越多的～♡<br><br>
+總之人生第一次寫程式就獻給我們小凌！<br>
+希望我最愛的凌肖能一路坦途，唱著喜歡的歌，成為想成為的人。<br>
+下一次見面，我們都不要遲到了。`
+      },
+      tableContent: {
+        title: "表格",
+        images: [
+          "61494faa9204e5d0fe49e4a67ced807c.png",
+          "無標題1_20260726005104.jpeg"
+        ]
+      },
+      someIf: {
+        title: "一些梗/IF",
+        text: "收錄各種腦洞、平行世界設定或有趣的 IF 劇情梗。"
+      },
+      dreamSay: {
+        title: "夢到哪句講哪句",
+        text: "隨興記錄夢境中出現的對話或突發奇想的語句。"
+      }
+    };
+
+    function openMemoModal(memoKey) {
+      const memo = memoContentData[memoKey];
+      if (!memo) return;
+
+      const headerEl = document.getElementById('albumModalHeader');
+      headerEl.innerHTML = `<span style="color: #D87074;">${memo.title}</span>`;
+
+      const gridEl = document.getElementById('albumGrid');
+      
+      if (memoKey === 'tableContent') {
+        gridEl.className = 'album-grid';
+        gridEl.innerHTML = '';
+        memo.images.forEach(imgUrl => {
+          const item = document.createElement('div');
+          item.className = 'album-grid-item';
+          item.onclick = () => openLightbox(imgUrl, '');
+          item.innerHTML = `
+            <div style="width: 100%; background: transparent; box-shadow: none; border: none; overflow: hidden;">
+              <img src="${imgUrl}" style="width: 100%; height: auto; display: block; border-radius: 12px;" alt="表格圖片">
+            </div>
+          `;
+          gridEl.appendChild(item);
+        });
+      } else {
+        gridEl.className = 'article-buttons-container';
+        gridEl.innerHTML = `
+          <div style="font-size: 0.95rem; color: #5C4A4A; line-height: 1.8; text-align: left; padding: 10px;">
+            ${memo.text}
+          </div>
+        `;
+      }
+
+      document.getElementById('albumModalOverlay').classList.add('active');
+      document.getElementById('albumModalCard').classList.add('active');
+    }
+
+    const articleFoldersData = {
+      shouza: {
+        title: "手札",
+        img: "IMG_3990.gif",
+        articles: [
+          { name: "《抱我》", url: "https://telegra.ph/%E6%8A%B1%E6%88%91-08-07", locked: false },
+          { name: "《Heartbeat》", url: "https://telegra.ph/Heartbeat-08-07-4", locked: false },
+          { name: "《Amber》", url: "https://telegra.ph/Amber-08-07-2", locked: false },
+          { name: "《World》", url: "https://telegra.ph/World-08-07-2", locked: false },
+          { name: "《Sunlight》", url: "https://telegra.ph/Sunlight-08-07-2", locked: true },
+          { name: "《Poker》", url: "https://telegra.ph/Poker-08-07-6", locked: true },
+          { name: "《於無聲處》", url: "https://telegra.ph/%E6%96%BC%E7%84%A1%E8%81%B2%E8%99%95-08-07", locked: true }
+        ]
+      },
+      chuanchang: {
+        title: "傳唱",
+        img: "IMG_3840.gif",
+        articles: [
+          { name: "《打屁股》", url: "https://telegra.ph/%E6%89%93%E5%B1%81%E8%82%A1-08-07", locked: false },
+          { name: "《事後煙》", url: "https://telegra.ph/%E4%BA%8B%E5%BE%8C%E7%85%99-08-07", locked: false },
+          { name: "《略施懲罰》", url: "https://telegra.ph/%E7%95%A5%E6%96%BD%E6%87%B2%E7%BD%B0-08-07", locked: true }
+        ]
+      }
+    };
+
+    let pendingUrl = "";
+
+    function openArticleFolder(folderKey) {
+      const folder = articleFoldersData[folderKey];
+      if (!folder) return;
+
+      const headerEl = document.getElementById('albumModalHeader');
+      headerEl.innerHTML = `<img src="${folder.img}" class="album-gif"><span style="color: #D87074;">${folder.title}</span>`;
+
+      const gridEl = document.getElementById('albumGrid');
+      gridEl.className = 'article-buttons-container';
+      gridEl.innerHTML = '';
+
+      folder.articles.forEach(art => {
+        const btn = document.createElement('a');
+        btn.className = 'article-btn';
+        if (art.locked) {
+          btn.innerHTML = `${art.name} <i class="fa-solid fa-lock"></i>`;
+          btn.onclick = () => openPasswordModal(art.url);
+        } else {
+          btn.href = art.url;
+          btn.target = "_blank";
+          btn.innerHTML = `${art.name}`;
+        }
+        gridEl.appendChild(btn);
+      });
+
+      document.getElementById('albumModalOverlay').classList.add('active');
+      document.getElementById('albumModalCard').classList.add('active');
+    }
+
+    function openPasswordModal(targetUrl) {
+      pendingUrl = targetUrl;
+      document.getElementById('passwordInput').value = '';
+      document.getElementById('passwordModalOverlay').classList.add('active');
+      setTimeout(() => {
+        document.getElementById('passwordInput').focus();
+      }, 100);
+    }
+
+    function closePasswordModal(e) {
+      if (!e || e.target.id === 'passwordModalOverlay') {
+        document.getElementById('passwordModalOverlay').classList.remove('active');
+        pendingUrl = "";
+      }
+    }
+
+    function verifyPassword() {
+      const pwd = document.getElementById('passwordInput').value;
+      if (pwd === "0499") {
+        document.getElementById('passwordModalOverlay').classList.remove('active');
+        if (pendingUrl) {
+          window.open(pendingUrl, '_blank');
+          pendingUrl = "";
+        }
+      } else {
+        alert("密碼錯誤，請重新輸入！");
+        document.getElementById('passwordInput').value = '';
+        document.getElementById('passwordInput').focus();
+      }
+    }
+
+    function closeAlbum() {
+      document.getElementById('albumModalOverlay').classList.remove('active');
+      document.getElementById('albumModalCard').classList.remove('active');
+    }
+
+    function openLightbox(imgUrl, artistName) {
+      document.getElementById('lightboxImg').src = imgUrl;
+      document.getElementById('lightboxArtist').textContent = artistName || '';
+      document.getElementById('lightboxOverlay').classList.add('active');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightboxOverlay').classList.remove('active');
+    }
+
+    updateAnniversary();
+    initSlideshow();
+    displayRandomMoment();
   </script>
 </body>
 </html>

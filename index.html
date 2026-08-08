@@ -1886,7 +1886,7 @@
             <div class="char-avatar-box" style="width: 75px;">
               <img src="IMG_5006.png" alt="關於這裡" style="width: 100%; height: auto; display: block;">
             </div>
-            <div class="char-info-box female-bg" style="flex: 2;">
+            <div class="char-info-box female-bg" style="flex: 2; text-align: center;">
               <div class="char-detail">
                 <b>關於這裡</b>
               </div>
@@ -1895,7 +1895,7 @@
 
           <!-- 2. 表格 (對話框左，圖片右 -> reverse-layout) -->
           <div class="char-card reverse-layout memo-card-item" onclick="openMemoModal('tableContent')">
-            <div class="char-info-box female-bg" style="flex: 2;">
+            <div class="char-info-box female-bg" style="flex: 2; text-align: center;">
               <div class="char-detail">
                 <b>表格</b>
               </div>
@@ -1910,7 +1910,7 @@
             <div class="char-avatar-box" style="width: 75px;">
               <img src="IMG_5007.png" alt="一些梗/IF" style="width: 100%; height: auto; display: block;">
             </div>
-            <div class="char-info-box female-bg" style="flex: 2;">
+            <div class="char-info-box female-bg" style="flex: 2; text-align: center;">
               <div class="char-detail">
                 <b>一些梗/IF</b>
               </div>
@@ -1919,7 +1919,7 @@
 
           <!-- 4. 夢到哪句講哪句 (對話框左，圖片右 -> reverse-layout) -->
           <div class="char-card reverse-layout memo-card-item" onclick="openMemoModal('dreamSay')">
-            <div class="char-info-box female-bg" style="flex: 2;">
+            <div class="char-info-box female-bg" style="flex: 2; text-align: center;">
               <div class="char-detail">
                 <b>夢到哪句講哪句</b>
               </div>
@@ -2464,9 +2464,10 @@
           const item = document.createElement('div');
           item.className = 'album-grid-item';
           item.onclick = () => openLightbox(imgUrl, '');
+          // 修改處：將圖片外框和陰影拿掉，直接放兩張圖片
           item.innerHTML = `
-            <div class="album-grid-img-frame">
-              <img src="${imgUrl}" class="album-grid-img" alt="表格圖片">
+            <div style="width: 100%; background: transparent; box-shadow: none; border: none; overflow: hidden;">
+              <img src="${imgUrl}" style="width: 100%; height: auto; display: block; border-radius: 12px;" alt="表格圖片">
             </div>
           `;
           gridEl.appendChild(item);
@@ -2649,6 +2650,21 @@
       setDailyWeather();
       displayRandomNews();
       initSlideshow();
+
+      if (window.innerWidth >= 900) {
+        document.getElementById('desktopMenuLinks').style.display = 'flex';
+      }
+    });
+
+    window.addEventListener('resize', () => {
+      const desktopMenu = document.getElementById('desktopMenuLinks');
+      if (window.innerWidth >= 900) {
+        desktopMenu.style.display = 'flex';
+        document.getElementById('menuOverlay').classList.remove('active');
+        document.getElementById('menuPopup').classList.remove('active');
+      } else {
+        desktopMenu.style.display = 'none';
+      }
     });
   </script>
 </body>

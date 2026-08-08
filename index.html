@@ -18,11 +18,9 @@
 
     * {
       box-sizing: border-box;
-      /* 【新增】讓全站所有元素（包含按鈕、文字等）的電腦版游標都套用這張自訂圖片 */
       cursor: url('3dgSU8temYbeu9yKqT8gUN.png'), auto;
     }
 
-    /* 【新增】特別針對可點擊的按鈕或連結，確保游標依然維持你的自訂圖片（避免被預設的 pointer 蓋掉） */
     a, button, .menu-header, .menu-main-title, .menu-sub-btn, .album-card, .slide-arrow, .float-circle-btn, .moments-cover-container, .about-single-photo, .height-photo-box, .main-slide-box, .memo-card-item {
       cursor: url('3dgSU8temYbeu9yKqT8gUN.png'), pointer !important;
     }
@@ -253,7 +251,6 @@
       font-weight: bold;
     }
 
-    /* 目錄內容列表 */
     .menu-links {
       display: flex;
       flex-direction: column;
@@ -310,7 +307,6 @@
       color: #D87074;
     }
 
-    /* ===== 社群圖示區塊 ===== */
     .social-links {
       display: flex;
       justify-content: center;
@@ -332,7 +328,6 @@
       transform: scale(1.1);
     }
 
-    /* ===== 右側模仿戀與朋友圈的卡片風格 ===== */
     .moments-card {
       background: #FFFFFF;
       border: 2px solid #FCE1E4;
@@ -456,7 +451,6 @@
       color: #D87074;
     }
 
-    /* ===== 戀語市氣象預報卡片 ===== */
     .weather-card {
       background: #FFFFFF;
       border: 2px solid #FCE1E4;
@@ -512,7 +506,6 @@
       color: #6C7A89;
     }
 
-    /* ===== 戀語快報卡片 ===== */
     .news-card {
       background: #FFFFFF;
       border: 2px solid #FCE1E4;
@@ -573,7 +566,6 @@
       color: #D87074;
     }
 
-    /* ===== 內容卡片共用樣式 ===== */
     .page-card {
       position: relative;
       background: #FFFFFF;
@@ -628,7 +620,6 @@
       width: 100%;
     }
 
-    /* ===== 設計感主題分隔線 ===== */
     .custom-section-divider {
       display: flex;
       align-items: center;
@@ -665,7 +656,6 @@
       height: 0;
     }
 
-    /* ===== Character 對話氣泡框排版 ===== */
     .char-container {
       display: flex;
       flex-direction: column;
@@ -726,7 +716,7 @@
       padding: 14px 16px;
       border-radius: 18px;
       box-sizing: border-box;
-      text-align: center; /* 改為文字置中 */
+      text-align: center;
     }
 
     .char-info-box.male-bg {
@@ -767,7 +757,6 @@
       box-shadow: 0px 4px 10px rgba(226, 149, 152, 0.12);
     }
 
-    /* 氣泡框小三角：預設朝左 (當圖片在左、對話框在右時) */
     .char-info-box.female-bg::before {
       content: "";
       position: absolute;
@@ -794,7 +783,6 @@
       z-index: 2;
     }
 
-    /* 【新增】當氣泡框在左、圖片在右時，小三角改為朝右 */
     .char-card.reverse-layout .char-info-box.female-bg::before {
       left: auto;
       right: -9px;
@@ -809,7 +797,6 @@
       border-left: 9px solid rgba(255, 238, 241, 0.95);
     }
 
-    /* 【新增】Memo 專屬卡片懸停放大動態（仿 Article 資料夾效果） */
     .memo-card-item {
       transition: transform 0.25s ease;
     }
@@ -834,7 +821,6 @@
       display: inline;
     }
 
-    /* ===== About 內單張照片樣式 ===== */
     .about-single-photo {
       width: 100%;
       margin-top: 20px;
@@ -854,7 +840,6 @@
       border-radius: 12px;
     }
 
-    /* ===== Pro pic 相冊展示區塊 / 資料夾區塊 ===== */
     .albums-container {
       display: flex;
       justify-content: center;
@@ -923,7 +908,6 @@
       color: #D87074;
     }
 
-    /* ===== 相冊 Modal / 文章資料夾彈窗 (第一層彈窗) ===== */
     .album-modal-overlay {
       display: none;
       position: fixed;
@@ -1024,7 +1008,6 @@
       white-space: nowrap;
     }
 
-    /* ===== 文章清單專用：圓角長條形按鈕樣式 ===== */
     .article-buttons-container {
       display: flex;
       flex-direction: column;
@@ -1064,7 +1047,6 @@
       color: #D87074;
     }
 
-    /* ===== 密碼輸入彈窗專用 ===== */
     .password-modal-overlay {
       display: none;
       position: fixed;
@@ -1134,7 +1116,6 @@
       background: #C05B5F;
     }
 
-    /* ===== Lightbox 大圖放大觀看 ===== */
     .lightbox-overlay {
       display: none;
       position: fixed;
@@ -1182,7 +1163,6 @@
       text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
     }
 
-    /* ===== Painting 幻燈片輪播展示區塊樣式 (4:5 比例) ===== */
     .slideshow-container {
       position: relative;
       width: 100%;
@@ -1306,7 +1286,6 @@
       object-fit: cover;
     }
 
-    /* ===== 紀念日區塊 ===== */
     .anniversary-card {
       position: relative;
       padding: 15px 10px 5px 10px;
@@ -1384,7 +1363,6 @@
       font-weight: normal;
     }
 
-    /* ===== 右下角雙懸浮按鈕區塊 ===== */
     .floating-buttons-container {
       position: fixed;
       bottom: 25px;
@@ -1878,10 +1856,8 @@
           我都在做夢了就讓讓我吧！
         </p>
 
-        <!-- Memo 四個氣泡框區塊（左右交錯、文字置中、游標停駐放大） -->
+        <!-- Memo 四個氣泡框區塊 -->
         <div class="char-container">
-          
-          <!-- 1. 關於這裡 (圖片左，對話框右) -->
           <div class="char-card memo-card-item" onclick="openMemoModal('aboutHere')">
             <div class="char-avatar-box" style="width: 75px;">
               <img src="IMG_5006.png" alt="關於這裡" style="width: 100%; height: auto; display: block;">
@@ -1893,7 +1869,6 @@
             </div>
           </div>
 
-          <!-- 2. 表格 (對話框左，圖片右 -> reverse-layout) -->
           <div class="char-card reverse-layout memo-card-item" onclick="openMemoModal('tableContent')">
             <div class="char-info-box female-bg" style="flex: 2;">
               <div class="char-detail">
@@ -1905,7 +1880,6 @@
             </div>
           </div>
 
-          <!-- 3. 一些梗/IF (圖片左，對話框右) -->
           <div class="char-card memo-card-item" onclick="openMemoModal('someIf')">
             <div class="char-avatar-box" style="width: 75px;">
               <img src="IMG_5007.png" alt="一些梗/IF" style="width: 100%; height: auto; display: block;">
@@ -1917,7 +1891,6 @@
             </div>
           </div>
 
-          <!-- 4. 夢到哪句講哪句 (對話框左，圖片右 -> reverse-layout) -->
           <div class="char-card reverse-layout memo-card-item" onclick="openMemoModal('dreamSay')">
             <div class="char-info-box female-bg" style="flex: 2;">
               <div class="char-detail">
@@ -1928,7 +1901,6 @@
               <img src="IMG_5009.png" alt="夢到哪句講哪句" style="width: 100%; height: auto; display: block;">
             </div>
           </div>
-
         </div>
 
       </div>
@@ -1936,7 +1908,6 @@
 
     <!-- 右欄區塊 -->
     <div class="right-column mobile-show" id="rightColumn">
-      
       <div class="moments-card">
         <div class="moments-cover-container" onclick="openLightbox('IMG_3908.jpeg', '')">
           <img src="IMG_3908.jpeg" alt="封面背景" class="moments-cover-img">
@@ -1985,7 +1956,6 @@
           <i class="fa-solid fa-rotate-right"></i> 換一則新聞
         </button>
       </div>
-
     </div>
 
   </div>
@@ -2040,7 +2010,7 @@
     </div>
   </div>
 
-  <!-- 相冊 / 文章資料夾彈窗 (第一層 Modal) -->
+  <!-- 相冊 / 文章資料夾彈窗 -->
   <div class="album-modal-overlay" id="albumModalOverlay" onclick="closeAlbum()"></div>
   <div class="album-modal-card" id="albumModalCard">
     <div class="popup-close-btn" onclick="closeAlbum()">✕</div>
@@ -2057,7 +2027,7 @@
     </div>
   </div>
 
-  <!-- 全螢幕大圖放大 Lightbox (第二層) -->
+  <!-- 全螢幕大圖放大 Lightbox -->
   <div class="lightbox-overlay" id="lightboxOverlay" onclick="closeLightbox()">
     <div class="lightbox-img-box">
       <img src="" alt="大圖" id="lightboxImg" class="lightbox-img">
@@ -2067,17 +2037,20 @@
 
   <script>
     const loader = document.getElementById('loading-screen');
+    let isLoaderClosed = false;
 
     function hideLoader() {
-      if (loader) {
+      if (loader && !isLoaderClosed) {
+        isLoaderClosed = true;
         loader.classList.remove('show');
       }
     }
 
-    setTimeout(hideLoader, 1200);
+    // 【修改處】加入多重保險：即使圖片資源遺失卡住，最遲 1.5 秒也會強制關閉 loading 畫面
+    setTimeout(hideLoader, 1500);
 
     window.addEventListener('load', function() {
-      setTimeout(hideLoader, 300);
+      hideLoader();
     });
 
     function toggleMenu() {
@@ -2101,6 +2074,7 @@
 
     function switchPage(target) {
       loader.classList.add('show');
+      isLoaderClosed = false;
 
       setTimeout(() => {
         document.getElementById('page-home').classList.remove('active');
@@ -2643,13 +2617,12 @@
       document.getElementById('newsContent').textContent = news.content;
     }
 
-    window.addEventListener('DOMContentLoaded', () => {
-      updateAnniversary();
-      displayRandomMoment();
-      setDailyWeather();
-      displayRandomNews();
-      initSlideshow();
-    });
+    // 初始化執行
+    updateAnniversary();
+    displayRandomMoment();
+    initSlideshow();
+    setDailyWeather();
+    displayRandomNews();
   </script>
 </body>
 </html>

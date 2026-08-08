@@ -2472,13 +2472,19 @@
         area.appendChild(row);
       }
 
-      if (isTyping) {
+      if (isTyping && displayedMessageCount < currentSeries.length) {
+        const nextMsg = currentSeries[displayedMessageCount];
+        const isNextOther = nextMsg.sender === 'other';
+        const typingAvatar = isNextOther ? otherAvatar : meAvatar;
+        const typingName = isNextOther ? otherName : meName;
+        const typingRowClass = isNextOther ? 'other' : 'me';
+
         const typingRow = document.createElement('div');
-        typingRow.className = `chat-row other`;
+        typingRow.className = `chat-row ${typingRowClass}`;
         typingRow.innerHTML = `
-          <img src="${otherAvatar}" alt="avatar" class="chat-avatar">
+          <img src="${typingAvatar}" alt="avatar" class="chat-avatar">
           <div class="chat-content-wrap">
-            <div class="chat-sender-name">${otherName}</div>
+            <div class="chat-sender-name">${typingName}</div>
             <div class="chat-typing-indicator">⋯</div>
           </div>
         `;
@@ -2835,11 +2841,17 @@
       },
       someIf: {
         title: "一些梗/IF",
-        text: "收錄各種腦洞、平行世界設定或有趣的 IF 劇情梗。"
+        articles: [
+          { name: "青梅竹馬", url: "https://telegra.ph/%E9%9D%92%E6%A2%85%E7%AB%B9%E9%A6%AC-08-08", locked: false },
+          { name: "養父文學", url: "https://telegra.ph/%E9%A4%8A%E7%88%B6%E6%96%87%E5%AD%B8-08-08", locked: false }
+        ]
       },
       dreamSay: {
         title: "夢到哪句講哪句",
-        text: "隨興記錄夢境中出現的對話或突發奇想的語句。"
+        articles: [
+          { name: "關於我們叫支線組", url: "https://telegra.ph/%E9%97%9C%E6%96%BC%E6%88%91%E5%80%91%E5%8F%AB%E6%94%AF%E7%B7%9A%E7%B5%84-08-08", locked: false },
+          { name: "男大陪我備考", url: "https://telegra.ph/%E7%94%B7%E5%A4%A7%E9%99%AA%E6%88%91%E5%82%99%E8%80%83-08-08", locked: false }
+        ]
       }
     };
 
@@ -2865,6 +2877,23 @@
             </div>
           `;
           gridEl.appendChild(item);
+        });
+      } else if (memo.articles) {
+        gridEl.className = 'article-buttons-container';
+        gridEl.innerHTML = '';
+
+        memo.articles.forEach(art => {
+          const btn = document.createElement('a');
+          btn.className = 'article-btn';
+          if (art.locked) {
+            btn.innerHTML = `${art.name} <i class="fa-solid fa-lock"></i>`;
+            btn.onclick = () => openPasswordModal(art.url);
+          } else {
+            btn.href = art.url;
+            btn.target = "_blank";
+            btn.innerHTML = `${art.name}`;
+          }
+          gridEl.appendChild(btn);
         });
       } else {
         gridEl.className = 'article-buttons-container';

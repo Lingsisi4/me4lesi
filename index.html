@@ -2096,7 +2096,7 @@
         </div>
         <p style="margin: 10px 0; line-height: 1.7;">
           什麼都有的碎碎念和雜記。<br>
-          我都在做夢了就讓讓我吧！
+          我都在做夢了就讓讓我嘛！
         </p>
 
         <!-- Memo 四個氣泡框區塊 -->
@@ -2479,7 +2479,6 @@
       }
 
       if (isTyping) {
-        // 依照接下來要發送訊息的對象，決定正在輸入中符號要顯示在對方還是我方位置
         const nextMsg = currentSeries[displayedMessageCount];
         const isNextOther = !nextMsg || nextMsg.sender === 'other';
         const typingAvatar = isNextOther ? otherAvatar : meAvatar;
@@ -2630,7 +2629,6 @@
       `;
     }
 
-    /* ===== 戀語快報隨機新聞資料庫 ===== */
     const newsList = [
       {
         title: "再入文明城市光榮榜！",
@@ -2671,145 +2669,44 @@
     }
 
     const paintingSlides = [
-      { url: "IMG_9543 (1).JPG", artist: "©️嗶瞇" },
-      { url: "IMG_6353.JPG", artist: "©️妙兒" },
-      { url: "IMG_5610.png", artist: "©️哈尼" },
-      { url: "IMG_4419.PNG", artist: "©️綠松石" },
-      { url: "IMG_3848.JPG", artist: "©️椛糸" },
-      { url: "IMG_3847.JPG", artist: "©️白蔥" },
-      { url: "c83cfb1419920e062902d993772ea14f.png", artist: "©️夕犬" },
-      { url: "IMG_3846.PNG", artist: "©️Lilo Yurim" },
-      { url: "be02fc4e1db30ee362681c03fe9ac731.png", artist: "©️百晨" },
-      { url: "1784910373979.png", artist: "©️聿自弓長" },
-      { url: "92dc56679666351d783bad74fcad2fec.jpeg", artist: "©️咪咪ger" },
-      { url: "34a6ecae0f43e1cfa53b453ce93cda21.png", artist: "©️揚默" },
-      { url: "3bb3fb13d02c36895521e8bf3d4519bf.jpeg", artist: "©️池鳥安川" },
-      { url: "IMG_4940.jpeg", artist: "©️林檎" }
+      { url: "IMG_9543 (1).JPG", artist: "©️嗶瞇" }
     ];
 
-    let currentSlideIndex = 0;
+    /* ===== 修改後的 Memo 彈窗對應內容邏輯 (「關於這裡」已更新) ===== */
+    function openMemoModal(type) {
+      const modalHeader = document.getElementById('albumModalHeader');
+      const albumGrid = document.getElementById('albumGrid');
+      
+      albumGrid.innerHTML = '';
+      albumGrid.style.display = 'block';
 
-    function initSlideshow() {
-      const mainImg = document.getElementById('mainSlideImg');
-      const mainArtist = document.getElementById('mainSlideArtist');
-      const thumbsContainer = document.getElementById('thumbnailsContainer');
-      thumbsContainer.innerHTML = '';
+      if (type === 'aboutHere') {
+        modalHeader.innerHTML = '<img src="IMG_5006.png" style="width:24px;height:24px;object-fit:contain;"> 關於這裡';
+        albumGrid.innerHTML = `
+          <div style="font-size: 0.9rem; line-height: 1.8; color: #5C4A4A; text-align: left; padding: 5px 10px; white-space: pre-wrap;">完全腦子一熱就開始寫的網站。
+原本是用notion但排版實在太無聊了，人一閒起來真的什麼事都能做到。。ㄣ。。
+但因為我完全不會寫程式！所以跟AI大戰了好幾百回合⋯ㄏㄏ⋯中途還因為AI一直聽不懂人話罵他是不是有病，他回我他只是一個語言模型⋯⋯😭✋🏻完全不知道該哭還是該笑～^_^
 
-      paintingSlides.forEach((slide, index) => {
-        const thumb = document.createElement('div');
-        thumb.className = `thumb-item ${index === 0 ? 'active' : ''}`;
-        thumb.innerHTML = `<img src="${slide.url}" alt="thumb" class="thumb-img">`;
-        thumb.onclick = () => setSlide(index);
-        thumbsContainer.appendChild(thumb);
-      });
+斷斷續續寫了一段時間，但還是有很多不太完美的地方。常常想到什麼就鞭笞AI給我加上去，刪刪減減又加了有的沒的東西，才終於弄到勉強滿意的樣子。
+大概還是會慢慢增加一點小東西，畢竟我們還在一起，回憶肯定會越來越多的～♡
 
-      updateSlideContent();
-    }
-
-    function setSlide(index) {
-      currentSlideIndex = index;
-      updateSlideContent();
-    }
-
-    function changeSlide(direction) {
-      currentSlideIndex += direction;
-      if (currentSlideIndex < 0) {
-        currentSlideIndex = paintingSlides.length - 1;
-      } else if (currentSlideIndex >= paintingSlides.length) {
-        currentSlideIndex = 0;
-      }
-      updateSlideContent();
-    }
-
-    function updateSlideContent() {
-      const slide = paintingSlides[currentSlideIndex];
-      const mainImg = document.getElementById('mainSlideImg');
-      const mainArtist = document.getElementById('mainSlideArtist');
-
-      mainImg.style.opacity = 0;
-      setTimeout(() => {
-        mainImg.src = slide.url;
-        mainArtist.textContent = slide.artist;
-        mainImg.style.opacity = 1;
-      }, 150);
-
-      const thumbs = document.querySelectorAll('.thumb-item');
-      thumbs.forEach((t, i) => {
-        if (i === currentSlideIndex) {
-          t.classList.add('active');
-          t.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
-        } else {
-          t.classList.remove('active');
-        }
-      });
-    }
-
-    function openCurrentSlideLightbox() {
-      const slide = paintingSlides[currentSlideIndex];
-      openLightbox(slide.url, slide.artist);
-    }
-
-    function openLightbox(imgSrc, artistText) {
-      const overlay = document.getElementById('lightboxOverlay');
-      const img = document.getElementById('lightboxImg');
-      const artist = document.getElementById('lightboxArtist');
-
-      img.src = imgSrc;
-      artist.textContent = artistText || '';
-      overlay.classList.add('active');
-    }
-
-    function closeLightbox() {
-      document.getElementById('lightboxOverlay').classList.remove('active');
-    }
-
-    function openAlbum(type) {
-      const overlay = document.getElementById('albumModalOverlay');
-      const card = document.getElementById('albumModalCard');
-      const header = document.getElementById('albumModalHeader');
-      const grid = document.getElementById('albumGrid');
-
-      grid.innerHTML = '';
-
-      if (type === 'shaw') {
-        header.innerHTML = '<img src="IMG_4922.gif" alt="gif" class="album-gif"><span style="color: #6C7A89;">凌肖官圖相冊參考</span>';
-        const shawImages = [
-          { url: "IMG_4654.jpeg", artist: "官方立繪" },
-          { url: "SmartSelect_20260726_002942_Samsung Browser.jpg", artist: "官方設定" },
-          { url: "IMG_3908.jpeg", artist: "官方朋友圈" },
-          { url: "IMG_4766.jpeg", artist: "官方頭像" }
-        ];
-        shawImages.forEach(img => {
-          grid.innerHTML += `
-            <div class="album-grid-item" onclick="openLightbox('${img.url}', '${img.artist}')">
-              <div class="album-grid-img-frame">
-                <img src="${img.url}" alt="${img.artist}" class="album-grid-img">
-              </div>
-              <div class="artist-tag">${img.artist}</div>
-            </div>
-          `;
-        });
-      } else if (type === 'sisi') {
-        header.innerHTML = '<img src="IMG_4921.gif" alt="gif" class="album-gif"><span style="color: #D87074;">余思思設定相冊參考</span>';
-        const sisiImages = [
-          { url: "IMG_3857.jpeg", artist: "人設繪圖" },
-          { url: "2A8771DF-0E6F-4642-A362-18275F78E31D.png.jpg", artist: "大頭貼設定" },
-          { url: "無標題1_20260726005104.jpeg", artist: "設定全圖" }
-        ];
-        sisiImages.forEach(img => {
-          grid.innerHTML += `
-            <div class="album-grid-item" onclick="openLightbox('${img.url}', '${img.artist}')">
-              <div class="album-grid-img-frame">
-                <img src="${img.url}" alt="${img.artist}" class="album-grid-img">
-              </div>
-              <div class="artist-tag">${img.artist}</div>
-            </div>
-          `;
-        });
+總之人生第一次寫程式就獻給我們小凌！
+希望我最愛的凌肖能一路坦途，唱著喜歡的歌，成為想成為的人。
+下一次見面，我們都不要遲到了。</div>
+        `;
+      } else if (type === 'tableContent') {
+        modalHeader.innerHTML = '<img src="IMG_5005.png" style="width:24px;height:24px;object-fit:contain;"> 表格';
+        albumGrid.innerHTML = `<div style="padding: 20px; text-align: center; color: #A08888;">（表格內容建構中...）</div>`;
+      } else if (type === 'someIf') {
+        modalHeader.innerHTML = '<img src="IMG_5007.png" style="width:24px;height:24px;object-fit:contain;"> 一些梗/IF';
+        albumGrid.innerHTML = `<div style="padding: 20px; text-align: center; color: #A08888;">（一些梗/IF 內容建構中...）</div>`;
+      } else if (type === 'dreamSay') {
+        modalHeader.innerHTML = '<img src="IMG_5009.png" style="width:24px;height:24px;object-fit:contain;"> 夢到哪句講哪句';
+        albumGrid.innerHTML = `<div style="padding: 20px; text-align: center; color: #A08888;">（夢到哪句講哪句 內容建構中...）</div>`;
       }
 
-      overlay.classList.add('active');
-      card.classList.add('active');
+      document.getElementById('albumModalOverlay').classList.add('active');
+      document.getElementById('albumModalCard').classList.add('active');
     }
 
     function closeAlbum() {
@@ -2817,114 +2714,15 @@
       document.getElementById('albumModalCard').classList.remove('active');
     }
 
-    function openArticleFolder(folderType) {
-      const overlay = document.getElementById('albumModalOverlay');
-      const card = document.getElementById('albumModalCard');
-      const header = document.getElementById('albumModalHeader');
-      const grid = document.getElementById('albumGrid');
-
-      grid.innerHTML = '';
-      grid.style.gridTemplateColumns = '1fr';
-
-      if (folderType === 'shouza') {
-        header.innerHTML = '<img src="IMG_3990.gif" alt="gif" class="album-gif"><span style="color: #5C4A4A;">手札文章列表</span>';
-        grid.innerHTML = `
-          <div class="article-buttons-container">
-            <a href="https://example.com/article1" target="_blank" class="article-btn">
-              <span>【短篇】午後的氣泡汽水</span>
-            </a>
-            <a href="https://example.com/article2" target="_blank" class="article-btn">
-              <span>【日常】雨天與貓與你</span>
-            </a>
-            <a href="javascript:void(0)" onclick="openPasswordModalForLink('https://example.com/r18')" class="article-btn">
-              <span>【R18】深夜限定的秘密約定</span>
-              <i class="fa-solid fa-lock"></i>
-            </a>
-          </div>
-        `;
-      } else if (folderType === 'chuanchang') {
-        header.innerHTML = '<img src="IMG_3840.gif" alt="gif" class="album-gif"><span style="color: #5C4A4A;">傳唱文章列表</span>';
-        grid.innerHTML = `
-          <div class="article-buttons-container">
-            <a href="https://example.com/song1" target="_blank" class="article-btn">
-              <span>印象曲歌詞創作 01</span>
-            </a>
-            <a href="https://example.com/song2" target="_blank" class="article-btn">
-              <span>印象曲歌詞創作 02</span>
-            </a>
-          </div>
-        `;
-      }
-
-      overlay.classList.add('active');
-      card.classList.add('active');
+    function openLightbox(imgSrc, artistName) {
+      document.getElementById('lightboxImg').src = imgSrc;
+      document.getElementById('lightboxArtist').textContent = artistName;
+      document.getElementById('lightboxOverlay').classList.add('active');
     }
 
-    let pendingLink = '';
-
-    function openPasswordModalForLink(link) {
-      pendingLink = link;
-      document.getElementById('passwordInput').value = '';
-      document.getElementById('passwordModalOverlay').classList.add('active');
+    function closeLightbox() {
+      document.getElementById('lightboxOverlay').classList.remove('active');
     }
-
-    function closePasswordModal(e) {
-      document.getElementById('passwordModalOverlay').classList.remove('active');
-    }
-
-    function verifyPassword() {
-      const pwd = document.getElementById('passwordInput').value;
-      if (pwd === '0311') { // 預設密碼為生日或其他密碼，可自行更改
-        document.getElementById('passwordModalOverlay').classList.remove('active');
-        window.open(pendingLink, '_blank');
-      } else {
-        alert('密碼錯誤，請重新輸入！');
-        document.getElementById('passwordInput').value = '';
-      }
-    }
-
-    function openMemoModal(memoType) {
-      const overlay = document.getElementById('albumModalOverlay');
-      const card = document.getElementById('albumModalCard');
-      const header = document.getElementById('albumModalHeader');
-      const grid = document.getElementById('albumGrid');
-
-      grid.innerHTML = '';
-      grid.style.gridTemplateColumns = '1fr';
-
-      let title = '';
-      let content = '';
-
-      if (memoType === 'aboutHere') {
-        title = '關於這裡';
-        content = '這裡是存放有關凌肖與余思思一切夢向創作與委託資料的小天地。感謝所有陪伴與路過的老師們！';
-      } else if (memoType === 'tableContent') {
-        title = '表格';
-        content = '這裡可以放置各種夢向設定表格、關係表或Q&A問答內容。';
-      } else if (memoType === 'someIf') {
-        title = '一些梗/IF';
-        content = '收錄各種腦洞大開的IF線平行世界，像是校園paro、 cyberpunk paro 等設定。';
-      } else if (memoType === 'dreamSay') {
-        title = '夢到哪句講哪句';
-        content = '日常胡言亂語與做夢語錄大集合，記錄當下靈感與心情。';
-      }
-
-      header.innerHTML = `<span style="color: #D87074;">${title}</span>`;
-      grid.innerHTML = `
-        <div style="padding: 10px; font-size: 0.9rem; line-height: 1.8; color: #5C4A4A; text-align: left;">
-          ${content}
-        </div>
-      `;
-
-      overlay.classList.add('active');
-      card.classList.add('active');
-    }
-
-    // 初始化執行
-    updateAnniversary();
-    displayRandomMoment();
-    displayRandomNews();
-    initSlideshow();
   </script>
 </body>
 </html>

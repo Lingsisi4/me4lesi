@@ -2080,49 +2080,7 @@
           <span class="custom-divider-text">Song</span>
           <div class="custom-divider-line"></div>
         </div>
-        <p style="margin: 10px 0;">和凌肖有關的歌曲大雜燴。</p>
-        <!-- 歌曲列表 -->
-        <div class="song-group">
-            <div class="song-group-title">印象曲</div>
-            <div class="song-list">
-                <div class="song-item" onclick="window.open('https://www.youtube.com/watch?v=m4hot5aa9yE', '_blank')">2019聖誕節計畫——選擇</div>
-            </div>
-        </div>
-
-        <div class="song-group">
-            <div class="song-group-title">官方BGM</div>
-            <div class="song-list">
-                <div class="song-item" onclick="playAudio('bgm.mp3')">至燃至盛夏</div>
-                <div class="song-item" onclick="playAudio('[DLBunny.com][bilibili]凌肖生日BGM.至燃至盛夏｜侵袭.mp3')">侵襲</div>
-                <div class="song-item" onclick="playAudio('[DLBunny.com][bilibili]凌肖生日BGM.至燃至盛夏｜熱 (2).mp3')">邂逅</div>
-                <div class="song-item" onclick="playAudio('[DLBunny.com][bilibili]凌肖相關BGM文件自用.mp3')">破光而至I</div>
-                <div class="song-item" onclick="playAudio('[DLBunny.com][bilibili]凌肖相關BGM文件自用(1).mp3')">破光而至II</div>
-                <div class="song-item" onclick="playAudio('[DLBunny.com][bilibili]凌肖相關BGM文件自用(2).mp3')">並行</div>
-                <div class="song-item" onclick="playAudio('[DLBunny.com][bilibili]凌肖相關BGM文件自用(3).mp3')">秘雨</div>
-                <div class="song-item" onclick="playAudio('ScreenRecording_08-09-2026_01-35-36_1.mp3')">就是愛掃雷</div>
-            </div>
-        </div>
-
-        <div class="song-group">
-            <div class="song-group-title">一些我覺得適合的</div>
-            <div class="song-list">
-                <div class="song-item" onclick="window.open('https://www.youtube.com/watch?v=oec9R5ypf-o&list=RDoec9R5ypf-o&start_radio=1', '_blank')">雨愛</div>
-                <div class="song-item" onclick="window.open('https://www.youtube.com/watch?v=iFbbnzR2E88&list=RDiFbbnzR2E88&start_radio=1', '_blank')">The Other Side Of Paradise</div>
-            </div>
-
-  <!-- 音樂播放器元件 -->
-  <audio id="dynamic-player"></audio>
-
-  <script>
-    function playAudio(filename) {
-        const player = document.getElementById('dynamic-player');
-        if (player.src.endsWith(filename) && !player.paused) {
-            player.pause();
-        } else {
-            player.src = filename;
-            player.play();
-        }
-    }
+        <p style="margin: 10px 0;">印象曲或音樂清單。</p>
 
         <!-- 4. Memo 分隔線 -->
         <div class="custom-section-divider align-right" id="dream-memo">
@@ -2464,7 +2422,7 @@
         { sender: 'other', text: '可惜要讓你失望了' },
         { sender: 'other', text: '鬧鐘還沒響，我就到教室了。' },
         { sender: 'me', text: '！！！告訴我，你在一間空教室對不對？' },
-        { sender: 'other', text: '對，我沒有在一百過的教室裡代課。' },
+        { sender: 'other', text: '對，我沒有在一百個人的教室裡代課。' },
         { sender: 'other', text: '也沒人問「助教居然用女朋友的歌聲當鬧鈴啊？」' },
         { sender: 'other', text: '滿意了？' },
         { sender: 'me', text: '我下次不給你定鬧鐘了！！！' }

@@ -2178,7 +2178,7 @@
         text: "難得看到這麼標準的寄居蟹。",
         date: "2026年8月3日",
         sisi: "可惡，怎麼每次你趕海都能發現好玩的！",
-        shaw: "不止趕海，我去哪都能發現好玩的，所以你得跟緊我<3"[cite: 2]
+        shaw: "不止趕海，我去哪都能發現好玩的，所以你得跟緊我<3"
       },
       {
         text: "海豹在玻璃前來了個急轉彎就游走了，但有些人還是被嚇得閉上了眼睛。",
@@ -2643,13 +2643,12 @@
       document.getElementById('newsContent').textContent = news.content;
     }
 
-    window.addEventListener('DOMContentLoaded', () => {
-      updateAnniversary();
-      displayRandomMoment();
-      setDailyWeather();
-      displayRandomNews();
-      initSlideshow();
-    });
+    // 初始化執行
+    updateAnniversary();
+    displayRandomMoment();
+    setDailyWeather();
+    displayRandomNews();
+    initSlideshow();
   </script>
 </body>
 </html>

@@ -23,7 +23,7 @@
     }
 
     /* 【新增】特別針對可點擊的按鈕或連結，確保游標依然維持你的自訂圖片（避免被預設的 pointer 蓋掉） */
-    a, button, .menu-header, .menu-main-title, .menu-sub-btn, .album-card, .slide-arrow, .float-circle-btn, .moments-cover-container, .about-single-photo, .height-photo-box, .main-slide-box, .memo-card-item, .chat-box-container {
+    a, button, .menu-header, .menu-main-title, .menu-sub-btn, .album-card, .char-more-btn, .song-folder, .slide-arrow, .float-circle-btn, .moments-cover-container, .about-single-photo, .height-photo-box, .main-slide-box, .memo-card-item, .chat-box-container {
       cursor: url('3dgSU8temYbeu9yKqT8gUN.png'), pointer !important;
     }
 
@@ -710,6 +710,189 @@
       font-weight: 700;
       text-align: center;
       white-space: nowrap;
+    }
+
+    /* ===== Character More 按鈕 ===== */
+    .char-more-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+      padding: 1px 7px;
+      border: none;
+      background: transparent;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      text-decoration: none;
+      transition: color 0.2s, transform 0.2s;
+    }
+
+    .char-more-btn.male-more {
+      color: #AAB3C0;
+    }
+
+    .char-more-btn.female-more {
+      color: #E9A9AF;
+    }
+
+    .char-more-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .char-more-btn.male-more:hover {
+      color: #6C7A89;
+    }
+
+    .char-more-btn.female-more:hover {
+      color: #D87074;
+    }
+
+    /* ===== Character More 詳細資料彈窗 ===== */
+    .character-more-modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      background: #FFFFFF;
+      border: 2px solid #FCE1E4;
+      border-radius: 20px;
+      padding: 25px 22px 22px 22px;
+      width: 90%;
+      max-width: 390px;
+      max-height: 78vh;
+      overflow-y: auto;
+      z-index: 1150;
+      opacity: 0;
+      box-shadow: 0px 10px 25px rgba(226, 149, 152, 0.25);
+      transition: all 0.3s ease;
+      text-align: left;
+    }
+
+    .character-more-modal.active {
+      display: block;
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .character-more-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding-bottom: 9px;
+      margin-bottom: 13px;
+      border-bottom: 1px dashed #FCE1E4;
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+
+    .character-more-text {
+      font-size: 0.86rem;
+      line-height: 1.85;
+      color: #5C4A4A;
+      text-align: left;
+    }
+
+    .character-more-text p {
+      margin: 0 0 11px 0;
+    }
+
+    .character-more-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    .character-more-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(92, 74, 74, 0.18);
+      backdrop-filter: blur(3px);
+      z-index: 1140;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .character-more-overlay.active {
+      display: block;
+      opacity: 1;
+    }
+
+    /* ===== Song 資料夾式長條按鈕 ===== */
+    .song-folder-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 5px 10px;
+      margin-top: 12px;
+    }
+
+    .song-folder {
+      width: 100%;
+      border: 2px solid #FCE1E4;
+      border-radius: 30px;
+      padding: 12px 20px;
+      background: #FFFDF9;
+      color: #5C4A4A;
+      box-shadow: 0px 3px 8px rgba(226, 149, 152, 0.1);
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-align: center;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .song-folder:hover {
+      background: #FCE1E4;
+      color: #D87074;
+      transform: translateY(-2px);
+      box-shadow: 0px 5px 12px rgba(226, 149, 152, 0.2);
+    }
+
+    .song-folder i {
+      position: absolute;
+      right: 18px;
+      color: #D87074;
+      font-size: 0.8rem;
+      transition: transform 0.2s ease;
+    }
+
+    .song-folder.active i {
+      transform: rotate(180deg);
+    }
+
+    .song-folder-content {
+      display: none;
+      flex-direction: column;
+      gap: 7px;
+      padding: 9px 14px 2px 14px;
+      text-align: center;
+      animation: songReveal 0.25s ease;
+    }
+
+    .song-folder-content.active {
+      display: flex;
+    }
+
+    .song-link {
+      text-decoration: none;
+      color: #5C4A4A;
+      transition: color 0.2s;
+      line-height: 1.5;
+    }
+
+    .song-link:hover {
+      color: #F8BBD0;
+    }
+
+    @keyframes songReveal {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .char-name-below.male-color {
@@ -1903,6 +2086,7 @@
                 <img src="SmartSelect_20260726_002942_Samsung Browser.jpg" alt="凌肖" class="char-avatar-img">
               </div>
               <div class="char-name-below male-color">凌肖</div>
+              <button type="button" class="char-more-btn male-more" onclick="openCharacterMore('shaw')">More</button>
             </div>
             <div class="char-info-box male-bg">
               <div class="char-detail">
@@ -1929,6 +2113,7 @@
                 <img src="2A8771DF-0E6F-4642-A362-18275F78E31D.png.jpg" alt="余思思" class="char-avatar-img">
               </div>
               <div class="char-name-below female-color">余思思</div>
+              <button type="button" class="char-more-btn female-more" onclick="openCharacterMore('sisi')">More</button>
             </div>
           </div>
 
@@ -2081,19 +2266,8 @@
           <div class="custom-divider-line"></div>
         </div>
 
-        <style>
-          .song-link {
-            text-decoration: none; 
-            color: #5C4A4A; 
-            transition: color 0.2s;
-          }
-          .song-link:hover {
-            color: #F8BBD0; /* 滑鼠懸停變為粉色 */
-          }
-        </style>
-
         <div style="text-align: center; padding: 0 10px 10px 10px;">
-          
+
           <p style="margin: 10px 0; line-height: 1.7; font-size: 0.95rem; color: #5C4A4A;">
             簡單列一些和凌肖有關的音樂，<br>
             點選歌名會連結到歌曲頁面。
@@ -2104,22 +2278,34 @@
             <a href="https://www.youtube.com/watch?v=m4hot5aa9yE" target="_blank" class="song-link">2019聖誕節計畫——選擇</a>
           </div>
 
-          <div style="font-weight: 700; color: #D87074; margin: 15px 0 2px 0;">官方BGM</div>
-          <div style="margin-bottom: 10px; font-size: 0.75rem; color: #A08888;">感謝B站主播整理。</div>
-          <div style="display: flex; flex-direction: column; gap: 6px;">
-            <a href="https://www.bilibili.com/video/BV1yD4y1D7sb?buvid=YA4FABAD19A0DE2149F197B6E9F7ADEAF5C4&from_spmid=search.search-result.0.0&is_story_h5=false&mid=HbSPY7IrFHktyJUZi%2BLvQQ%3D%3D&plat_id=116&share_from=ugc&share_medium=iphone&share_plat=ios&share_session_id=162EC68C-F85A-4AFD-8514-F0241EA6557C&share_source=COPY&share_tag=s_i&spmid=united.player-video-detail.0.0&timestamp=1786208455&unique_k=3Wn0uJV&up_id=49986123" target="_blank" class="song-link">至燃至盛夏</a>
-            <a href="https://www.bilibili.com/video/BV1yD4y1D7sb/?buvid=YA4FABAD19A0DE2149F197B6E9F7ADEAF5C4&from_spmid=united.player-video-detail.0.0&is_story_h5=false&mid=HbSPY7IrFHktyJUZi%2BLvQQ%3D%3D&p=2&plat_id=116&share_from=ugc&share_medium=iphone&share_plat=ios&share_session_id=EF651AF9-B97E-417C-B1B1-B567282BEE90&share_source=COPY&share_tag=s_i&spmid=united.player-video-detail.0.0&timestamp=1786208486&unique_k=ZTiYFKM&up_id=49986123" target="_blank" class="song-link">侵襲</a>
-            <a href="https://www.bilibili.com/video/BV1yD4y1D7sb/?buvid=YA4FABAD19A0DE2149F197B6E9F7ADEAF5C4&from_spmid=united.player-video-detail.0.0&is_story_h5=false&mid=HbSPY7IrFHktyJUZi%2BLvQQ%3D%3D&p=3&plat_id=116&share_from=ugc&share_medium=iphone&share_plat=ios&share_session_id=1FF32CFC-EE11-489A-A2E9-A81BB728026D&share_source=COPY&share_tag=s_i&spmid=united.player-video-detail.0.0&timestamp=1786208533&unique_k=2F12Y0F&up_id=49986123" target="_blank" class="song-link">邂逅</a>
-            <a href="https://www.bilibili.com/video/BV1XP4y1U7G6?buvid=YA4FABAD19A0DE2149F197B6E9F7ADEAF5C4&from_spmid=search.search-result.0.0&is_story_h5=false&mid=HbSPY7IrFHktyJUZi%2BLvQQ%3D%3D&plat_id=116&share_from=ugc&share_medium=iphone&share_plat=ios&share_session_id=FE213987-258E-4917-832A-03BBF2042A61&share_source=COPY&share_tag=s_i&spmid=united.player-video-detail.0.0&timestamp=1786208679&unique_k=GrumhdT&up_id=7311817" target="_blank" class="song-link">破光而至I</a>
-            <a href="https://www.bilibili.com/video/BV1XP4y1U7G6/?buvid=YA4FABAD19A0DE2149F197B6E9F7ADEAF5C4&from_spmid=united.player-video-detail.0.0&is_story_h5=false&mid=HbSPY7IrFHktyJUZi%2BLvQQ%3D%3D&p=2&plat_id=116&share_from=ugc&share_medium=iphone&share_plat=ios&share_session_id=36C3180F-A9ED-4655-AC2A-D4B4FAAA480F&share_source=COPY&share_tag=s_i&spmid=united.player-video-detail.0.0&timestamp=1786208766&unique_k=aAe1nrf&up_id=7311817" target="_blank" class="song-link">破光而至II</a>
-            <a href="https://www.bilibili.com/video/BV1XP4y1U7G6/?buvid=YA4FABAD19A0DE2149F197B6E9F7ADEAF5C4&from_spmid=united.player-video-detail.0.0&is_story_h5=false&mid=HbSPY7IrFHktyJUZi%2BLvQQ%3D%3D&p=5&plat_id=116&share_from=ugc&share_medium=iphone&share_plat=ios&share_session_id=4FBA5644-AC9B-4D78-A867-B4E9A97AD1CA&share_source=COPY&share_tag=s_i&spmid=united.player-video-detail.0.0&timestamp=1786208836&unique_k=OC9Nsay&up_id=7311817" target="_blank" class="song-link">並行</a>
-            <a href="https://www.bilibili.com/video/BV1XP4y1U7G6/?buvid=YA4FABAD19A0DE2149F197B6E9F7ADEAF5C4&from_spmid=united.player-video-detail.0.0&is_story_h5=false&mid=HbSPY7IrFHktyJUZi%2BLvQQ%3D%3D&p=6&plat_id=116&share_from=ugc&share_medium=iphone&share_plat=ios&share_session_id=307DFFF6-42C9-4851-9C33-D2671B0CCF33&share_source=COPY&share_tag=s_i&spmid=united.player-video-detail.0.0&timestamp=1786208871&unique_k=vRMKLXG&up_id=7311817" target="_blank" class="song-link">秘雨</a>
-          </div>
+          <div class="song-folder-container">
+            <div class="song-folder-group">
+              <button type="button" class="song-folder" onclick="toggleSongCategory('officialBgm', this)">
+                官方BGM
+                <i class="fa-solid fa-chevron-down"></i>
+              </button>
+              <div id="officialBgm" class="song-folder-content">
+                <div style="margin-bottom: 2px; font-size: 0.75rem; color: #A08888;">感謝B站主播整理。</div>
+                <a href="https://www.bilibili.com/video/BV1yD4y1D7sb?buvid=YA4FABAD19A0DE2149F197B6E9F7ADEAF5C4&from_spmid=search.search-result.0.0&is_story_h5=false&mid=HbSPY7IrFHktyJUZi%2BLvQQ%3D%3D&plat_id=116&share_from=ugc&share_medium=iphone&share_plat=ios&share_session_id=162EC68C-F85A-4AFD-8514-F0241EA6557C&share_source=COPY&share_tag=s_i&spmid=united.player-video-detail.0.0&timestamp=1786208455&unique_k=3Wn0uJV&up_id=49986123" target="_blank" class="song-link">至燃至盛夏</a>
+                <a href="https://www.bilibili.com/video/BV1yD4y1D7sb/?buvid=YA4FABAD19A0DE2149F197B6E9F7ADEAF5C4&from_spmid=united.player-video-detail.0.0&is_story_h5=false&mid=HbSPY7IrFHktyJUZi%2BLvQQ%3D%3D&p=2&plat_id=116&share_from=ugc&share_medium=iphone&share_plat=ios&share_session_id=EF651AF9-B97E-417C-B1B1-B567282BEE90&share_source=COPY&share_tag=s_i&spmid=united.player-video-detail.0.0&timestamp=1786208486&unique_k=ZTiYFKM&up_id=49986123" target="_blank" class="song-link">侵襲</a>
+                <a href="https://www.bilibili.com/video/BV1yD4y1D7sb/?buvid=YA4FABAD19A0DE2149F197B6E9F7ADEAF5C4&from_spmid=united.player-video-detail.0.0&is_story_h5=false&mid=HbSPY7IrFHktyJUZi%2BLvQQ%3D%3D&p=3&plat_id=116&share_from=ugc&share_medium=iphone&share_plat=ios&share_session_id=1FF32CFC-EE11-489A-A2E9-A81BB728026D&share_source=COPY&share_tag=s_i&spmid=united.player-video-detail.0.0&timestamp=1786208533&unique_k=2F12Y0F&up_id=49986123" target="_blank" class="song-link">邂逅</a>
+                <a href="https://www.bilibili.com/video/BV1XP4y1U7G6?buvid=YA4FABAD19A0DE2149F197B6E9F7ADEAF5C4&from_spmid=search.search-result.0.0&is_story_h5=false&mid=HbSPY7IrFHktyJUZi%2BLvQQ%3D%3D&plat_id=116&share_from=ugc&share_medium=iphone&share_plat=ios&share_session_id=FE213987-258E-4917-832A-03BBF2042A61&share_source=COPY&share_tag=s_i&spmid=united.player-video-detail.0.0&timestamp=1786208679&unique_k=GrumhdT&up_id=7311817" target="_blank" class="song-link">破光而至I</a>
+                <a href="https://www.bilibili.com/video/BV1XP4y1U7G6/?buvid=YA4FABAD19A0DE2149F197B6E9F7ADEAF5C4&from_spmid=united.player-video-detail.0.0&is_story_h5=false&mid=HbSPY7IrFHktyJUZi%2BLvQQ%3D%3D&p=2&plat_id=116&share_from=ugc&share_medium=iphone&share_plat=ios&share_session_id=36C3180F-A9ED-4655-AC2A-D4B4FAAA480F&share_source=COPY&share_tag=s_i&spmid=united.player-video-detail.0.0&timestamp=1786208766&unique_k=aAe1nrf&up_id=7311817" target="_blank" class="song-link">破光而至II</a>
+                <a href="https://www.bilibili.com/video/BV1XP4y1U7G6/?buvid=YA4FABAD19A0DE2149F197B6E9F7ADEAF5C4&from_spmid=united.player-video-detail.0.0&is_story_h5=false&mid=HbSPY7IrFHktyJUZi%2BLvQQ%3D%3D&p=5&plat_id=116&share_from=ugc&share_medium=iphone&share_plat=ios&share_session_id=4FBA5644-AC9B-4D78-A867-B4E9A97AD1CA&share_source=COPY&share_tag=s_i&spmid=united.player-video-detail.0.0&timestamp=1786208836&unique_k=OC9Nsay&up_id=7311817" target="_blank" class="song-link">並行</a>
+                <a href="https://www.bilibili.com/video/BV1XP4y1U7G6/?buvid=YA4FABAD19A0DE2149F197B6E9F7ADEAF5C4&from_spmid=united.player-video-detail.0.0&is_story_h5=false&mid=HbSPY7IrFHktyJUZi%2BLvQQ%3D%3D&p=6&plat_id=116&share_from=ugc&share_medium=iphone&share_plat=ios&share_session_id=307DFFF6-42C9-4851-9C33-D2671B0CCF33&share_source=COPY&share_tag=s_i&spmid=united.player-video-detail.0.0&timestamp=1786208871&unique_k=vRMKLXG&up_id=7311817" target="_blank" class="song-link">秘雨</a>
+              </div>
+            </div>
 
-          <div style="font-weight: 700; color: #D87074; margin: 15px 0 5px 0;">我覺得適合的</div>
-          <div style="display: flex; flex-direction: column; gap: 6px;">
-            <a href="https://www.youtube.com/watch?v=oec9R5ypf-o&list=RDoec9R5ypf-o&start_radio=1" target="_blank" class="song-link">雨愛</a>
-            <a href="https://www.youtube.com/watch?v=iFbbnzR2E88&list=RDiFbbnzR2E88&start_radio=1" target="_blank" class="song-link">The Other Side Of Paradise</a>
+            <div class="song-folder-group">
+              <button type="button" class="song-folder" onclick="toggleSongCategory('suitableSongs', this)">
+                我覺得適合的
+                <i class="fa-solid fa-chevron-down"></i>
+              </button>
+              <div id="suitableSongs" class="song-folder-content">
+                <a href="https://www.youtube.com/watch?v=oec9R5ypf-o&list=RDoec9R5ypf-o&start_radio=1" target="_blank" class="song-link">雨愛</a>
+                <a href="https://www.youtube.com/watch?v=iFbbnzR2E88&list=RDiFbbnzR2E88&start_radio=1" target="_blank" class="song-link">The Other Side Of Paradise</a>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -2249,6 +2435,14 @@
       <button class="chat-option-btn" onclick="selectChatSeries(1)">發錯訊息</button>
       <button class="chat-option-btn" onclick="selectChatSeries(2)">鬧鐘新曲</button>
     </div>
+  </div>
+
+  <!-- Character More 詳細資料彈窗 -->
+  <div class="character-more-overlay" id="characterMoreOverlay" onclick="closeCharacterMore()"></div>
+  <div class="character-more-modal" id="characterMoreModal" onclick="event.stopPropagation()">
+    <div class="popup-close-btn" onclick="closeCharacterMore()">✕</div>
+    <div class="character-more-title" id="characterMoreTitle"></div>
+    <div class="character-more-text" id="characterMoreText"></div>
   </div>
 
   <!-- 右下角雙懸浮按鈕 -->
@@ -2580,6 +2774,60 @@
       isTyping = false;
       closeChatSelectModal();
       renderChat();
+    }
+
+    const characterMoreData = {
+      shaw: {
+        title: '凌肖',
+        titleClass: 'male-color',
+        paragraphs: [
+          '雷電系 Evoler，Isolated 樂團的貝斯手。',
+          '戀語大學考古系的獨苗研究生，在西月街開了一家古董店，私底下還是個情報販。',
+          '喜歡玩滑板，是會把百事和可口可樂混在一起喝的潮男。',
+          '一開始說對談戀愛一點興趣也沒有，結果現在天天曬恩愛，有演出時會強烈要求余思思到場。',
+          '心思細膩且佔有欲強，有點黏人，每次余思思訓練都會變成醋桶，但通常幾句情話就能給他聽開心了。',
+          '最近因為余思思總是不好好吃飯，所以開始要求她寫飲食報告，沒吃飯還要交一份檢討。'
+        ]
+      },
+      sisi: {
+        title: '余思思',
+        titleClass: 'female-color',
+        paragraphs: [
+          '戀語大學的普通大學生，競技拉拉隊 Flyer。',
+          '被欺負了都只會毛茸茸走開的好好小姐，個性開朗，和誰相處個性都挺好，只有對凌肖會有莫名其妙的小脾氣。',
+          '大部分時候很獨立，但一遇到凌肖自理能力就會退化。純愛撒嬌來的。',
+          '談戀愛比較低調，但去看演出都會認認真真地拍照，並上傳到社交媒體。',
+          '平常有在體重管理，但忙起來或比賽前常常不吃飯，偶爾體重下降太多會被凌肖押著（？）吃一日三餐。',
+          '最近因為凌肖太會吃醋了，瘋狂在網上找情話備著，準備哄人用。'
+        ]
+      }
+    };
+
+    function openCharacterMore(characterKey) {
+      const data = characterMoreData[characterKey];
+      if (!data) return;
+
+      document.getElementById('characterMoreTitle').innerHTML =
+        `<span class="${data.titleClass}">${data.title}</span><span style="font-family: 'Cormorant Garamond', serif; color: #C9B7B8; font-size: 0.9rem;">More</span>`;
+
+      document.getElementById('characterMoreText').innerHTML =
+        data.paragraphs.map(text => `<p>${text}</p>`).join('');
+
+      document.getElementById('characterMoreOverlay').classList.add('active');
+      document.getElementById('characterMoreModal').classList.add('active');
+    }
+
+    function closeCharacterMore() {
+      document.getElementById('characterMoreOverlay').classList.remove('active');
+      document.getElementById('characterMoreModal').classList.remove('active');
+    }
+
+    function toggleSongCategory(categoryId, button) {
+      const content = document.getElementById(categoryId);
+      if (!content) return;
+
+      const isActive = content.classList.toggle('active');
+      button.classList.toggle('active', isActive);
     }
 
     const momentsList = [

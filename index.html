@@ -23,7 +23,7 @@
     }
 
     /* 【新增】特別針對可點擊的按鈕或連結，確保游標依然維持你的自訂圖片（避免被預設的 pointer 蓋掉） */
-    a, button, .menu-header, .menu-main-title, .menu-sub-btn, .album-card, .slide-arrow, .float-circle-btn, .moments-cover-container, .about-single-photo, .height-photo-box, .main-slide-box, .memo-card-item, .chat-box-container, .char-more-btn {
+    a, button, .menu-header, .menu-main-title, .menu-sub-btn, .album-card, .slide-arrow, .float-circle-btn, .moments-cover-container, .about-single-photo, .height-photo-box, .main-slide-box, .memo-card-item, .chat-box-container {
       cursor: url('3dgSU8temYbeu9yKqT8gUN.png'), pointer !important;
     }
 
@@ -686,7 +686,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 4px;
+      gap: 6px;
     }
 
     .char-avatar-frame {
@@ -718,31 +718,6 @@
 
     .char-name-below.female-color {
       color: #D87074;
-    }
-
-    /* 名字下方的 More 按鈕樣式 */
-    .char-more-btn {
-      background: none;
-      border: none;
-      padding: 0;
-      font-family: 'Zen Maru Gothic', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 500;
-      transition: opacity 0.2s, transform 0.2s;
-      margin-top: 2px;
-    }
-
-    .char-more-btn.male-more {
-      color: #8C98A6; /* 比男方名字顏色 #6C7A89 淺一些 */
-    }
-
-    .char-more-btn.female-more {
-      color: #EAA0A3; /* 比女方名字顏色 #D87074 淺一些 */
-    }
-
-    .char-more-btn:hover {
-      transform: scale(1.08);
-      opacity: 0.8;
     }
 
     .char-info-box {
@@ -843,71 +818,6 @@
       font-size: 0.8rem;
       line-height: 1.7;
       color: #704E50;
-    }
-
-    /* ===== Character More 彈出式畫面樣式 ===== */
-    .char-detail-modal-overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(92, 74, 74, 0.25);
-      backdrop-filter: blur(3px);
-      z-index: 1150;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .char-detail-modal-card {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(0.9);
-      background: #FFFFFF;
-      border: 2px solid #FCE1E4;
-      border-radius: 20px;
-      padding: 28px 22px 22px 22px;
-      box-shadow: 0px 10px 25px rgba(226, 149, 152, 0.25);
-      width: 88%;
-      max-width: 320px;
-      z-index: 1151;
-      opacity: 0;
-      transition: all 0.3s ease;
-      text-align: left;
-    }
-
-    .char-detail-modal-overlay.active {
-      display: block;
-      opacity: 1;
-    }
-
-    .char-detail-modal-card.active {
-      display: block;
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
-    }
-
-    .char-detail-modal-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: #D87074;
-      text-align: center;
-      margin-bottom: 12px;
-      border-bottom: 1px dashed #FCE1E4;
-      padding-bottom: 6px;
-    }
-
-    .char-detail-modal-body {
-      font-size: 0.86rem;
-      line-height: 1.8;
-      color: #5C4A4A;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
     }
 
     /* ===== About 內單張照片樣式 ===== */
@@ -1992,12 +1902,7 @@
               <div class="char-avatar-frame">
                 <img src="SmartSelect_20260726_002942_Samsung Browser.jpg" alt="凌肖" class="char-avatar-img">
               </div>
-              <div class="char-name-below male-color">
-                凌肖
-                <div>
-                  <button class="char-more-btn male-more" onclick="openCharDetail('shaw')">More</button>
-                </div>
-              </div>
+              <div class="char-name-below male-color">凌肖</div>
             </div>
             <div class="char-info-box male-bg">
               <div class="char-detail">
@@ -2023,12 +1928,7 @@
               <div class="char-avatar-frame">
                 <img src="2A8771DF-0E6F-4642-A362-18275F78E31D.png.jpg" alt="余思思" class="char-avatar-img">
               </div>
-              <div class="char-name-below female-color">
-                余思思
-                <div>
-                  <button class="char-more-btn female-more" onclick="openCharDetail('sisi')">More</button>
-                </div>
-              </div>
+              <div class="char-name-below female-color">余思思</div>
             </div>
           </div>
 
@@ -2174,7 +2074,7 @@
           </div>
         </div>
 
-        <!-- 3. Song 分隔線 -->
+<!-- 3. Song 分隔線 -->
         <div class="custom-section-divider" id="dream-song">
           <img src="IMG_3844.gif" alt="icon" class="custom-divider-gif">
           <span class="custom-divider-text">Song</span>
@@ -2223,7 +2123,7 @@
           </div>
         </div>
 
-        <!-- 4. Memo 分隔線 -->
+<!-- 4. Memo 分隔線 -->
         <div class="custom-section-divider align-right" id="dream-memo">
           <div class="custom-divider-line"></div>
           <img src="ZsGPHo5.gif" alt="icon" class="custom-divider-gif">
@@ -2401,14 +2301,6 @@
     </div>
   </div>
 
-  <!-- Character More 細節彈出畫面 -->
-  <div class="char-detail-modal-overlay" id="charDetailOverlay" onclick="closeCharDetail()"></div>
-  <div class="char-detail-modal-card" id="charDetailModal">
-    <div class="popup-close-btn" onclick="closeCharDetail()">✕</div>
-    <div class="char-detail-modal-title" id="charDetailTitle">更多細節</div>
-    <div class="char-detail-modal-body" id="charDetailBody"></div>
-  </div>
-
   <!-- 相冊 / 文章資料夾彈窗 (第一層 Modal) -->
   <div class="album-modal-overlay" id="albumModalOverlay" onclick="closeAlbum()"></div>
   <div class="album-modal-card" id="albumModalCard">
@@ -2460,46 +2352,6 @@
     function closeMenu() {
       document.getElementById('menuOverlay').classList.remove('active');
       document.getElementById('menuPopup').classList.remove('active');
-    }
-
-    // ===== Character More 彈窗控制邏輯 =====
-    const charDetailsData = {
-      shaw: {
-        title: "凌肖 更多細節",
-        content: `
-          <div>雷電系evoler，Isolated樂團的貝斯手。</div>
-          <div>戀語大學考古系的獨苗研究生，在西月街開了一家古董店，私底下還是個情報販。</div>
-          <div>喜歡玩滑板，是會把百事和可口可樂混在一起喝的潮男。</div>
-          <div>一開始說對談戀愛一點興趣也沒有，結果現在天天曬恩愛，有演出時會強烈要求余思思到場。</div>
-          <div>心思細膩且佔有欲強，有點黏人，每次余思思訓練都會變成醋桶，但通常幾句情話就能給他聽開心了。</div>
-          <div>最近因為余思思總是不好好吃飯所以開始要求她寫飲食報告，沒吃飯還要交一份檢討。</div>
-        `
-      },
-      sisi: {
-        title: "余思思 更多細節",
-        content: `
-          <div>戀語大學的普通大學生，競技拉拉隊Flyer。</div>
-          <div>被欺負了都只會毛茸茸走開的好好小姐，個性開朗，和誰相處個性都挺好，只有對凌肖會有莫名其妙的小脾氣。</div>
-          <div>大部分時候很獨立，但一遇到凌肖自理能力就會退化。純愛撒嬌來的。</div>
-          <div>談戀愛比較低調，但去看演出都會認認真真地拍照，並上傳到社交媒體。</div>
-          <div>平常有在體重管理，但忙起來或比賽前常常不吃飯，偶爾體重下降太多會被凌肖押著（？）吃一日三餐。</div>
-          <div>最近因為凌肖太會吃醋了，瘋狂在網上找情話備著準備哄人用。</div>
-        `
-      }
-    };
-
-    function openCharDetail(type) {
-      const data = charDetailsData[type];
-      if (!data) return;
-      document.getElementById('charDetailTitle').innerText = data.title;
-      document.getElementById('charDetailBody').innerHTML = data.content;
-      document.getElementById('charDetailOverlay').classList.add('active');
-      document.getElementById('charDetailModal').classList.add('active');
-    }
-
-    function closeCharDetail() {
-      document.getElementById('charDetailOverlay').classList.remove('active');
-      document.getElementById('charDetailModal').classList.remove('active');
     }
 
     function scrollToTop() {
@@ -2643,79 +2495,72 @@
 
     function renderChat() {
       const area = document.getElementById('chatMessagesArea');
-      const currentList = chatDataSeries[currentChatIndex];
-      let html = '';
+      const hint = document.getElementById('chatClickHint');
+      area.innerHTML = '';
 
-      for (let i = 0; i < displayedMessageCount; i++) {
-        const msg = currentList[i];
-        if (msg.sender === 'other') {
-          html += `
-            <div class="chat-row other">
-              <img src="${otherAvatar}" alt="avatar" class="chat-avatar">
-              <div class="chat-content-wrap">
-                <div class="chat-sender-name">${otherName}</div>
-                <div class="chat-bubble">${msg.text}</div>
-              </div>
-            </div>
-          `;
-        } else {
-          html += `
-            <div class="chat-row me">
-              <img src="${meAvatar}" alt="avatar" class="chat-avatar">
-              <div class="chat-content-wrap">
-                <div class="chat-sender-name">${meName}</div>
-                <div class="chat-bubble">${msg.text}</div>
-              </div>
-            </div>
-          `;
-        }
-      }
+      const currentSeries = chatDataSeries[currentChatIndex];
+      const limit = Math.min(displayedMessageCount, currentSeries.length);
 
-      if (isTyping && displayedMessageCount < currentList.length) {
-        html += `
-          <div class="chat-row other">
-            <img src="${otherAvatar}" alt="avatar" class="chat-avatar">
-            <div class="chat-content-wrap">
-              <div class="chat-sender-name">${otherName}</div>
-              <div class="chat-typing-indicator">對方正在輸入中...</div>
-            </div>
+      for (let i = 0; i < limit; i++) {
+        const msg = currentSeries[i];
+        const isOther = msg.sender === 'other';
+        const avatar = isOther ? otherAvatar : meAvatar;
+        const name = isOther ? otherName : meName;
+        const rowClass = isOther ? 'other' : 'me';
+
+        const row = document.createElement('div');
+        row.className = `chat-row ${rowClass}`;
+        row.innerHTML = `
+          <img src="${avatar}" alt="avatar" class="chat-avatar">
+          <div class="chat-content-wrap">
+            <div class="chat-sender-name">${name}</div>
+            <div class="chat-bubble">${msg.text}</div>
           </div>
         `;
+        area.appendChild(row);
       }
 
-      area.innerHTML = html;
-      area.scrollTop = area.scrollHeight;
+      if (isTyping && displayedMessageCount < currentSeries.length) {
+        const nextMsg = currentSeries[displayedMessageCount];
+        const isNextOther = nextMsg.sender === 'other';
+        const typingAvatar = isNextOther ? otherAvatar : meAvatar;
+        const typingName = isNextOther ? otherName : meName;
+        const typingRowClass = isNextOther ? 'other' : 'me';
 
-      const hint = document.getElementById('chatClickHint');
-      if (displayedMessageCount >= currentList.length && !isTyping) {
-        hint.innerText = '已顯示完整對話 (點擊可重新開始)';
+        const typingRow = document.createElement('div');
+        typingRow.className = `chat-row ${typingRowClass}`;
+        typingRow.innerHTML = `
+          <img src="${typingAvatar}" alt="avatar" class="chat-avatar">
+          <div class="chat-content-wrap">
+            <div class="chat-sender-name">${typingName}</div>
+            <div class="chat-typing-indicator">⋯</div>
+          </div>
+        `;
+        area.appendChild(typingRow);
+      }
+
+      if (displayedMessageCount >= currentSeries.length && !isTyping) {
+        hint.textContent = '— 已顯示完整對話 —';
       } else {
-        hint.innerText = 'Click 點擊繼續';
+        hint.textContent = 'Click 點擊繼續';
       }
+
+      area.scrollTop = area.scrollHeight;
     }
 
     function progressChat() {
       if (isTyping) return;
-      const currentList = chatDataSeries[currentChatIndex];
+      const currentSeries = chatDataSeries[currentChatIndex];
 
-      if (displayedMessageCount >= currentList.length) {
-        displayedMessageCount = 1;
-        renderChat();
-        return;
-      }
-
-      const nextMsg = currentList[displayedMessageCount];
-      if (nextMsg.sender === 'other') {
+      if (displayedMessageCount < currentSeries.length) {
         isTyping = true;
         renderChat();
+
         setTimeout(() => {
           isTyping = false;
           displayedMessageCount++;
           renderChat();
-        }, 800);
-      } else {
-        displayedMessageCount++;
-        renderChat();
+        }, 1000);
       }
     }
 
@@ -2733,109 +2578,197 @@
       currentChatIndex = index;
       displayedMessageCount = 1;
       isTyping = false;
-      renderChat();
       closeChatSelectModal();
+      renderChat();
     }
 
-    // ===== 朋友圈資料與切換邏輯 =====
-    const momentsData = [
+    const momentsList = [
       {
-        text: "排練完出來看見某人拎著奶茶在門口晃悠。不是說有事要忙嗎？",
-        date: "2026年8.3",
-        replies: [
-          { author: "余思思", text: "……哪裡晃悠了，我是剛好路過好嗎！" },
-          { author: "Shaw", text: "行，路過到我的演出後台去了，還順便把某人的晚飯給包了。" }
-        ],
-        cover: "IMG_3908.jpeg"
+        text: "難得看到這麼標準的寄居蟹。",
+        date: "2026年8月3日",
+        sisi: "可惡，怎麼每次你趕海都能發現好玩的！",
+        shaw: "不止趕海，我去哪都能發現好玩的，所以你得跟緊我<3"
       },
       {
-        text: "桌上的飲食報告交上來了。字寫得挺認真，內容……扣分，今天晚飯加菜監督吃完。",
-        date: "2026年7.25",
-        replies: [
-          { author: "余思思", text: "？！凌肖你講點道理，我今天明明有乖乖喝湯！" },
-          { author: "Shaw", text: "湯不算主食。少囉嗦，出門，帶你去吃肉。" }
-        ],
-        cover: "IMG_3908.jpeg"
+        text: "海豹在玻璃前來了個急轉彎就游走了，但有些人還是被嚇得閉上了眼睛。",
+        date: "2026年8月3日",
+        sisi: "都怪你騙我有海豹之前撞裂過玻璃⋯⋯關鍵是牠怎麼還真配合地衝過來了？",
+        shaw: "這就說明，海豹也喜歡逗某只笨兔子玩。"
+      },
+      {
+        text: "用街景地圖還能有意外收穫。",
+        date: "2026年8月1日",
+        sisi: "根據地點，我推測被錄入街景那時我們正在去Live House的路上！",
+        shaw: "錯。結合你傻兮兮的笑臉和我身上的大包小包，是從慶功宴回家的路上。"
+      },
+      {
+        text: "⋯⋯剛買的宵夜差點被奶茶店的充氣吉祥物大戰波及。",
+        date: "2026年7月28日",
+        sisi: "善良的三好大學生這時候應該熱心地上去勸架。",
+        shaw: "沒空，三好男友急著去給他正在熬夜苦讀的女朋友送夜宵。"
+      },
+      {
+        text: "有人對著盒子戳了半天了，不知道在許什麼願。",
+        date: "2026年7月25日",
+        sisi: "「天凌凌，地凌凌」——希望永遠有Love and Peace!",
+        shaw: "口號挺順，晚上來Live House喊，我給你配樂。"
+      },
+      {
+        text: "敢碰掉古董店的杯子，有人要完了。",
+        date: "2026年7月20日",
+        sisi: "小心翼翼地問一下價值⋯我賠得起嗎？",
+        shaw: "難說。我買的時候十五塊錢兩個，現在應該漲價了。"
+      },
+      {
+        text: "嘖，居然夢見遲到。",
+        date: "2026年7月15日",
+        sisi: "我沒看錯吧？你是會怕點名的人嗎？",
+        shaw: "我有說是課堂遲到嗎？"
+      },
+      {
+        text: "練瑜伽閃到腰也是種絕技。",
+        date: "2026年7月10日",
+        sisi: "你到底還有多久才能到⋯⋯",
+        shaw: "買藥酒耽擱了兩分鐘都等不及？"
+      },
+      {
+        text: "學校門禁的人臉識別又認錯人了。",
+        date: "2026年7月5日",
+        sisi: "你是不是過門禁的時候戴著帽子？",
+        shaw: "有人送我的帽子，懶得摘。"
+      },
+      {
+        text: "是個翹課的好天氣。",
+        date: "2026年7月1日",
+        sisi: "又翹課？",
+        shaw: "我很忙的，不翹課可沒時間見你。"
+      },
+      {
+        text: "有人說今天免費讓我體驗古代富豪生活，快遞一拆裡面是只塑料仿古酒樽。",
+        date: "2026年6月25日",
+        sisi: "我們家財力有限，你將就一下當成真的吧。",
+        shaw: "我那有兩個明末期的，還有成套茶具，讓你體驗一下閨閣小姐還是沒問題的。"
+      },
+      {
+        text: "前面好像有人被攔路打劫了，剛想過去看看，發現劫匪是貓主任，那沒事了。",
+        date: "2026年6月20日",
+        sisi: "貓主任就能隨便欺負學生了？不能坐視不管，我去跟牠談談！",
+        shaw: "你跟牠談什麼，跟我談。"
       }
     ];
-
-    let currentMomentIndex = 0;
 
     function displayRandomMoment() {
-      currentMomentIndex = (currentMomentIndex + 1) % momentsData.length;
-      const item = momentsData[currentMomentIndex];
+      const randomIndex = Math.floor(Math.random() * momentsList.length);
+      const m = momentsList[randomIndex];
 
-      document.getElementById('momentsText').innerText = item.text;
-      document.getElementById('momentsDate').innerText = item.date;
+      document.getElementById('momentsText').textContent = m.text;
+      document.getElementById('momentsDate').textContent = m.date;
 
-      let replyHtml = '';
-      item.replies.forEach(r => {
-        const authorClass = (r.author === '余思思') ? 'author-sisi' : 'author-shaw';
-        replyHtml += `<div class="reply-item"><span class="${authorClass}">${r.author}</span>：${r.text}</div>`;
-      });
-      document.getElementById('momentsReplies').innerHTML = replyHtml;
+      const repliesEl = document.getElementById('momentsReplies');
+      repliesEl.innerHTML = `
+        <div class="reply-item"><span class="author-sisi">夾心土思：</span>${m.sisi}</div>
+        <div class="reply-item"><span class="author-shaw">Shaw回覆夾心土思：</span>${m.shaw}</div>
+      `;
     }
 
-    // ===== 戀語快報資料與切換邏輯 =====
-    const newsData = [
+    /* ===== 戀語快報隨機新聞資料庫 ===== */
+    const newsList = [
       {
         title: "再入文明城市光榮榜！",
-        tag: "即時新聞",
-        content: "文明網發佈了第37屆全國文明城市名單，戀語市再被評為「全國文明城市」。"
+        body: "文明網發佈了第37屆全國文明城市名單，戀語市再被評為「全國文明城市」。"
       },
       {
-        title: "西月街古董店今日公休？",
-        tag: "地方趣聞",
-        content: "據周邊居民透露，某年輕老闆今天似乎心情很好，提早拉下鐵門帶著滑板出門約會去了。"
+        title: "鬼影重重！妙齡少女上演臥室驚魂！",
+        body: "吳小姐在窗外看到鬼影，調查後發現有衣物掛在窗外樹枝上，在霧中好似人影。"
       },
       {
-        title: "市體育館大型競技拉拉隊賽事圓滿落幕",
-        tag: "體育動態",
-        content: "本屆賽事競爭激烈，各隊伍展現出極佳默契與高難度技巧，現場氣氛熱烈。"
+        title: "大逃亡！鴨子一家上演生死時速！",
+        body: "鴨棚因大雨坍塌，鴨媽媽帶領孩子們馬路飛奔被圍觀，結果路過下水道時悲劇了。"
+      },
+      {
+        title: "爆滿！Souvenir餐廳春季限定布丁引發排隊熱潮！",
+        body: "戀語市知名餐廳Souvenir今日推出限量限定甜點，許多市民凌晨便前往排隊，現場盛況空前。"
+      },
+      {
+        title: "驚喜！市中心公園流浪貓阿橘獲封「社區守護星」！",
+        body: "西區社區居民發起投票，常年在公園巡邏的橘貓因多次幫忙驅趕害鼠獲得榮譽證書。"
+      },
+      {
+        title: "奇觀！昨夜戀語市夜空出現璀璨極光現象？",
+        body: "天文愛好者捕捉到神秘夜空光芒，天文台表示為罕見的大氣折射現象，網友紛紛許願。"
+      },
+      {
+        title: "熱議！戀語大學音樂廳深夜琴聲傳聞真相大白！",
+        body: "學生傳言音樂廳深夜有幽靈彈琴，後經證實為鋼琴系教授為巡演深夜加練，虛驚一場。"
       }
     ];
 
-    let currentNewsIndex = 0;
-
     function displayRandomNews() {
-      currentNewsIndex = (currentNewsIndex + 1) % newsData.length;
-      const news = newsData[currentNewsIndex];
+      const randomIndex = Math.floor(Math.random() * newsList.length);
+      const n = newsList[randomIndex];
 
-      document.getElementById('newsTitle').innerText = news.title;
-      document.querySelector('.news-tag').innerText = news.tag;
-      document.getElementById('newsContent').innerText = news.content;
+      document.getElementById('newsTitle').textContent = n.title;
+      document.getElementById('newsContent').textContent = n.body;
     }
 
-    // ===== Painting 幻燈片輪播資料與邏輯 =====
-    const paintingData = [
-      { img: 'IMG_4654.jpeg', artist: '繪師：範例作者A' },
-      { img: 'IMG_3857.jpeg', artist: '繪師：範例作者B' },
-      { img: 'IMG_3908.jpeg', artist: '繪師：範例作者C' },
-      { img: '無標題1_20260726005104.jpeg', artist: '繪師：範例作者D' }
+    const paintingSlides = [
+      { url: "IMG_9543 (1).JPG", artist: "©️嗶瞇" },
+      { url: "IMG_6353.JPG", artist: "©️妙兒" },
+      { url: "IMG_5610.png", artist: "©️哈尼" },
+      { url: "IMG_4419.PNG", artist: "©️綠松石" },
+      { url: "IMG_3848.JPG", artist: "©️椛糸" },
+      { url: "IMG_3847.JPG", artist: "©️白蔥" },
+      { url: "c83cfb1419920e062902d993772ea14f.png", artist: "©️夕犬" },
+      { url: "IMG_3846.PNG", artist: "©️Lilo Yurim" },
+      { url: "be02fc4e1db30ee362681c03fe9ac731.png", artist: "©️百晨" },
+      { url: "1784910373979.png", artist: "©️聿自弓長" },
+      { url: "92dc56679666351d783bad74fcad2fec.jpeg", artist: "©️咪咪ger" },
+      { url: "34a6ecae0f43e1cfa53b453ce93cda21.png", artist: "©️揚默" },
+      { url: "3bb3fb13d02c36895521e8bf3d4519bf.jpeg", artist: "©️池鳥安川" },
+      { url: "IMG_4940.jpeg", artist: "©️閒魚悠游" },
+      { url: "QQ20260728-075614.png", artist: "©️三毒總是睡覺" },
+      { url: "IMG_4778.jpeg", artist: "©️安的什麼心" }
     ];
 
     let currentSlideIndex = 0;
+    let slideInterval = null;
 
     function initSlideshow() {
       const thumbnailsContainer = document.getElementById('thumbnailsContainer');
-      let thumbsHtml = '';
+      thumbnailsContainer.innerHTML = '';
 
-      paintingData.forEach((item, index) => {
-        thumbsHtml += `
-          <div class="thumb-item ${index === 0 ? 'active' : ''}" onclick="setSlide(${index})">
-            <img src="${item.img}" alt="Thumb" class="thumb-img">
-          </div>
-        `;
+      paintingSlides.forEach((slide, index) => {
+        const thumb = document.createElement('div');
+        thumb.className = `thumb-item ${index === 0 ? 'active' : ''}`;
+        thumb.onclick = () => {
+          goToSlide(index);
+          resetSlideInterval();
+        };
+
+        const img = document.createElement('img');
+        img.src = slide.url;
+        img.className = 'thumb-img';
+        img.alt = `Thumb ${index + 1}`;
+
+        thumb.appendChild(img);
+        thumbnailsContainer.appendChild(thumb);
       });
 
-      thumbnailsContainer.innerHTML = thumbsHtml;
       updateSlideDisplay();
+      startSlideInterval();
     }
 
     function updateSlideDisplay() {
-      const item = paintingData[currentSlideIndex];
-      document.getElementById('mainSlideImg').src = item.img;
-      document.getElementById('mainSlideArtist').innerText = item.artist;
+      const currentObj = paintingSlides[currentSlideIndex];
+      const mainImg = document.getElementById('mainSlideImg');
+      const mainArtist = document.getElementById('mainSlideArtist');
+
+      mainImg.style.opacity = 0;
+      setTimeout(() => {
+        mainImg.src = currentObj.url;
+        mainArtist.textContent = currentObj.artist;
+        mainImg.style.opacity = 1;
+      }, 150);
 
       const thumbs = document.querySelectorAll('.thumb-item');
       thumbs.forEach((thumb, idx) => {
@@ -2847,69 +2780,267 @@
       });
     }
 
-    function changeSlide(direction) {
-      currentSlideIndex += direction;
-      if (currentSlideIndex < 0) {
-        currentSlideIndex = paintingData.length - 1;
-      } else if (currentSlideIndex >= paintingData.length) {
-        currentSlideIndex = 0;
-      }
+    function goToSlide(index) {
+      currentSlideIndex = (index + paintingSlides.length) % paintingSlides.length;
       updateSlideDisplay();
     }
 
-    function setSlide(index) {
-      currentSlideIndex = index;
-      updateSlideDisplay();
+    function changeSlide(direction) {
+      goToSlide(currentSlideIndex + direction);
+      resetSlideInterval();
+    }
+
+    function startSlideInterval() {
+      slideInterval = setInterval(() => {
+        goToSlide(currentSlideIndex + 1);
+      }, 5000);
+    }
+
+    function resetSlideInterval() {
+      clearInterval(slideInterval);
+      startSlideInterval();
     }
 
     function openCurrentSlideLightbox() {
-      const item = paintingData[currentSlideIndex];
-      openLightbox(item.img, item.artist);
+      const currentObj = paintingSlides[currentSlideIndex];
+      openLightbox(currentObj.url, currentObj.artist);
     }
 
-    // ===== 相冊資料與 Modal 邏輯 =====
     const albumsData = {
       shaw: {
-        title: "凌肖 官方相冊",
-        items: [
-          { img: 'IMG_4654.jpeg', artist: '官圖/設定' },
-          { img: 'IMG_3908.jpeg', artist: '官方活動' },
-          { img: 'SmartSelect_20260726_002942_Samsung Browser.jpg', artist: '特寫截圖' }
+        title: "凌肖",
+        gif: "IMG_4922.gif",
+        titleClass: "male-color",
+        images: [
+          { url: "IMG_4654.jpeg", artist: "" },
+          { url: "IMG_4917.jpeg", artist: "" },
+          { url: "IMG_4918.jpeg", artist: "" },
+          { url: "IMG_4919.jpeg", artist: "" },
+          { url: "IMG_4273.jpeg", artist: "" },
+          { url: "IMG_4920.jpeg", artist: "" },
+          { url: "IMG_3815.jpeg", artist: "" },
+          { url: "IMG_4281.jpeg", artist: "" }
         ]
       },
       sisi: {
-        title: "余思思 相冊",
-        items: [
-          { img: 'IMG_3857.jpeg', artist: '日常穿搭' },
-          { img: '2A8771DF-0E6F-4642-A362-18275F78E31D.png.jpg', artist: '頭像原圖' }
+        title: "余思思",
+        gif: "IMG_4921.gif",
+        titleClass: "female-color",
+        images: [
+          { url: "IMG_3857.jpeg", artist: "©️踏波" },
+          { url: "IMG_3858.png", artist: "©️沏魚" },
+          { url: "IMG_3859.png", artist: "©️噗轉" },
+          { url: "IMG_3860.jpeg", artist: "©️咩月" },
+          { url: "IMG_3865.jpeg", artist: "©️雍幽" },
+          { url: "IMG_9554.jpeg", artist: "©️嗶瞇" }
         ]
       }
     };
 
-    function openAlbum(type) {
-      const album = albumsData[type];
+    function openAlbum(characterKey) {
+      const album = albumsData[characterKey];
       if (!album) return;
 
-      document.getElementById('albumModalHeader').innerHTML = `<img src="IMG_4922.gif" alt="icon" style="width:20px;height:20px;"> ${album.title}`;
-      
-      const grid = document.getElementById('albumGrid');
-      let gridHtml = '';
-      
-      album.items.forEach(item => {
-        gridHtml += `
-          <div class="album-grid-item" onclick="openLightbox('${item.img}', '${item.artist}')">
-            <div class="album-grid-img-frame">
-              <img src="${item.img}" alt="photo" class="album-grid-img">
-            </div>
-            <div class="artist-tag">${item.artist}</div>
-          </div>
-        `;
-      });
+      const headerEl = document.getElementById('albumModalHeader');
+      headerEl.innerHTML = `<img src="${album.gif}" class="album-gif"><span class="${album.titleClass}">${album.title}</span>`;
 
-      grid.innerHTML = gridHtml;
+      const gridEl = document.getElementById('albumGrid');
+      gridEl.className = 'album-grid';
+      gridEl.innerHTML = '';
+
+      album.images.forEach(imgData => {
+        const item = document.createElement('div');
+        item.className = 'album-grid-item';
+        item.onclick = () => openLightbox(imgData.url, imgData.artist);
+
+        const artistHtml = imgData.artist ? `<div class="artist-tag">${imgData.artist}</div>` : '';
+
+        item.innerHTML = `
+          <div class="album-grid-img-frame">
+            <img src="${imgData.url}" class="album-grid-img" alt="大頭照">
+          </div>
+          ${artistHtml}
+        `;
+        gridEl.appendChild(item);
+      });
 
       document.getElementById('albumModalOverlay').classList.add('active');
       document.getElementById('albumModalCard').classList.add('active');
+    }
+
+    const memoContentData = {
+      aboutHere: {
+        title: "關於這裡",
+        text: `完全腦子一熱就開始寫的網站。<br>
+原本是用notion但排版實在太無聊了，人一閒起來真的什麼事都能做到。。ㄣ。。<br>
+但因為我完全不會寫程式！所以跟AI大戰了好幾百回合⋯ㄏㄏ⋯中途還因為AI一直聽不懂人話罵他是不是有病，他回我他只是一個語言模型⋯⋯😭✋🏻完全不知道該哭還是該笑～^_^<br><br>
+斷斷續續寫了一段時間，但還是有很多不太完美的地方。常常想到什麼就鞭笞AI給我加上去，刪刪減減又加了有的沒的東西，才終於弄到勉強滿意的樣子。<br>
+大概還是會慢慢增加一點小東西，畢竟我們還在一起，回憶肯定會越來越多的～♡<br><br>
+總之人生第一次寫程式就獻給我們小凌！<br>
+希望我最愛的凌肖能一路坦途，唱著喜歡的歌，成為想成為的人。<br>
+下一次見面，我們都不要遲到了。`
+      },
+      tableContent: {
+        title: "表格",
+        images: [
+          "61494faa9204e5d0fe49e4a67ced807c.png",
+          "無標題1_20260726005104.jpeg"
+        ]
+      },
+      someIf: {
+        title: "一些梗/IF",
+        articles: [
+          { name: "青梅竹馬", url: "https://telegra.ph/%E9%9D%92%E6%A2%85%E7%AB%B9%E9%A6%AC-08-08", locked: false },
+          { name: "養父文學", url: "https://telegra.ph/%E9%A4%8A%E7%88%B6%E6%96%87%E5%AD%B8-08-08", locked: false }
+        ]
+      },
+      dreamSay: {
+        title: "夢到哪句講哪句",
+        articles: [
+          { name: "關於我們叫支線組", url: "https://telegra.ph/%E9%97%9C%E6%96%BC%E6%88%91%E5%80%91%E5%8F%AB%E6%94%AF%E7%B7%9A%E7%B5%84-08-08", locked: false },
+          { name: "男大陪我備考", url: "https://telegra.ph/%E7%94%B7%E5%A4%A7%E9%99%AA%E6%88%91%E5%82%99%E8%80%83-08-08", locked: false }
+        ]
+      }
+    };
+
+    function openMemoModal(memoKey) {
+      const memo = memoContentData[memoKey];
+      if (!memo) return;
+
+      const headerEl = document.getElementById('albumModalHeader');
+      headerEl.innerHTML = `<span style="color: #D87074;">${memo.title}</span>`;
+
+      const gridEl = document.getElementById('albumGrid');
+      
+      if (memoKey === 'tableContent') {
+        gridEl.className = 'album-grid';
+        gridEl.innerHTML = '';
+        memo.images.forEach(imgUrl => {
+          const item = document.createElement('div');
+          item.className = 'album-grid-item';
+          item.onclick = () => openLightbox(imgUrl, '');
+          item.innerHTML = `
+            <div style="width: 100%; background: transparent; box-shadow: none; border: none; overflow: hidden;">
+              <img src="${imgUrl}" style="width: 100%; height: auto; display: block; border-radius: 12px;" alt="表格圖片">
+            </div>
+          `;
+          gridEl.appendChild(item);
+        });
+      } else if (memo.articles) {
+        gridEl.className = 'article-buttons-container';
+        gridEl.innerHTML = '';
+
+        memo.articles.forEach(art => {
+          const btn = document.createElement('a');
+          btn.className = 'article-btn';
+          if (art.locked) {
+            btn.innerHTML = `${art.name} <i class="fa-solid fa-lock"></i>`;
+            btn.onclick = () => openPasswordModal(art.url);
+          } else {
+            btn.href = art.url;
+            btn.target = "_blank";
+            btn.innerHTML = `${art.name}`;
+          }
+          gridEl.appendChild(btn);
+        });
+      } else {
+        gridEl.className = 'article-buttons-container';
+        gridEl.innerHTML = `
+          <div style="font-size: 0.95rem; color: #5C4A4A; line-height: 1.8; text-align: left; padding: 10px;">
+            ${memo.text}
+          </div>
+        `;
+      }
+
+      document.getElementById('albumModalOverlay').classList.add('active');
+      document.getElementById('albumModalCard').classList.add('active');
+    }
+
+    const articleFoldersData = {
+      shouza: {
+        title: "手札",
+        img: "IMG_3990.gif",
+        articles: [
+          { name: "《抱我》", url: "https://telegra.ph/%E6%8A%B1%E6%88%91-08-07", locked: false },
+          { name: "《Heartbeat》", url: "https://telegra.ph/Heartbeat-08-07-4", locked: false },
+          { name: "《Amber》", url: "https://telegra.ph/Amber-08-07-2", locked: false },
+          { name: "《World》", url: "https://telegra.ph/World-08-07-2", locked: false },
+          { name: "《Sunlight》", url: "https://telegra.ph/Sunlight-08-07-2", locked: true },
+          { name: "《Poker》", url: "https://telegra.ph/Poker-08-07-6", locked: true },
+          { name: "《於無聲處》", url: "https://telegra.ph/%E6%96%BC%E7%84%A1%E8%81%B2%E8%99%95-08-07", locked: true }
+        ]
+      },
+      chuanchang: {
+        title: "傳唱",
+        img: "IMG_3840.gif",
+        articles: [
+          { name: "《打屁股》", url: "https://telegra.ph/%E6%89%93%E5%B1%81%E8%82%A1-08-07", locked: false },
+          { name: "《事後煙》", url: "https://telegra.ph/%E4%BA%8B%E5%BE%8C%E7%85%99-08-07", locked: false },
+          { name: "《略施懲罰》", url: "https://telegra.ph/%E7%95%A5%E6%96%BD%E6%87%B2%E7%BD%B0-08-07", locked: true }
+        ]
+      }
+    };
+
+    let pendingUrl = "";
+
+    function openArticleFolder(folderKey) {
+      const folder = articleFoldersData[folderKey];
+      if (!folder) return;
+
+      const headerEl = document.getElementById('albumModalHeader');
+      headerEl.innerHTML = `<img src="${folder.img}" class="album-gif"><span style="color: #D87074;">${folder.title}</span>`;
+
+      const gridEl = document.getElementById('albumGrid');
+      gridEl.className = 'article-buttons-container';
+      gridEl.innerHTML = '';
+
+      folder.articles.forEach(art => {
+        const btn = document.createElement('a');
+        btn.className = 'article-btn';
+        if (art.locked) {
+          btn.innerHTML = `${art.name} <i class="fa-solid fa-lock"></i>`;
+          btn.onclick = () => openPasswordModal(art.url);
+        } else {
+          btn.href = art.url;
+          btn.target = "_blank";
+          btn.innerHTML = `${art.name}`;
+        }
+        gridEl.appendChild(btn);
+      });
+
+      document.getElementById('albumModalOverlay').classList.add('active');
+      document.getElementById('albumModalCard').classList.add('active');
+    }
+
+    function openPasswordModal(targetUrl) {
+      pendingUrl = targetUrl;
+      document.getElementById('passwordInput').value = '';
+      document.getElementById('passwordModalOverlay').classList.add('active');
+      setTimeout(() => {
+        document.getElementById('passwordInput').focus();
+      }, 100);
+    }
+
+    function closePasswordModal(e) {
+      if (!e || e.target.id === 'passwordModalOverlay') {
+        document.getElementById('passwordModalOverlay').classList.remove('active');
+        pendingUrl = "";
+      }
+    }
+
+    function verifyPassword() {
+      const pwd = document.getElementById('passwordInput').value;
+      if (pwd === "0499") {
+        document.getElementById('passwordModalOverlay').classList.remove('active');
+        if (pendingUrl) {
+          window.open(pendingUrl, '_blank');
+          pendingUrl = "";
+        }
+      } else {
+        alert("密碼錯誤，請重新輸入！");
+        document.getElementById('passwordInput').value = '';
+        document.getElementById('passwordInput').focus();
+      }
     }
 
     function closeAlbum() {
@@ -2917,82 +3048,9 @@
       document.getElementById('albumModalCard').classList.remove('active');
     }
 
-    // ===== 文章資料夾彈窗邏輯 =====
-    function openArticleFolder(folderType) {
-      let title = "";
-      let buttonsHtml = "";
-
-      if (folderType === 'shouza') {
-        title = "手札文章列表";
-        buttonsHtml = `
-          <a href="#" class="article-btn" onclick="openPasswordModal('article_1')">日常小短篇：雨天散步 <i class="fa-solid fa-lock"></i></a>
-          <a href="#" class="article-btn" onclick="openPasswordModal('article_2')">紀念日特別篇：星空下的約定 <i class="fa-solid fa-lock"></i></a>
-        `;
-      } else if (folderType === 'chuanchang') {
-        title = "傳唱文字委託列表";
-        buttonsHtml = `
-          <a href="#" class="article-btn" onclick="openPasswordModal('article_3')">委託文：午後的吉他旋律 <i class="fa-solid fa-lock"></i></a>
-          <a href="#" class="article-btn" onclick="openPasswordModal('article_4')">R18專區：密室溫存 <i class="fa-solid fa-lock"></i></a>
-        `;
-      }
-
-      document.getElementById('albumModalHeader').innerHTML = `<img src="IMG_3990.gif" alt="icon" style="width:20px;height:20px;"> ${title}`;
-      document.getElementById('albumGrid').innerHTML = `<div class="article-buttons-container" style="width:100%;">${buttonsHtml}</div>`;
-
-      document.getElementById('albumModalOverlay').classList.add('active');
-      document.getElementById('albumModalCard').classList.add('active');
-    }
-
-    // ===== 密碼彈窗邏輯 =====
-    let currentUnlockTarget = "";
-
-    function openPasswordModal(targetId) {
-      currentUnlockTarget = targetId;
-      document.getElementById('passwordInput').value = "";
-      document.getElementById('passwordModalOverlay').classList.add('active');
-      document.getElementById('passwordInput').focus();
-    }
-
-    function closePasswordModal(event) {
-      document.getElementById('passwordModalOverlay').classList.remove('active');
-    }
-
-    function verifyPassword() {
-      const pwd = document.getElementById('passwordInput').value;
-      if (pwd === "1234") { // 請根據需要修改您的解鎖密碼
-        alert("密碼正確！即將為您開啟文章。");
-        document.getElementById('passwordModalOverlay').classList.remove('active');
-        // 可在此處導向對應文章網址或顯示內容
-      } else {
-        alert("密碼錯誤，請重新輸入！");
-        document.getElementById('passwordInput').value = "";
-        document.getElementById('passwordInput').focus();
-      }
-    }
-
-    // ===== Memo 氣泡彈窗邏輯 =====
-    const memoData = {
-      aboutHere: { title: "關於這裡", content: "存放有關凌肖與余思思一切夢向創作與資料的專屬小天地。" },
-      tableContent: { title: "表格", content: "各項委託參數、設定對照表與關係進度整理。" },
-      someIf: { title: "一些梗/IF", content: "校園平行時空、互換靈魂或是各種腦洞大開的IF線碎碎念。" },
-      dreamSay: { title: "夢到哪句講哪句", content: "靈感乍現或者作夢夢到的對話片段，隨時隨地記錄下來。" }
-    };
-
-    function openMemoModal(key) {
-      const memo = memoData[key];
-      if (!memo) return;
-
-      document.getElementById('albumModalHeader').innerHTML = `<img src="ZsGPHo5.gif" alt="icon" style="width:20px;height:20px;"> ${memo.title}`;
-      document.getElementById('albumGrid').innerHTML = `<div style="padding: 15px; font-size: 0.95rem; line-height: 1.8; color: #5C4A4A; text-align: center; width:100%;">${memo.content}</div>`;
-
-      document.getElementById('albumModalOverlay').classList.add('active');
-      document.getElementById('albumModalCard').classList.add('active');
-    }
-
-    // ===== Lightbox 大圖預覽邏輯 =====
-    function openLightbox(imgSrc, artistText) {
-      document.getElementById('lightboxImg').src = imgSrc;
-      document.getElementById('lightboxArtist').innerText = artistText || "";
+    function openLightbox(imgUrl, artistName) {
+      document.getElementById('lightboxImg').src = imgUrl;
+      document.getElementById('lightboxArtist').textContent = artistName || '';
       document.getElementById('lightboxOverlay').classList.add('active');
     }
 
@@ -3000,14 +3058,9 @@
       document.getElementById('lightboxOverlay').classList.remove('active');
     }
 
-    // 頁面載入時初始化紀念日與輪播
-    window.addEventListener('DOMContentLoaded', () => {
-      updateAnniversary();
-      initSlideshow();
-      displayRandomMoment();
-      displayRandomNews();
-    });
+    updateAnniversary();
+    initSlideshow();
+    displayRandomMoment();
   </script>
 </body>
 </html>
-```[cite: 1]
